@@ -80,6 +80,13 @@ public class Category {
 			return false;
 		return true;
 	}
+	public Category() {};
+	public Category(int id, String name, List<Item> items) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.items = items;
+	}
 
 	//toString
 	@Override
