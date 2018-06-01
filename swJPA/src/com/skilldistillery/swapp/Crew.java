@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Crew {
 	// FIELDS
@@ -17,6 +19,7 @@ public class Crew {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	int id;
 	
+	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name="profile_id")
 	private Profile profile;

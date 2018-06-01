@@ -27,11 +27,6 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-	// PING() WORKS
-	@RequestMapping(path = "ping", method=RequestMethod.GET)
-	public String ping() {
-		return "pong";
-	}
 	// GET users WORKS
 	@RequestMapping(path = "users", method=RequestMethod.GET)
 	public List<User> index(HttpServletRequest req, HttpServletResponse res) {

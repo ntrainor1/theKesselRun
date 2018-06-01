@@ -1,13 +1,15 @@
 package com.skilldistillery.swapp.service;
 
+import java.util.List;
 import java.util.Set;
 
 import com.skilldistillery.swapp.Profile;
+import com.skilldistillery.swapp.User;
 
 public interface ProfileService {
-	public Set<Profile> index(String username);
-	public Profile show(String username, Integer id);
-	public Profile create(String username, Profile profile);
-	public Profile update(String username, int id, Profile profile);
-	public void destroy(String username, int id);
+	public List<Profile> index();
+	public Profile show(Integer id);
+	public Profile create(Profile profile);
+	public Profile update(int id, Profile profile);
+	public void destroy(int id);
 }
