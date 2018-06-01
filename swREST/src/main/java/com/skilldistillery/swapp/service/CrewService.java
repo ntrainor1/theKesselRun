@@ -1,13 +1,12 @@
 package com.skilldistillery.swapp.service;
 
-import java.util.Set;
+import java.util.List;
 
 import com.skilldistillery.swapp.Crew;
 
 public interface CrewService {
-	public Set<Crew> index(String username);
-	public Crew show(String username, Integer id);
-	public Crew create(String username, Crew crew);
-	public Crew update(String username, int id, Crew crew);
-	public void destroy(String username, int id);
+	public List<Crew> index();
+	public Crew show(Integer profileId);
+	public Crew update(int crewId, Crew crew);
+
 }

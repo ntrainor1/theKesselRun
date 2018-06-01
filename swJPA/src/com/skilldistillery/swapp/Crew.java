@@ -53,13 +53,6 @@ public class Crew {
 		this.profile = profile;
 	}
 
-	public List<Crewmember> getCrewMembers() {
-		return crewmembers;
-	}
-
-	public void setCrewMembers(List<Crewmember> crewMembers) {
-		this.crewmembers = crewMembers;
-	}
 	// CONSTRUCTORS
 	public Crew() {}
 

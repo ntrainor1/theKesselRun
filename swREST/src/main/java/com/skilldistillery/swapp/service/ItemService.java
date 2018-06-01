@@ -1,13 +1,14 @@
 package com.skilldistillery.swapp.service;
 
+import java.util.List;
 import java.util.Set;
 
 import com.skilldistillery.swapp.Item;
 
 public interface ItemService {
-	public Set<Item> index(String username);
-	public Item show(String username, Integer id);
-	public Item create(String username, Item item);
-	public Item update(String username, int id, Item item);
-	public void destroy(String username, int id);
+	List<Item> index();
+	Item show(Integer id);
+	Item create(Item item);
+	Item update(int id, Item item);
+	void destroy(int id);
 }

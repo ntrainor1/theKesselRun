@@ -1,45 +1,57 @@
 package com.skilldistillery.swapp.service;
 
-import java.util.Set;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import com.skilldistillery.swapp.Category;
 import com.skilldistillery.swapp.Item;
+import com.skilldistillery.swapp.repository.CategoryRepo;
 import com.skilldistillery.swapp.repository.ItemRepo;
 
+@Service
 public class ItemServiceImpl implements ItemService {
 	
 	@Autowired
 	private ItemRepo itemRepo;
 	
+	@Autowired 
+	private CategoryRepo catRepo;
+	
 	@Override
-	public Set<Item> index(String username) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Item> index() {
+		return itemRepo.findAll();
 	}
 
 	@Override
-	public Item show(String username, Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Item show(Integer id) {
+		return itemRepo.findById(id).get();
 	}
 
 	@Override
-	public Item create(String username, Item item) {
-		// TODO Auto-generated method stub
-		return null;
+	public Item create(Item item) {
+		Category category = catRepo.findById(1).get();
+		item.setCategory(category);
+		return itemRepo.saveAndFlush(item);
 	}
 
 	@Override
-	public Item update(String username, int id, Item item) {
-		// TODO Auto-generated method stub
-		return null;
+	public Item update(int id, Item item) {
+		Item managedItem = itemRepo.findById(id).get();
+		managedItem.setCategory(item.getCategory());
+		managedItem.setDescription(item.getDescription());
+		managedItem.setImageUrl(item.getImageUrl());
+		managedItem.setName(item.getName());
+		managedItem.setPrice(item.getPrice());
+		managedItem.setProfiles(item.getProfiles());
+		return itemRepo.saveAndFlush(managedItem);
+		
 	}
 
 	@Override
-	public void destroy(String username, int id) {
-		// TODO Auto-generated method stub
-
+	public void destroy(int id) {
+		itemRepo.delete(itemRepo.findById(id).get());
 	}
 
 }

@@ -30,7 +30,6 @@ public class Item {
 	
 	private int price;
 	
-	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="category_id")
 	private Category category;
