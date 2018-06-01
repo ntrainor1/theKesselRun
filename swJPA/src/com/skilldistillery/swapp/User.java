@@ -1,10 +1,15 @@
+// THIS WORKS WITH THE USER SERVICE REPO AND CONTROLLER
+
 package com.skilldistillery.swapp;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class User {
@@ -20,8 +25,8 @@ public class User {
 	private boolean admin;
 	
 	private boolean active;
-	
-	@OneToOne(mappedBy="user")
+	@JsonIgnore
+	@OneToOne(mappedBy="user", cascade=CascadeType.ALL)
 	private Profile profile;
 	// G & S
 
