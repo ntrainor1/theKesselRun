@@ -33,30 +33,22 @@ public class ProfileController {
 	public String ping() {
 		return "pong";
 	}
-	// GET users WORKS
+	// GET profiles WORKS
 	@RequestMapping(path = "profiles", method=RequestMethod.GET)
 	public List<Profile> index(HttpServletRequest req, HttpServletResponse res) {
 		return profileService.index();
 	}
 
-	// GET users/{id} WORKS
+	// GET profiles/{id} WORKS
 	@RequestMapping(path = "profiles/{id}", method=RequestMethod.GET)
 	public Profile show(HttpServletRequest req, HttpServletResponse res, @PathVariable("id") int id) {
 		return profileService.show(id);
 	}
-	// POST users WORKS
-	@RequestMapping(path = "profiles", method=RequestMethod.POST)
-	public Profile create(HttpServletRequest req, HttpServletResponse res, @RequestBody Profile profile) {
-		return profileService.create(profile);
-	}
-	// PUT users/{id} WORKS
+
+	// PUT profiles/{id} WORKS
 	@RequestMapping(path = "profiles/{id}", method=RequestMethod.PUT)
 	public Profile update(HttpServletRequest req, HttpServletResponse res, @PathVariable("id") int id, @RequestBody Profile profile) {
 		return profileService.update(id, profile);
 	}
-	// DELETE users/{id}
-	@RequestMapping(path = "profiles/{id}", method=RequestMethod.DELETE)
-	public void destroy(HttpServletRequest req, HttpServletResponse res, @PathVariable int id) {
-		profileService.destroy(id);
-	}
+
 }
