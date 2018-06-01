@@ -49,14 +49,21 @@ public class Cart {
 		this.profile = profile;
 	}
 
-	public List<CartItem> getItems() {
+	public List<Item> getItems() {
 		return items;
 	}
 
-	public void setItems(List<CartItem> items) {
+	public void setItems(List<Item> items) {
 		this.items = items;
 	}
-	
+	public Cart() {};
+	public Cart(int id, Profile profile, List<Item> items) {
+		super();
+		this.id = id;
+		this.profile = profile;
+		this.items = items;
+	}
+
 	// hashCode and .equals()
 	@Override
 	public int hashCode() {
