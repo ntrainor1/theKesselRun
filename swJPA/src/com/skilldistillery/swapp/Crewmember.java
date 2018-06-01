@@ -50,7 +50,14 @@ public class Crewmember {
 	public void setRole(CrewRole role) {
 		this.role = role;
 	}
-	
+	public Crewmember() {};
+	public Crewmember(int id, String name, Crew crew, CrewRole role) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.crew = crew;
+		this.role = role;
+	}
 	// hashCode and Equals
 	@Override
 	public int hashCode() {

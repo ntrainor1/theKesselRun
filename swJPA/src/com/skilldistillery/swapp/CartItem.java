@@ -47,8 +47,14 @@ public class CartItem {
 	public void setItem(Item item) {
 		this.item = item;
 	}
+	public CartItem() {};
+	public CartItem(int id, Cart cart, Item item) {
+		super();
+		this.id = id;
+		this.cart = cart;
+		this.item = item;
+	}
 
-	
 	// HashCode and Equals
 	@Override
 	public int hashCode() {
