@@ -14,7 +14,7 @@ public class Crewmember {
 
 	// Fields
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	int id;
 	
 	private String name;
@@ -23,9 +23,12 @@ public class Crewmember {
 	@ManyToOne
 	@JoinColumn(name="crew_id")
 	private Crew crew;
+	
 	@ManyToOne
 	@JoinColumn(name="crew_role_id")
 	private CrewRole role;
+	// G & S
+	
 	public int getId() {
 		return id;
 	}
@@ -50,6 +53,7 @@ public class Crewmember {
 	public void setRole(CrewRole role) {
 		this.role = role;
 	}
+	 // CONSTRUCTORS
 	public Crewmember() {};
 	public Crewmember(int id, String name, Crew crew, CrewRole role) {
 		super();

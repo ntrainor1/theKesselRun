@@ -1,3 +1,5 @@
+// THIS WORKS WITH USER SERVICE REPO AND CONTROLLER
+
 package com.skilldistillery.swapp;
 
 import java.util.List;
@@ -27,6 +29,9 @@ public class Profile {
 	
 	private int credits;
 	
+	@OneToOne(mappedBy="profile")
+	private Crew crew;
+	
 	private String species;
 	
 	@OneToOne
@@ -37,9 +42,17 @@ public class Profile {
 	@ManyToMany(mappedBy = "profiles")
 	private List<Item> items;
 	// G & S
-
+	
 	public String getImageUrl() {
 		return imageUrl;
+	}
+
+	public Crew getCrew() {
+		return crew;
+	}
+
+	public void setCrew(Crew crew) {
+		this.crew = crew;
 	}
 
 	public void setImageUrl(String imageUrl) {
@@ -91,17 +104,21 @@ public class Profile {
 	}
 
 	// CONSTRUCTORS
-	public Profile() {};
-	public Profile(int id, String imageUrl, String name, int credits, String species, User user, List<Item> items) {
+	public Profile() {}
+
+	public Profile(int id, String imageUrl, String name, int credits, Crew crew, String species, User user,
+			List<Item> items) {
 		super();
 		this.id = id;
 		this.imageUrl = imageUrl;
 		this.name = name;
 		this.credits = credits;
+		this.crew = crew;
 		this.species = species;
 		this.user = user;
 		this.items = items;
-	}
+	};
+	
 	
 	// ACCESS MODIFIERS
 	
