@@ -27,6 +27,9 @@ public class Profile {
 	
 	private String name;
 	
+	@OneToOne(mappedBy="profile")
+	private Cart cart;
+	
 	private int credits;
 	
 	@OneToOne(mappedBy="profile")
@@ -102,22 +105,35 @@ public class Profile {
 	public int getId() {
 		return id;
 	}
+	
+	
+
+	public Cart getCart() {
+		return cart;
+	}
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
 
 	// CONSTRUCTORS
 	public Profile() {}
 
-	public Profile(int id, String imageUrl, String name, int credits, Crew crew, String species, User user,
+	public Profile(int id, String imageUrl, String name, Cart cart, int credits, Crew crew, String species, User user,
 			List<Item> items) {
 		super();
 		this.id = id;
 		this.imageUrl = imageUrl;
 		this.name = name;
+		this.cart = cart;
 		this.credits = credits;
 		this.crew = crew;
 		this.species = species;
 		this.user = user;
 		this.items = items;
-	};
+	}
+
+
 	
 	
 	// ACCESS MODIFIERS

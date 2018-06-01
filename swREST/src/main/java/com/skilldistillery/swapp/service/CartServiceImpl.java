@@ -3,11 +3,13 @@ package com.skilldistillery.swapp.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.skilldistillery.swapp.Cart;
 import com.skilldistillery.swapp.repository.CartRepo;
 import com.skilldistillery.swapp.repository.ProfileRepo;
 
+@Service
 public class CartServiceImpl implements CartService {
 	
 	@Autowired
@@ -22,25 +24,15 @@ public class CartServiceImpl implements CartService {
 
 	@Override
 	public Cart show(Integer id) {
-		return null;
+		return profileRepo.findById(id).get().getCart();
 	}
 
 	@Override
-	public Cart create(String username, Cart cart) {
-		// TODO Auto-generated method stub
-		return null;
+	public Cart update(int id, Cart cart) {
+		Cart managedCart = cartRepo.findById(id).get();
+		managedCart.setItems(cart.getItems());
+		return cartRepo.saveAndFlush(managedCart);
 	}
 
-	@Override
-	public Cart update(String username, int id, Cart cart) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void destroy(String username, int id) {
-		// TODO Auto-generated method stub
-		
-	}
 
 }
