@@ -19,6 +19,8 @@ public class Crewmember {
 	
 	private String name;
 	
+	private int cost;
+	
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="crew_id")
@@ -53,12 +55,22 @@ public class Crewmember {
 	public void setRole(CrewRole role) {
 		this.role = role;
 	}
-	 // CONSTRUCTORS
+	
+	
+	 public int getCost() {
+		return cost;
+	}
+	public void setCost(int cost) {
+		this.cost = cost;
+	}
+	// CONSTRUCTORS
 	public Crewmember() {};
-	public Crewmember(int id, String name, Crew crew, CrewRole role) {
+	
+	public Crewmember(int id, String name, int cost, Crew crew, CrewRole role) {
 		super();
 		this.id = id;
 		this.name = name;
+		this.cost = cost;
 		this.crew = crew;
 		this.role = role;
 	}

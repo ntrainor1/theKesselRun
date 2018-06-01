@@ -1,45 +1,46 @@
 package com.skilldistillery.swapp.service;
 
-import java.util.Set;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.skilldistillery.swapp.Crewmember;
 import com.skilldistillery.swapp.repository.CrewmemberRepo;
-
+@Service
 public class CrewmemberServiceImpl implements CrewmemberService {
 	
 	@Autowired
 	private CrewmemberRepo cmRepo;
 	
 	@Override
-	public Set<Crewmember> index(String username) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Crewmember> index() {
+		return cmRepo.findAll();
 	}
 
 	@Override
-	public Crewmember show(String username, Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Crewmember show(Integer id) {
+		return cmRepo.findById(id).get();
 	}
 
 	@Override
-	public Crewmember create(String username, Crewmember cm) {
-		// TODO Auto-generated method stub
-		return null;
+	public Crewmember create(Crewmember cm) {
+		return cmRepo.saveAndFlush(cm);
 	}
 
 	@Override
-	public Crewmember update(String username, int id, Crewmember cm) {
-		// TODO Auto-generated method stub
-		return null;
+	public Crewmember update(int id, Crewmember cm) {
+		Crewmember managedCm = cmRepo.findById(id).get();
+		managedCm.setCrew(cm.getCrew());
+		managedCm.setName(cm.getName());
+		managedCm.setRole(cm.getRole());
+		return cmRepo.saveAndFlush(managedCm);
 	}
 
 	@Override
-	public void destroy(String username, int id) {
-		// TODO Auto-generated method stub
-		
+	public void destroy(int id) {
+		cmRepo.deleteById(id);
 	}
 
 }
