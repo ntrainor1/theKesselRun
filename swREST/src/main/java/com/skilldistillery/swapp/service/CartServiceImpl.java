@@ -1,26 +1,27 @@
 package com.skilldistillery.swapp.service;
 
-import java.util.Set;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.skilldistillery.swapp.Cart;
 import com.skilldistillery.swapp.repository.CartRepo;
+import com.skilldistillery.swapp.repository.ProfileRepo;
 
 public class CartServiceImpl implements CartService {
 	
 	@Autowired
 	private CartRepo cartRepo;
+	@Autowired
+	private ProfileRepo profileRepo;
 	
 	@Override
-	public Set<Cart> index(String username) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Cart> index() {
+		return cartRepo.findAll();
 	}
 
 	@Override
-	public Cart show(String username, Integer id) {
-		// TODO Auto-generated method stub
+	public Cart show(Integer id) {
 		return null;
 	}
 
