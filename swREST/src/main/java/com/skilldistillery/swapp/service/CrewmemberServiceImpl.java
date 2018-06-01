@@ -3,37 +3,35 @@ package com.skilldistillery.swapp.service;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-import com.skilldistillery.swapp.User;
-import com.skilldistillery.swapp.repository.UserRepo;
+import com.skilldistillery.swapp.Crewmember;
+import com.skilldistillery.swapp.repository.CrewmemberRepo;
 
-@Service
-public class UserServiceImpl implements UserService {
+public class CrewmemberServiceImpl implements CrewmemberService {
 	
 	@Autowired
-	private UserRepo userRepo;
+	private CrewmemberRepo cmRepo;
 	
 	@Override
-	public Set<User> index(String username) {
+	public Set<Crewmember> index(String username) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public User show(String username, Integer id) {
+	public Crewmember show(String username, Integer id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public User create(String username, User user) {
+	public Crewmember create(String username, Crewmember cm) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public User update(String username, int id, User user) {
+	public Crewmember update(String username, int id, Crewmember cm) {
 		// TODO Auto-generated method stub
 		return null;
 	}

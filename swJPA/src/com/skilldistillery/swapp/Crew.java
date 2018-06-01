@@ -8,22 +8,34 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Crew {
-
+	// FIELDS
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	int id;
 	
+	@OneToOne
 	@JoinColumn(name="profile_id")
 	private Profile profile;
 	
-	@OneToMany(mappedBy="profile")
-	private List<Crewmember>crewMembers;
-
+	@OneToMany(mappedBy="crew")
+	private List<Crewmember> crewmembers;
+	
+	// G & S
+	
 	public int getId() {
 		return id;
+	}
+
+	public List<Crewmember> getCrewmembers() {
+		return crewmembers;
+	}
+
+	public void setCrewmembers(List<Crewmember> crewmembers) {
+		this.crewmembers = crewmembers;
 	}
 
 	public void setId(int id) {
@@ -39,17 +51,20 @@ public class Crew {
 	}
 
 	public List<Crewmember> getCrewMembers() {
-		return crewMembers;
+		return crewmembers;
 	}
 
 	public void setCrewMembers(List<Crewmember> crewMembers) {
-		this.crewMembers = crewMembers;
+		this.crewmembers = crewMembers;
 	}
-	public Crew() {};
-	public Crew(int id, Profile profile, List<Crewmember> crewMembers) {
+	// CONSTRUCTORS
+	public Crew() {}
+
+	public Crew(int id, Profile profile, List<Crewmember> crewmembers) {
 		super();
 		this.id = id;
 		this.profile = profile;
-		this.crewMembers = crewMembers;
-	}
+		this.crewmembers = crewmembers;
+	};
+	
 }

@@ -42,7 +42,6 @@ public class Item {
 		  )
 	private List<Profile> profiles;
 	
-	@JsonIgnore
 	@ManyToMany(mappedBy = "items")
 	private List<Cart> carts;
 	// G & S
