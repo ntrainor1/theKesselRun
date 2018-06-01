@@ -1,0 +1,84 @@
+buildscript {
+	ext {
+		springBootVersion = '2.0.2.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+// this must be directly after buildscript but before everything else
+plugins {
+  id 'org.hidetake.ssh' version '2.9.0'
+}
+apply plugin: 'org.hidetake.ssh'
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'war'
+war {
+  enabled = true
+  archiveName = "${baseName}.war"     // Our app name, as defined in settings.gradle
+  destinationDir = file("./WAR")      // WAR/ folder under project root directory
+}
+
+
+group = 'com.skilldistillery'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	compile('org.springframework.boot:spring-boot-starter-web')
+	runtime('mysql:mysql-connector-java')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+	// Subproject 
+	compile project(':swJPA')
+	// Allow JUnit5 Execution
+	compile 'org.junit.jupiter:junit-jupiter-api:5.0.1'
+  	testCompile('org.apiguardian:apiguardian-api:1.0.0')
+  	testRuntime('org.junit.jupiter:junit-jupiter-engine:5.0.1',
+        'org.junit.vintage:junit-vintage-engine:4.12.1',
+        'org.junit.platform:junit-platform-launcher:1.0.1',
+        'org.junit.platform:junit-platform-runner:1.0.1')
+   	// WAR STUFF
+   	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+   // added hidetake   
+   runtime group: 'org.hidetake', name: 'groovy-ssh', version: '2.9.0'
+}
+/*
+	remotes {
+	  ec2host {
+	    host = '18.221.108.122' // Change this to you EC2 host's public IP
+	    user = 'ec2-user'
+	    identity = file("${System.properties['user.home']}/.ssh/aws.pem")
+	  }
+	}
+*/
+/* 
+	task deploy(dependsOn: war, group: 'build') {
+	  description = 'Deploy WAR file to remote server'
+	  ssh.settings {
+	    knownHosts = addHostKey(file("${System.properties['user.home']}/.ssh/known_hosts"))
+	  }  
+	  doLast {
+	    logger.lifecycle("Deploying $war.archivePath to $remotes.ec2host.host")
+	    ssh.run {
+	      session(remotes.ec2host) {
+	        put from: war.archivePath.absolutePath, into: '/var/lib/tomcat8/webapps'
+	        logger.lifecycle("WAR file deployed to $remotes.ec2host.host")
+	      }
+	    }
+	  }
+	}
+*/
+
