@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
   username = '';
   password = '';
   user = new User();
+
   login(username, password) {
     console.log(username);
     console.log(password);
@@ -31,6 +32,8 @@ export class HomeComponent implements OnInit {
     //   },
     //   err => console.log(err)
     // );
+
+    console.log(user);
 
     this.authService.register(user);
   }

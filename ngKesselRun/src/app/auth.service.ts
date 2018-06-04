@@ -34,10 +34,12 @@ export class AuthService {
   }
 
   register(user) {
+
     // create request to register a new account
     return this.http.post('http://localhost:8080/register', user)
     .pipe(
-        tap((res) => {  // create a user and then upon success, log them in
+      tap((res) => {  // create a user and then upon success, log them in
+        console.log(user);
           this.login(user.username, user.password);
         }),
         catchError((err: any) => {

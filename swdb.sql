@@ -23,11 +23,13 @@ DROP TABLE IF EXISTS `user` ;
 CREATE TABLE IF NOT EXISTS `user` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(20) NULL,
-  `password` VARCHAR(20) NULL,
+  `password` VARCHAR(1000) NULL,
   `admin` TINYINT NULL,
   `active` TINYINT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
+
+CREATE UNIQUE INDEX `username_UNIQUE` ON `user` (`username` ASC);
 
 
 -- -----------------------------------------------------
@@ -224,13 +226,6 @@ CREATE INDEX `fk_profile_inventory_idx` ON `inventory` (`profile_id` ASC);
 
 CREATE INDEX `fk_item_inventory` ON `inventory` (`item_id` ASC);
 
-SET SQL_MODE = '';
-GRANT USAGE ON *.* TO solo;
- DROP USER solo;
-SET SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
-CREATE USER 'solo' IDENTIFIED BY 'parsec';
-
-GRANT SELECT, INSERT, TRIGGER, UPDATE, DELETE ON TABLE * TO 'solo';
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
