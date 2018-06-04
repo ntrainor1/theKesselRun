@@ -1,3 +1,26 @@
-<div class="row">
-
+<div class="login-left">
+  <button class="btn btn-large" (click)="showLogin()">LOGIN</button>
 </div>
+<div class="create-right">
+  <button class="btn btn-large" (click)="showCreate()">CREATE ACCOUNT</button>
+</div>
+<div class="banner-center">
+<h1>THE KESSEL RUN</h1>
+</div>
+<app-scroll *ngIf="!showCreateForm && !showLoginForm"></app-scroll>
+<!-- Login Form -->
+<br>
+<div class="form-center">
+  <form *ngIf="showLoginForm">
+      <div><input type="text" name="username" placeholder="Username" /></div>
+      <div><input type="password" name="password" placeholder="Password" /></div>
+      <br>
+      <button type="submit" class="btn btn-large btn-primary">Login</button>
+      <button type="submit" class="btn btn-large btn-danger" (click)="hideLogin()">Back</button>
+  </form>
+</div>
+
+<!-- Create Form -->
+<form  *ngIf="showCreateForm">
+  <h1 >THIS IS THE CREATE FORM</h1>
+</form>

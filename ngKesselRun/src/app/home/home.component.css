@@ -1,0 +1,24 @@
+.banner-center {
+  border-left: 9px double darkgrey;
+  border-right: 9px double darkgrey;
+  border-top: 18px double darkgrey;
+  border-bottom: 18px double darkgrey;
+  margin-left: 25%;
+  margin-right: 25%;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  text-align: center;
+}
+.login-left {
+  padding-top: 5%;
+  padding-left: 5%;
+  float: left;
+}
+.create-right {
+  padding-top: 5%;
+  padding-right: 3%;
+  float: right;
+}
+.form-center {
+  text-align: center;
+}
