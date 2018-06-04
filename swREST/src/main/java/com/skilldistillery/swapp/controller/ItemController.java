@@ -2,6 +2,7 @@
 
 package com.skilldistillery.swapp.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.swapp.Item;
-import com.skilldistillery.swapp.User;
 import com.skilldistillery.swapp.service.ItemService;
 //Configures the app to accept all traffic from 4200 because
 //Angular runs on a separate server (port 4200)
@@ -30,27 +30,27 @@ public class ItemController {
 
 	// GET items WORKS
 	@RequestMapping(path = "items", method=RequestMethod.GET)
-	public List<Item> index(HttpServletRequest req, HttpServletResponse res) {
+	public List<Item> index(HttpServletRequest req, HttpServletResponse res, Principal principal) {
 		return itemService.index();
 	}
 	// GET items/{id} WORKS
 	@RequestMapping(path = "items/{id}", method=RequestMethod.GET)
-	public Item show(HttpServletRequest req, HttpServletResponse res, @PathVariable("id") int id) {
+	public Item show(HttpServletRequest req, HttpServletResponse res, @PathVariable("id") int id, Principal principal) {
 		return itemService.show(id);
 	}
 	// POST items WORKS
 	@RequestMapping(path = "items", method=RequestMethod.POST)
-	public Item create(HttpServletRequest req, HttpServletResponse res, @RequestBody Item item) {
+	public Item create(HttpServletRequest req, HttpServletResponse res, @RequestBody Item item, Principal principal) {
 		return itemService.create(item);
 	}
 	// PUT items/{id} WORKS
 	@RequestMapping(path = "items/{id}", method=RequestMethod.PUT)
-	public Item update(HttpServletRequest req, HttpServletResponse res, @PathVariable("id") int id, @RequestBody Item item) {
+	public Item update(HttpServletRequest req, HttpServletResponse res, @PathVariable("id") int id, @RequestBody Item item, Principal principal) {
 		return itemService.update(id, item);
 	}
 	// DELETE items/{id}
 	@RequestMapping(path = "items/{id}", method=RequestMethod.DELETE)
-	public void destroy(HttpServletRequest req, HttpServletResponse res, @PathVariable int id) {
+	public void destroy(HttpServletRequest req, HttpServletResponse res, @PathVariable int id, Principal principal) {
 		itemService.destroy(id);
 	}
 }
