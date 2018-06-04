@@ -37,8 +37,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User show(Integer id) {
-		return userRepo.findById(id).get();
+	public User show(String username, Integer id) {
+		return userRepo.findByUsername(username).get();
 	}
 
 	@Override
@@ -63,8 +63,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User update(int id, User user) {
-		User managedUser = userRepo.findById(id).get();
+	public User update(String username, int id, User user) {
+		User managedUser = userRepo.findByUsername(username).get();
 		managedUser.setActive(user.isActive());
 		managedUser.setAdmin(user.isAdmin());
 		managedUser.setPassword(user.getPassword());
@@ -74,11 +74,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void destroy(int id) {
-		crewRepo.deleteById(userRepo.findById(id).get().getProfile().getCrew().getId());
-		cartRepo.deleteById(userRepo.findById(id).get().getProfile().getCart().getId());
-		profileRepo.deleteById(userRepo.findById(id).get().getProfile().getId());
-		userRepo.deleteById(id);
+	public void destroy(String username, int id) {
+		crewRepo.deleteById(userRepo.findByUsername(username).get().getProfile().getCrew().getId());
+		cartRepo.deleteById(userRepo.findByUsername(username).get().getProfile().getCart().getId());
+		profileRepo.deleteById(userRepo.findByUsername(username).get().getProfile().getId());
+		userRepo.deleteByUsername(username);
 	}
 
 }

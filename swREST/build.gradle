@@ -50,10 +50,12 @@ dependencies {
         'org.junit.vintage:junit-vintage-engine:4.12.1',
         'org.junit.platform:junit-platform-launcher:1.0.1',
         'org.junit.platform:junit-platform-runner:1.0.1')
-   	// WAR STUFF
-   	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
-   // added hidetake
-   runtime group: 'org.hidetake', name: 'groovy-ssh', version: '2.9.0'
+        
+   		// WAR STUFF
+	   	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	   // added hidetake
+	   runtime group: 'org.hidetake', name: 'groovy-ssh', version: '2.9.0'
+	   compile('org.springframework.boot:spring-boot-starter-security')
 }
 /*
 	remotes {

@@ -8,8 +8,8 @@ import com.skilldistillery.swapp.User;
 
 public interface UserService {
 	public List<User> index();
-	public User show(Integer id);
+	public User show(String username, Integer id);
 	public User create(User user);
-	public User update(int id, User user);
-	public void destroy(int id);
+	public User update(String username, int id, User user);
+	public void destroy(String username, int id);
 }
