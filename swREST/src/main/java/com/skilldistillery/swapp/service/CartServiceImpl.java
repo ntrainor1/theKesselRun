@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.swapp.Cart;
 import com.skilldistillery.swapp.repository.CartRepo;
-import com.skilldistillery.swapp.repository.ProfileRepo;
+import com.skilldistillery.swapp.repository.UserRepo;
 
 @Service
 public class CartServiceImpl implements CartService {
@@ -15,7 +15,7 @@ public class CartServiceImpl implements CartService {
 	@Autowired
 	private CartRepo cartRepo;
 	@Autowired
-	private ProfileRepo profileRepo;
+	private UserRepo userRepo;
 	
 	@Override
 	public List<Cart> index() {
@@ -24,7 +24,7 @@ public class CartServiceImpl implements CartService {
 
 	@Override
 	public Cart show(Integer id) {
-		return profileRepo.findById(id).get().getCart();
+		return userRepo.findById(id).get().getCart();
 	}
 
 	@Override
