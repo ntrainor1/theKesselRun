@@ -19,8 +19,14 @@ export class HomeComponent implements OnInit {
     console.log(password);
   }
   createUser(user) {
-    this.userService.create(user).subscribe(
-      data => console.log(user),
+    user = this.userService.create(user).subscribe(
+      data => {
+        console.log(user);
+        this.user = data;
+        console.log(this.user);
+
+        this.router.navigateByUrl('profile');
+      },
       err => console.log(err)
     );
   }
@@ -45,4 +51,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
+  returnUser() {
+    return this.user;
+  }
 }

@@ -31,7 +31,7 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [HomeComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
