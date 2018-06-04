@@ -24,6 +24,7 @@ export class HomeComponent implements OnInit {
       data => {
         console.log('Log in successful');
         console.log('Check tokens');
+        this.router.navigateByUrl('profile');
        },
       err => console.log(err)
     );
