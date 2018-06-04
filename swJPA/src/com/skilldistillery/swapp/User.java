@@ -32,17 +32,14 @@ public class User {
 	
 	private int credits;
 	
-	private String species;
-	
-	// END FIELDS
-	
-	
 	@OneToOne(mappedBy="profile", cascade=CascadeType.ALL)
 	private Cart cart;
 	
 	@OneToOne(mappedBy="profile", cascade=CascadeType.ALL)
 	private Crew crew;
 	
+	private String species;
+	// END FIELDS
 	
 
 	public int getId() {
