@@ -54,8 +54,8 @@ public class UserServiceImpl implements UserService {
 		crew.setProfile(profile);
 		profile.setCart(cart);
 		profile.setCrew(crew);
-		user.setAdmin(false);
-		user.setActive(true);
+		user.setRole("standard");
+		user.setEnabled(true);
 		user.setProfile(profile);
 		userRepo.saveAndFlush(user);
 		profileRepo.saveAndFlush(profile);
@@ -65,8 +65,8 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User update(String username, int id, User user) {
 		User managedUser = userRepo.findByUsername(username).get();
-		managedUser.setActive(user.isActive());
-		managedUser.setAdmin(user.isAdmin());
+		managedUser.setEnabled(user.isEnabled());
+		managedUser.setRole(user.getRole());
 		managedUser.setPassword(user.getPassword());
 		managedUser.setProfile(user.getProfile());
 		managedUser.setUsername(user.getUsername());

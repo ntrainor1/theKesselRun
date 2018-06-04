@@ -39,8 +39,13 @@ export class AuthService {
     return this.http.post('http://localhost:8080/register', user)
     .pipe(
       tap((res) => {  // create a user and then upon success, log them in
-        console.log(user);
-          this.login(user.username, user.password);
+          console.log(user);
+          this.login(user.username, user.password).subscribe(
+            data => {
+              console.log(user);
+             },
+            err => console.log(err)
+          );
         }),
         catchError((err: any) => {
           console.log(err);

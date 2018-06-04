@@ -20,7 +20,13 @@ export class HomeComponent implements OnInit {
     console.log(username);
     console.log(password);
 
-    this.authService.login(username, password);
+    this.authService.login(username, password).subscribe(
+      data => {
+        console.log('Log in successful');
+        console.log('Check tokens');
+       },
+      err => console.log(err)
+    );
   }
   createUser(user) {
     // user = this.userService.create(user).subscribe(
@@ -35,7 +41,13 @@ export class HomeComponent implements OnInit {
 
     console.log(user);
 
-    this.authService.register(user);
+    this.authService.register(user).subscribe(
+        data => {
+          console.log(user);
+          this.router.navigateByUrl('profile');
+        },
+        err => console.log(err)
+      );
   }
   // DISPLAY AND HIDE METHODS
   showLogin() {

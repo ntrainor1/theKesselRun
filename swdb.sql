@@ -24,8 +24,8 @@ CREATE TABLE IF NOT EXISTS `user` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(20) NULL,
   `password` VARCHAR(1000) NULL,
-  `admin` TINYINT NULL,
-  `active` TINYINT NULL,
+  `role` VARCHAR(20) NULL DEFAULT 'standard',
+  `enabled` TINYINT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -236,10 +236,10 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `swdb`;
-INSERT INTO `user` (`id`, `username`, `password`, `admin`, `active`) VALUES (1, 'solo4ever', 'parsec', 0, 1);
-INSERT INTO `user` (`id`, `username`, `password`, `admin`, `active`) VALUES (2, 'alecGuiness', 'onlyhope', 1, 1);
-INSERT INTO `user` (`id`, `username`, `password`, `admin`, `active`) VALUES (3, 'slave_girl_leia', 'fisher', 0, 1);
-INSERT INTO `user` (`id`, `username`, `password`, `admin`, `active`) VALUES (4, 'alderaan', 'imdead', 0, 0);
+INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`) VALUES (1, 'solo4ever', 'parsec', '0', 1);
+INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`) VALUES (2, 'alecGuiness', 'onlyhope', '1', 1);
+INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`) VALUES (3, 'slave_girl_leia', 'fisher', '0', 1);
+INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`) VALUES (4, 'alderaan', 'imdead', '0', 0);
 
 COMMIT;
 

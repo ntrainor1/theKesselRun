@@ -35,9 +35,7 @@
 
 ## Project Description
 
-Our project is a social media web application where users can post ideas and
-interact with other users by commenting on ideas, liking and disliking ideas as
-well as comments.
+Our project is a Star Wars themed online retail site that combines both the shopping and listing experience of such sites as Amazon and eBay where users can create, update, and delete their own listings on the site.
 
 ## Lessons Learned
 

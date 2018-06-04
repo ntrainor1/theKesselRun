@@ -22,9 +22,10 @@ public class User {
 	
 	private String password;
 	
-	private boolean admin;
+	private String role;
 	
-	private boolean active;
+	private boolean enabled;
+	
 	@JsonIgnore
 	@OneToOne(mappedBy="user", cascade=CascadeType.ALL)
 	private Profile profile;
@@ -46,20 +47,20 @@ public class User {
 		this.password = password;
 	}
 
-	public boolean isAdmin() {
-		return admin;
+	public String getRole() {
+		return role;
 	}
 
-	public void setAdmin(boolean admin) {
-		this.admin = admin;
+	public void setRole(String role) {
+		this.role = role;
 	}
 
-	public boolean isActive() {
-		return active;
+	public boolean isEnabled() {
+		return enabled;
 	}
 
-	public void setActive(boolean active) {
-		this.active = active;
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	}
 
 	public Profile getProfile() {
@@ -76,13 +77,13 @@ public class User {
 	// ACCESS MODIFIERS
 	// CONSTRUCTORS
 	public User() {};
-	public User(int id, String username, String password, boolean admin, boolean active, Profile profile) {
+	public User(int id, String username, String password, String role, boolean enabled, Profile profile) {
 		super();
 		this.id = id;
 		this.username = username;
 		this.password = password;
-		this.admin = admin;
-		this.active = active;
+		this.role = role;
+		this.enabled = enabled;
 		this.profile = profile;
 	}
 	
