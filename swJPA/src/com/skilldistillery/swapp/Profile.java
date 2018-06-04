@@ -4,6 +4,7 @@ package com.skilldistillery.swapp;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,12 +28,13 @@ public class Profile {
 	
 	private String name;
 	
-	@OneToOne(mappedBy="profile")
+
+	@OneToOne(mappedBy="profile", cascade=CascadeType.ALL)
 	private Cart cart;
 	
 	private int credits;
 	
-	@OneToOne(mappedBy="profile")
+	@OneToOne(mappedBy="profile", cascade=CascadeType.ALL)
 	private Crew crew;
 	
 	private String species;
