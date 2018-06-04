@@ -23,11 +23,11 @@
 <!-- Create Form -->
 <br>
 <div class="form-center">
-  <form *ngIf="showCreateForm">
-      <div>Create Username: <input type="text" name="username" placeholder="Username" /></div>
-      <div>Create Password: <input type="password" name="password" placeholder="Password" /></div>
+  <form *ngIf="showCreateForm" >
+      <div>Create Username: <input type="text" name="username" placeholder="Username" [(ngModel)]="user.username"/></div>
+      <div>Create Password: <input type="password" name="password" placeholder="Password" [(ngModel)]="user.password"/></div>
       <br>
-      <button type="submit" class="btn btn-large btn-primary">Create</button>
+      <button type="submit" class="btn btn-large btn-primary" (click)="createUser(user)">Create</button>
       <button type="submit" class="btn btn-large btn-danger" (click)="hideCreate()">Back</button>
   </form>
 </div>
