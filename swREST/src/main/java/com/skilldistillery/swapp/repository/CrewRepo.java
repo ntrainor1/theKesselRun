@@ -8,6 +8,5 @@ public interface CrewRepo extends JpaRepository<Crew, Integer> {
 
 	Crew findByProfileId(Integer profileId);
 
-	void deleteByUsername(int id);
 
 }
