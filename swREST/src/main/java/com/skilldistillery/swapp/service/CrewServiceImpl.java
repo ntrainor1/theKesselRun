@@ -20,8 +20,8 @@ public class CrewServiceImpl implements CrewService {
 	}
 
 	@Override
-	public Crew show(Integer profileId) {
-		return crewRepo.findByProfileId(profileId);
+	public Crew show(Integer userId) {
+		return crewRepo.findByUserId(userId);
 	}
 
 	@Override

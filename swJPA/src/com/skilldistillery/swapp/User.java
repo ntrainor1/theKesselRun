@@ -32,10 +32,10 @@ public class User {
 	
 	private int credits;
 	
-	@OneToOne(mappedBy="profile", cascade=CascadeType.ALL)
+	@OneToOne(mappedBy="user", cascade=CascadeType.ALL)
 	private Cart cart;
 	
-	@OneToOne(mappedBy="profile", cascade=CascadeType.ALL)
+	@OneToOne(mappedBy="user", cascade=CascadeType.ALL)
 	private Crew crew;
 	
 	private String species;
