@@ -28,8 +28,8 @@ public class User {
 	@JsonIgnore
 	@OneToOne(mappedBy="user", cascade=CascadeType.ALL)
 	private Profile profile;
-	// G & S
 
+	// G & S
 	public String getUsername() {
 		return username;
 	}
