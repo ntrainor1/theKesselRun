@@ -10,6 +10,12 @@ import { User } from '../models/user';
 export class HomeComponent implements OnInit {
   showLoginForm = null;
   showCreateForm = null;
+  username = '';
+  password = '';
+  login(username, password) {
+    console.log(username);
+    console.log(password);
+  }
   // DISPLAY AND HIDE METHODS
   showLogin() {
     this.hideCreate();
