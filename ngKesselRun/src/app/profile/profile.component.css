@@ -1,0 +1,12 @@
+.left-pane {
+  width: 25%;
+  float: left;
+  padding: 15px;
+  border: 2px solid red;
+}
+.main-portion {
+  width: 75%;
+  float: left;
+  padding: 15px;
+  border: 1px solid red;
+}
