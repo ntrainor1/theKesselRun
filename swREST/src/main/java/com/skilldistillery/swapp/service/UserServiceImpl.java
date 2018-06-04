@@ -11,6 +11,8 @@ import com.skilldistillery.swapp.Cart;
 import com.skilldistillery.swapp.Crew;
 import com.skilldistillery.swapp.Profile;
 import com.skilldistillery.swapp.User;
+import com.skilldistillery.swapp.repository.CartRepo;
+import com.skilldistillery.swapp.repository.CrewRepo;
 import com.skilldistillery.swapp.repository.ProfileRepo;
 import com.skilldistillery.swapp.repository.UserRepo;
 
@@ -22,6 +24,12 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private ProfileRepo profileRepo;
+	
+	@Autowired
+	private CartRepo cartRepo;
+	
+	@Autowired
+	private CrewRepo crewRepo;
 	
 	@Override
 	public List<User> index() {
@@ -67,6 +75,8 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void destroy(int id) {
+		crewRepo.deleteById(userRepo.findById(id).get().getProfile().getCrew().getId());
+		cartRepo.deleteById(userRepo.findById(id).get().getProfile().getCart().getId());
 		profileRepo.deleteById(userRepo.findById(id).get().getProfile().getId());
 		userRepo.deleteById(id);
 	}
