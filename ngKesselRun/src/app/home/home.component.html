@@ -12,8 +12,8 @@
 <br>
 <div class="form-center">
   <form *ngIf="showLoginForm">
-      <div><input type="text" name="username" placeholder="Username" /></div>
-      <div><input type="password" name="password" placeholder="Password" /></div>
+      <div><input type="text" name="username" placeholder="Username"/></div>
+      <div><input type="password" name="password" placeholder="Password"/></div>
       <br>
       <button type="submit" class="btn btn-large btn-primary">Login</button>
       <button type="submit" class="btn btn-large btn-danger" (click)="hideLogin()">Back</button>
@@ -21,6 +21,14 @@
 </div>
 
 <!-- Create Form -->
-<form  *ngIf="showCreateForm">
-  <h1 >THIS IS THE CREATE FORM</h1>
-</form>
+<br>
+<div class="form-center">
+  <form *ngIf="showCreateForm">
+      <div>Create Username: <input type="text" name="username" placeholder="Username" /></div>
+      <div>Create Species: <input type="text" name="password" placeholder="Password" /></div>
+      <div>Create Password: <input type="password" name="password" placeholder="Password" /></div>
+      <br>
+      <button type="submit" class="btn btn-large btn-primary">Create</button>
+      <button type="submit" class="btn btn-large btn-danger" (click)="hideCreate()">Back</button>
+  </form>
+</div>
