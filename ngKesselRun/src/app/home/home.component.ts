@@ -64,6 +64,9 @@ export class HomeComponent implements OnInit {
   hideCreate() {
     this.showCreateForm = null;
   }
+  goNotFound() {
+    this.router.navigateByUrl('not-found');
+  }
 
   constructor(private userService: UserService, private router: Router, private authService: AuthService) { }
 
