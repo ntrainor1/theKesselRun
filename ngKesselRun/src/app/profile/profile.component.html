@@ -1,8 +1,11 @@
-<div class="form-center">
-  <form>
-      <div>Update Username: <input type="text" name="username" placeholder="Username" [(ngModel)]="user.username"/></div>
-      <div>Update Password: <input type="password" name="password" placeholder="Password" [(ngModel)]="user.password"/></div>
-      <br>
-      <button type="submit" class="btn btn-large btn-primary" (click)="updateUser(user)">Update</button>
-  </form>
+<div class="left-pane">
+  I am the menu side bar I will house all of the buttons
+</div>
+<div class="main-portion">
+    <form>
+        <div>Update Username: <input type="text" name="username" placeholder="Username" [(ngModel)]="user.username"/></div>
+        <div>Update Password: <input type="password" name="password" placeholder="Password" [(ngModel)]="user.password"/></div>
+        <br>
+        <button type="submit" class="btn btn-large btn-primary" (click)="updateUser(user)">Update</button>
+    </form>
 </div>
