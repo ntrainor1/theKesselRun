@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../models/user';
 import { UserService } from '../user.service';
+import { AuthService } from '../auth.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -17,18 +18,21 @@ export class HomeComponent implements OnInit {
   login(username, password) {
     console.log(username);
     console.log(password);
+
+    this.authService.login(username, password);
   }
   createUser(user) {
-    user = this.userService.create(user).subscribe(
-      data => {
-        console.log(user);
-        this.user = data;
-        console.log(this.user);
+    // user = this.userService.create(user).subscribe(
+    //   data => {
+    //     console.log(user);
+    //     this.user = data;
+    //     console.log(this.user);
+    //     this.router.navigateByUrl('profile');
+    //   },
+    //   err => console.log(err)
+    // );
 
-        this.router.navigateByUrl('profile');
-      },
-      err => console.log(err)
-    );
+    this.authService.register(user);
   }
   // DISPLAY AND HIDE METHODS
   showLogin() {
@@ -46,7 +50,7 @@ export class HomeComponent implements OnInit {
     this.showCreateForm = null;
   }
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService, private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
   }
