@@ -1,7 +1,8 @@
+import { NgForm } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../models/user';
-
+import { UserService } from '../user.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -12,9 +13,16 @@ export class HomeComponent implements OnInit {
   showCreateForm = null;
   username = '';
   password = '';
+  user = new User();
   login(username, password) {
     console.log(username);
     console.log(password);
+  }
+  createUser(user) {
+    this.userService.create(user).subscribe(
+      data => console.log(user),
+      err => console.log(err)
+    );
   }
   // DISPLAY AND HIDE METHODS
   showLogin() {
@@ -32,7 +40,7 @@ export class HomeComponent implements OnInit {
     this.showCreateForm = null;
   }
 
-  constructor(private router: Router) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
   }
