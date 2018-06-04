@@ -44,7 +44,7 @@ public class ItemServiceImpl implements ItemService {
 		managedItem.setImageUrl(item.getImageUrl());
 		managedItem.setName(item.getName());
 		managedItem.setPrice(item.getPrice());
-		managedItem.setProfiles(item.getProfiles());
+		managedItem.setUser(item.getUser());
 		return itemRepo.saveAndFlush(managedItem);
 		
 	}
