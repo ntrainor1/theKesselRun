@@ -31,8 +31,10 @@ public class ItemServiceImpl implements ItemService {
 
 	@Override
 	public Item create(Item item) {
-		Category category = catRepo.findById(1).get();
-		item.setCategory(category);
+		if (item.getCategory() == null) {
+			Category category = catRepo.findByName(item.getCategory().getName());
+			item.setCategory(category);
+		}
 		return itemRepo.saveAndFlush(item);
 	}
 
