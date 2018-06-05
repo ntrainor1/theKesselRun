@@ -1,3 +1,5 @@
+import { Category } from './../models/category';
+import { CategoryService } from './../category.service';
 import { CartService } from './../cart.service';
 import { CartItem } from './../models/cart-item';
 import { HomeComponent } from './../home/home.component';
@@ -63,6 +65,14 @@ export class ProfileComponent implements OnInit {
     );
   }
 
+  getCategoryById(id: number) {
+    let category: Category;
+    this.catService.show(id).subscribe(
+      data => category = data,
+      err => console.log(err)
+    );
+  }
+
   deleteUser() {
     this.userService.destroy(this.user.id).subscribe(
       data => this.router.navigateByUrl('home'),
@@ -75,7 +85,7 @@ export class ProfileComponent implements OnInit {
     this.router.navigateByUrl('home');
     console.log('logged out');
   }
-  constructor(private cartService: CartService, private authServ: AuthService,
+  constructor(private cartService: CartService, private authServ: AuthService, private catService: CategoryService,
      private router: Router, private userService: UserService, private home: HomeComponent) { }
 
   ngOnInit() {
@@ -83,8 +93,8 @@ export class ProfileComponent implements OnInit {
     this.userService.show(this.user.username).subscribe(
       data => {
         this.user = data;
-        this.getCart(this.user.id);
-        console.log(this.cartItems);
+          this.getCart(this.user.id);
+          console.log(this.cartItems);
 
       },
       err => console.log('Could not load user')

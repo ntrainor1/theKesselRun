@@ -42,7 +42,7 @@
         <option value="{{6}}">Miscellaneous</option>
       </select>
     </div>
-    <input type="submit"  class="btn btn-large btn-primary" value="Submit" (click)="addItem()" >
+    <input type="submit"  class="btn btn-large btn-primary" value="Submit" (click)="getCategoryThenAdd(newItem.category)" >
     <button type="submit" class="btn btn-large btn-danger" (click)="hideAdd()">Back</button>
   </form>
 </div>

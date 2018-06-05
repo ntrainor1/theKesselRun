@@ -1,3 +1,4 @@
+import { Category } from './../models/category';
 import { ItemService } from './../item.service';
 import { Component, OnInit } from '@angular/core';
 import { Item } from '../models/item';
@@ -34,7 +35,6 @@ export class ItemListComponent implements OnInit {
   addItem(item) {
     // this.newItem;
     console.log(this.newItem);
-    this.newItem.category = parseInt(this.newItem.category, 10);
     this.itemService.create(this.newItem).subscribe(
       data => {
         this.reload();
@@ -46,7 +46,19 @@ export class ItemListComponent implements OnInit {
       }
     );
     this.newItem = null;
-
+  }
+  getCategoryThenAdd(id: number) {
+    console.log('in getCategoryById');
+    let category: Category;
+    this.catService.show(id).subscribe(
+      data => {
+        console.log(data);
+        this.newItem.category = data;
+        category = data;
+        this.addItem(this.newItem);
+      },
+      err => console.log(err)
+    );
   }
 
   setUpCreateDiv() {
@@ -88,7 +100,8 @@ export class ItemListComponent implements OnInit {
   hideAdd() {
     this.newItem = null;
   }
-  constructor(private itemService: ItemService, private categoryService: CategoryService, private router: Router) { }
+  constructor(private itemService: ItemService,
+     private categoryService: CategoryService, private router: Router, private catService: CategoryService) { }
 
   ngOnInit() {
     this.reload();

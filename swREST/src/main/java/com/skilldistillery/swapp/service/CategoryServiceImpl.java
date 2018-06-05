@@ -1,27 +1,27 @@
 package com.skilldistillery.swapp.service;
 
-import java.util.Set;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.skilldistillery.swapp.Category;
 import com.skilldistillery.swapp.repository.CategoryRepo;
 
+@Service
 public class CategoryServiceImpl implements CategoryService {
 	
 	@Autowired
 	private CategoryRepo catRepo;
 	
 	@Override
-	public Set<Category> index(String username) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Category> index() {
+		return catRepo.findAll();
 	}
 
 	@Override
-	public Category show(String username, Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Category show(Integer id) {
+		return catRepo.findById(id).get();
 	}
 
 	@Override
