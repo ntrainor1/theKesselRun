@@ -67,9 +67,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void destroy(String username, int id) {
-		crewRepo.deleteById(userRepo.findByUsername(username).get().getCrew().getId());
-		cartRepo.deleteById(userRepo.findByUsername(username).get().getCart().getId());
-		userRepo.deleteByUsername(username);
+		userRepo.deleteById(id);
 	}
 
 	@Override

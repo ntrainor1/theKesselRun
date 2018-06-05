@@ -49,6 +49,16 @@ export class ProfileComponent implements OnInit {
       err => console.log(err)
     );
   }
+  deleteUser() {
+    this.userService.destroy(this.user.id).subscribe(
+      data => this.router.navigateByUrl('home'),
+      err => console.log(err)
+    );
+    // console.log(this.user.id);
+  }
+  logout() {
+    console.log('in logout user');
+  }
   constructor(private router: Router, private userService: UserService, private home: HomeComponent) { }
 
   ngOnInit() {

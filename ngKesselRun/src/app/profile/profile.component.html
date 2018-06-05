@@ -3,26 +3,29 @@
   <button type="submit" class="btn btn-large btn-primary" (click)="showProfile()">Go To Profile</button><br>
   <button type="submit" class="btn btn-large btn-primary" (click)="showAllItemsList()">View All Items in Marketplace</button>
   I am the menu side bar I will house all of the buttons
+  <button type="submit" class="btn btn-large btn-danger" (click)="logout()">Logout</button>
 </div>
 <div class="main-portion">
-    <!-- Main Profile Display -->
-    <div *ngIf="!showUpdateForm && !showAllItems">
-      <div class="center-pic">
-        <img class="itemImage" src="{{user.imageUrl}}" alt="profile pic"/>
-        <h3>Name: {{user.username}}</h3>
-        <h3>Species: {{user.species}}</h3>
-        <h3>Credits: {{user.credits}}</h3>
-      </div>
+  <!-- Main Profile Display -->
+  <div *ngIf="!showUpdateForm && !showAllItems">
+    <div class="center-pic">
+      <img class="itemImage" src="{{user.imageUrl}}" alt="profile pic"/>
+      <h3>Name: {{user.username}}</h3>
+      <h3>Species: {{user.species}}</h3>
+      <h3>Credits: {{user.credits}}</h3>
     </div>
-    <!-- End of Main Profile Display -->
-    <!-- Update Form -->
-    <div *ngIf="showUpdateForm && !showAllItems">
-      <form>
-        <div>Update Image URL: <input type="text" name="imageUrl" placeholder="{{user.imageUrl}}" [(ngModel)]="updatedUser.imageUrl"/></div>
-        <div>Update Species: <input type="text" name="species" placeholder="{{user.species}}" [(ngModel)]="updatedUser.species"/></div>
-        <br>
-        <button type="submit" class="btn btn-large btn-primary" (click)="updateUser()">Update</button>
-        <button type="submit" class="btn btn-large btn-danger" (click)="hideUpdate()">Back</button>
+  </div>
+  <!-- End of Main Profile Display -->
+  <!-- Update Form -->
+  <div *ngIf="showUpdateForm && !showAllItems">
+    <form>
+      <div>Update Image URL: <input type="text" name="imageUrl" placeholder="{{user.imageUrl}}" [(ngModel)]="updatedUser.imageUrl"/></div>
+      <div>Update Species: <input type="text" name="species" placeholder="{{user.species}}" [(ngModel)]="updatedUser.species"/></div>
+      <br>
+      <button type="submit" class="btn btn-large btn-primary" (click)="updateUser()">Update</button>
+      <button type="submit" class="btn btn-large btn-danger" (click)="hideUpdate()">Back</button>
+      <br><br>
+      <button type="submit" class="btn btn-large btn-danger" (click)="deleteUser()">Delete User</button>
       </form>
     </div>
     <!-- End of Update Form -->

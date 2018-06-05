@@ -56,6 +56,8 @@ public class UserController {
 	// DELETE users/{id}
 	@RequestMapping(path = "users/{id}", method=RequestMethod.DELETE)
 	public void destroy(HttpServletRequest req, HttpServletResponse res, @PathVariable int id, Principal principal) {
+		System.out.println(id);
 		userService.destroy(principal.getName(), id);
+		
 	}
 }

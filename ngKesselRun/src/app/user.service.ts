@@ -59,7 +59,14 @@ export class UserService {
         );
   }
   destroy(id) {
-    return this.http.delete(this.url + '/' + id)
+    console.log(id);
+    const token = this.authServ.getToken();
+    const headers = new HttpHeaders()
+        .set('Authorization', `Basic ${token}`);
+    if (!this.authServ.checkLogin()) {
+      this.router.navigateByUrl('/login');
+    }
+    return this.http.delete(this.url + '/' + id, {headers})
         .pipe(
           catchError((err: any) => {
             console.log(err);
