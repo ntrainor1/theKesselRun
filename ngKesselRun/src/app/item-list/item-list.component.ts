@@ -39,7 +39,7 @@ export class ItemListComponent implements OnInit {
   }
 
   addItem(item) {
-    this.newItem;
+    // this.newItem;
     console.log(this.newItem);
     this.itemService.create(this.newItem).subscribe(
       data => {
@@ -50,7 +50,7 @@ export class ItemListComponent implements OnInit {
         console.log('Unable to create item');
         this.router.navigateByUrl('notFound');
       }
-    )
+    );
     this.newItem = null;
 
   }

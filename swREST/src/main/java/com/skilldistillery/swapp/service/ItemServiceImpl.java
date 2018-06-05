@@ -32,7 +32,7 @@ public class ItemServiceImpl implements ItemService {
 	@Override
 	public Item create(Item item) {
 		if (item.getCategory() == null) {
-			Category category = catRepo.findById(1).get();
+			Category category = catRepo.findByName(item.getCategory().getName());
 			item.setCategory(category);
 		}
 		return itemRepo.saveAndFlush(item);
