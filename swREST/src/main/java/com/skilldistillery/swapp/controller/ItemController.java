@@ -42,9 +42,14 @@ public class ItemController {
 	public Item show(HttpServletRequest req, HttpServletResponse res, @PathVariable("id") int id, Principal principal) {
 		return itemService.show(id);
 	}
+//	// POST items WORKS
+//	@RequestMapping(path = "items", method=RequestMethod.POST)
+//	public Item create(HttpServletRequest req, HttpServletResponse res, @RequestBody Item item, Principal principal) {
+//		return itemService.create(item);
+//	}
 	// POST items WORKS
 	@RequestMapping(path = "items", method=RequestMethod.POST)
-	public Item create(HttpServletRequest req, HttpServletResponse res, @RequestBody Item item, Principal principal) {
+	public Item create(HttpServletRequest req, HttpServletResponse res, @RequestBody Item item) {
 		return itemService.create(item);
 	}
 	// PUT items/{id} WORKS

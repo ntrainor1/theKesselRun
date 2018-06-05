@@ -1,7 +1,7 @@
 <h1 class="centered-title">Marketplace Items</h1>
 <!-- added form for create div -->
-<form>
-  <input type="submit" value="Add Item" (click)="setUpCreateDiv()" >
+<form *ngIf="!newItem">
+  <input type="submit" class="btn btn-large btn-primary" value="Add Item" (click)="setUpCreateDiv()" >
 </form>
 <!-- end create div -->
 
@@ -28,19 +28,22 @@
 <!-- create new item div -->
 <div *ngIf= 'newItem'>
   <form>
-    <input type="text" name="name" [(ngModel)]="newItem.name">
-    <input type="text" name="description" [(ngModel)]="newItem.description">
-    <input type="text" name="imageUrl" [(ngModel)]="newItem.imageUrl">
-    <input type="number" name="price" [(ngModel)]="newItem.price">
-    <select  name="category" [(ngModel)]="newItem.category.name">
-      <option value="Weapon">Weapon</option>
-      <option value="Decoration">Decoration</option>
-      <option value="Tool">Tool</option>
-      <option value="Food">Food</option>
-      <option value="Ship">Ship</option>
-      <option value="Miscellaneous">Miscellaneous</option>
-    </select>
-    <input type="submit" value="Submit" (click)="addItem()" >
+    <div><input type="text" name="name" placeholder="Item Name" [(ngModel)]="newItem.name"></div>
+    <div><input type="text" name="description" placeholder="Item Description" [(ngModel)]="newItem.description"></div>
+    <div><input type="text" name="imageUrl" placeholder="Item Image URL" [(ngModel)]="newItem.imageUrl"></div>
+    <div><input type="number" name="price" placeholder="Item Price" [(ngModel)]="newItem.price"></div>
+    <div>
+      <select  name="category" [(ngModel)]="newItem.category">
+        <option value="{{1}}">Weapon</option>
+        <option value="{{2}}">Decoration</option>
+        <option value="{{3}}">Tool</option>
+        <option value="{{4}}">Food</option>
+        <option value="{{5}}">Ship</option>
+        <option value="{{6}}">Miscellaneous</option>
+      </select>
+    </div>
+    <input type="submit"  class="btn btn-large btn-primary" value="Submit" (click)="addItem()" >
+    <button type="submit" class="btn btn-large btn-danger" (click)="hideAdd()">Back</button>
   </form>
 </div>
 <!-- end new item div -->

@@ -13,18 +13,11 @@ import { CategoryService } from '../category.service';
 
 export class ItemListComponent implements OnInit {
 
-  editItem: Item;
+  editItem: Item = null;
   items: Item[] = [];
-  selected: Item;
-  newItem: Item;
+  selected: Item = null;
+  newItem = null;
 
-  constructor(private itemService: ItemService, private categoryService: CategoryService, private router: Router) { }
-
-  ngOnInit() {
-    this.reload();
-    console.log(this.items);
-
-  }
 
   show(id) {
     this.itemService.show(id).subscribe(
@@ -41,6 +34,7 @@ export class ItemListComponent implements OnInit {
   addItem(item) {
     // this.newItem;
     console.log(this.newItem);
+    this.newItem.category = parseInt(this.newItem.category, 10);
     this.itemService.create(this.newItem).subscribe(
       data => {
         this.reload();
@@ -56,7 +50,7 @@ export class ItemListComponent implements OnInit {
   }
 
   setUpCreateDiv() {
-  this.newItem = new Item();
+    this.newItem = new Item();
   }
 
   update (item) {
@@ -90,5 +84,15 @@ export class ItemListComponent implements OnInit {
         this.router.navigateByUrl('notFound');
       }
     );
+  }
+  hideAdd() {
+    this.newItem = null;
+  }
+  constructor(private itemService: ItemService, private categoryService: CategoryService, private router: Router) { }
+
+  ngOnInit() {
+    this.reload();
+    console.log(this.items);
+
   }
 }

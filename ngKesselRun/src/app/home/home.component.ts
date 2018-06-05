@@ -30,18 +30,6 @@ export class HomeComponent implements OnInit {
     );
   }
   createUser(user) {
-    // user = this.userService.create(user).subscribe(
-    //   data => {
-    //     console.log(user);
-    //     this.user = data;
-    //     console.log(this.user);
-    //     this.router.navigateByUrl('profile');
-    //   },
-    //   err => console.log(err)
-    // );
-
-    console.log(user);
-
     this.authService.register(user).subscribe(
         data => {
           console.log(user);

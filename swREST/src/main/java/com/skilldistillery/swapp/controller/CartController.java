@@ -21,26 +21,27 @@ import com.skilldistillery.swapp.service.CartService;
 @RestController
 @RequestMapping("api")
 public class CartController {
-@Autowired
-private CartService cartService;
+	@Autowired
+	private CartService cartService;
 
-@RequestMapping(path = "cart/ping", method=RequestMethod.GET)
-public String ping() {
-	return "pong";
-}
+	@RequestMapping(path = "cart/ping", method = RequestMethod.GET)
+	public String ping() {
+		return "pong";
+	}
 
-@RequestMapping(path = "carts", method=RequestMethod.GET)
-public List<Cart> index(HttpServletRequest req, HttpServletResponse res) {
-	return cartService.index();
-}
+	@RequestMapping(path = "carts", method = RequestMethod.GET)
+	public List<Cart> index(HttpServletRequest req, HttpServletResponse res) {
+		return cartService.index();
+	}
 
-@RequestMapping(path = "carts/{id}", method=RequestMethod.GET)
-public Cart show(HttpServletRequest req, HttpServletResponse res, @PathVariable("id") int id) {
-	return cartService.show(id);
-}
+	@RequestMapping(path = "carts/{id}", method = RequestMethod.GET)
+	public Cart show(HttpServletRequest req, HttpServletResponse res, @PathVariable("id") int id) {
+		return cartService.show(id);
+	}
 
-@RequestMapping(path = "carts/{id}", method=RequestMethod.PUT)
-public Cart update(HttpServletRequest req, HttpServletResponse res, @PathVariable("id") int id, @RequestBody Cart cart) {
-	return cartService.update(id, cart);
-}
+	@RequestMapping(path = "carts/{id}", method = RequestMethod.PUT)
+	public Cart update(HttpServletRequest req, HttpServletResponse res, @PathVariable("id") int id,
+			@RequestBody Cart cart) {
+		return cartService.update(id, cart);
+	}
 }
