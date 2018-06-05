@@ -14,8 +14,6 @@
     <!-- Update Form -->
     <div *ngIf="showUpdateForm && !showAllItems">
       <form>
-        <div>Update Username: <input type="text" name="username" placeholder="Username" [(ngModel)]="user.username"/></div>
-        <div>Update Password: <input type="password" name="password" placeholder="Password" [(ngModel)]="user.password"/></div>
         <div>Update Image URL: <input type="text" name="image_url" placeholder="User Picture Link" (ngModel)="user.image_url"/></div>
         <div>Update Species: <input type="text" name="species" placeholder="User Species" [(ngModel)]="user.species"/></div>
         <br>
@@ -26,7 +24,7 @@
 
     <!-- this portion can be put into a forEach and displayed as a list -->
     <div *ngIf="!showUpdateForm && showAllItems">
-        <div class="snip1418">
+        <!-- <div class="snip1418">
           <img src="https://cdn.shopify.com/s/files/1/1440/9434/products/DSC_0042_e2e79b7e-c016-4741-815f-a696d8d41f79_grande.JPG?v=1518664734" alt="sample85"/>
           <div class="add-to-cart"> <i class="ion-android-add"></i><span>Add to Cart</span></div>
           <div>
@@ -36,7 +34,8 @@
               <s>$25000.00</s>$10000.00
             </div>
           </div>
-        </div>
+        </div> -->
+        <app-item-list></app-item-list>
     </div>
     <!-- end of the sidplay of items -->
 </div>
