@@ -12,23 +12,37 @@ import { Router } from '@angular/router';
 export class ProfileComponent implements OnInit {
 
   user = new User();
-
-
+  showUpdateForm = null;
+  showAllItems = null;
+  showUpdate() {
+    this.hideAllItemsList();
+    this.showUpdateForm = true;
+  }
+  showAllItemsList() {
+    this.hideUpdate();
+    this.showAllItems = true;
+  }
+  hideAllItemsList() {
+    this.showAllItems = null;
+  }
+  hideUpdate() {
+    this.showUpdateForm = null;
+  }
   updateUser(user) {
-    this.userService.update(user)
-    // .subscribe(
-    //   data => {
-    //     console.log(user);
-    //     this.router.navigateByUrl('profile');
-    //   },
-    //   err => console.log(err)
-    // )
-    ;
+    this.userService.update(user).subscribe(
+      data => {
+        console.log(user);
+        this.router.navigateByUrl('profile');
+      },
+      err => console.log(err)
+    );
   }
   constructor(private router: Router, private userService: UserService, private home: HomeComponent) { }
 
   ngOnInit() {
     this.user = this.home.returnUser();
-    console.log(this.user);
+    this.userService.show(6).subscribe(
+      data => this.user = data
+    );
   }
 }

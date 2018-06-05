@@ -1,45 +1,42 @@
 <div class="left-pane">
+  <button type="submit" class="btn btn-large btn-primary" (click)="showUpdate()">Update User Profile</button><br>
+  <button type="submit" class="btn btn-large btn-primary" (click)="showAllItemsList()">View All Items in Marketplace</button>
   I am the menu side bar I will house all of the buttons
 </div>
 <div class="main-portion">
-    <form>
+    <!-- Main Profile Display -->
+    <div class="center-pic">
+      <img src="{{user.image_url}}" alt="profile pic"/>
+    </div>
+
+
+    <!-- End of Main Profile Display -->
+    <!-- Update Form -->
+    <div *ngIf="showUpdateForm && !showAllItems">
+      <form>
         <div>Update Username: <input type="text" name="username" placeholder="Username" [(ngModel)]="user.username"/></div>
         <div>Update Password: <input type="password" name="password" placeholder="Password" [(ngModel)]="user.password"/></div>
-        <div>Update Image URL: <input type="text" name="image_url" placeholder="User Picture Link" [(ngModel)]="user.image_url"/></div>
+        <div>Update Image URL: <input type="text" name="image_url" placeholder="User Picture Link" (ngModel)="user.image_url"/></div>
         <div>Update Species: <input type="text" name="species" placeholder="User Species" [(ngModel)]="user.species"/></div>
         <br>
         <button type="submit" class="btn btn-large btn-primary" (click)="updateUser(user)">Update</button>
-    </form>
-<!-- this portion can be put into a forEach and displayed as a list -->
-    <figure class="snip1418"><img src="https://cdn.shopify.com/s/files/1/1440/9434/products/DSC_0042_e2e79b7e-c016-4741-815f-a696d8d41f79_grande.JPG?v=1518664734" alt="sample85"/>
-      <div class="add-to-cart"> <i class="ion-android-add"></i><span>Add to Cart</span></div>
-      <figcaption>
-        <h3>Jedi LightSaber</h3>
-        <p>This elegant weapon glows blue.</p>
-        <div class="price">
-          <s>$25000.00</s>$10000.00
+      </form>
+    </div>
+    <!-- End of Update Form -->
+
+    <!-- this portion can be put into a forEach and displayed as a list -->
+    <div *ngIf="!showUpdateForm && showAllItems">
+        <div class="snip1418">
+          <img src="https://cdn.shopify.com/s/files/1/1440/9434/products/DSC_0042_e2e79b7e-c016-4741-815f-a696d8d41f79_grande.JPG?v=1518664734" alt="sample85"/>
+          <div class="add-to-cart"> <i class="ion-android-add"></i><span>Add to Cart</span></div>
+          <div>
+            <h3>Jedi LightSaber</h3>
+            <p>This elegant weapon glows blue.</p>
+            <div class="price">
+              <s>$25000.00</s>$10000.00
+            </div>
+          </div>
         </div>
-      </figcaption><a href="#"></a>
-    </figure>
-    <figure class="snip1418"><img src="https://ae01.alicdn.com/kf/HTB1oH9xNVXXXXXaXFXXq6xXFXXXg/1Piece-Double-End-Tubular-Angled-Socket-Wrench-14-24mm-L-shaped-CR-V-Hex-Socket-Spanner.jpg_640x640.jpg" alt="sample96"/>
-      <div class="add-to-cart"> <i class="ion-android-add"></i><span>Add to Cart</span></div>
-      <figcaption>
-        <h3>Socket Wrench</h3>
-        <p>Helpful in loosening ion engine hoods. </p>
-        <div class="price">
-          <s>$1000.00</s>$750.00
-        </div>
-      </figcaption><a href="#"></a>
-    </figure>
-    <figure class="snip1418"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPRQVOGbFEyMLBwC6vmiWT8gZYCgvvIEPRZ5gjjO2YGlMtnFQCIQ" alt="sample92"/>
-      <div class="add-to-cart"> <i class="ion-android-add"></i><span>Add to Cart</span></div>
-      <figcaption>
-        <h3>Jedi Robe</h3>
-        <p>Relic of the now lost and forgotten Jedi Order. </p>
-        <div class="price">
-          <s>$8600.00</s>$6000.00
-        </div>
-      </figcaption><a href="#"></a>
-    </figure>
-<!-- end of the sidplay of items -->
+    </div>
+    <!-- end of the sidplay of items -->
 </div>

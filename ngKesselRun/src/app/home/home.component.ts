@@ -69,12 +69,12 @@ export class HomeComponent implements OnInit {
     this.router.navigateByUrl('not-found');
   }
 
+  returnUser() {
+    return this.user;
+  }
   constructor(private userService: UserService, private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
   }
 
-  returnUser() {
-    return this.user;
-  }
 }

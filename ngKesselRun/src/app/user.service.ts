@@ -10,7 +10,7 @@ import { AuthService } from './auth.service';
 })
 export class UserService {
   private url = 'http://localhost:8080/api/users';
-  private user = [];
+  private user = new User();
   index() {
     return this.http.get<User[]>(this.url)
         .pipe(
@@ -45,9 +45,10 @@ export class UserService {
     const headers = new HttpHeaders()
         .set('Authorization', `Basic ${token}`);
     if (!this.authServ.checkLogin()) {
-      return this.router.navigateByUrl('/login');
+      this.router.navigateByUrl('/login');
     }
-    return this.http.put<User>(this.url + '/' + user.id, user, {headers})
+    console.log('in update method in service');
+    return this.http.put<User>(this.url + '/' + user.username, user, {headers})
         .pipe(
           catchError((err: any) => {
             console.log(err);

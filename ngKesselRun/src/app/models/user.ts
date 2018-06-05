@@ -2,13 +2,13 @@ export class User {
   id: number;
   username: string;
   password: string;
-  role: boolean;
+  role: string;
   enabled: boolean;
   image_url: string;
   credits: number;
   species: string;
 
-  constructor(id?: number, username?: string, password?: string, role?: boolean, enabled?: boolean, image_url?: string,
+  constructor(id?: number, username?: string, password?: string, role?: string, enabled?: boolean, image_url?: string,
     credits?: number, species?: string) {
 
     this.id = id;
