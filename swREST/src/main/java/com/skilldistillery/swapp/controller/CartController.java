@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.swapp.Cart;
-import com.skilldistillery.swapp.Profile;
 import com.skilldistillery.swapp.service.CartService;
 
 @CrossOrigin({ "*", "http://localhost:4200" })

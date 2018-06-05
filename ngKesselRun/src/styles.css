@@ -24,5 +24,7 @@ body, html
 	overflow: hidden;
 }
 
-
+.notFoundImage {
+  background-image: url("Old-Obi-Wan-icon.png");
+}
 

@@ -22,39 +22,17 @@ DROP TABLE IF EXISTS `user` ;
 
 CREATE TABLE IF NOT EXISTS `user` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `username` VARCHAR(20) NULL,
+  `username` VARCHAR(100) NOT NULL,
   `password` VARCHAR(1000) NULL,
-  `role` VARCHAR(20) NULL DEFAULT 'standard',
+  `role` VARCHAR(50) NULL DEFAULT 'standard',
   `enabled` TINYINT NULL,
+  `image_url` VARCHAR(10000) NOT NULL DEFAULT 'http://icons.iconarchive.com/icons/sensibleworld/starwars/1024/Stormtrooper-icon.png',
+  `credits` INT NULL,
+  `species` VARCHAR(50) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 CREATE UNIQUE INDEX `username_UNIQUE` ON `user` (`username` ASC);
-
-
--- -----------------------------------------------------
--- Table `profile`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `profile` ;
-
-CREATE TABLE IF NOT EXISTS `profile` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `image_url` VARCHAR(10000) NOT NULL DEFAULT 'http://icons.iconarchive.com/icons/sensibleworld/starwars/1024/Stormtrooper-icon.png',
-  `name` VARCHAR(100) NOT NULL,
-  `credits` INT NULL,
-  `species` VARCHAR(50) NULL,
-  `user_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  CONSTRAINT `fk_user_profile`
-    FOREIGN KEY (`user_id`)
-    REFERENCES `user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-CREATE INDEX `fk_user_profile_idx` ON `profile` (`user_id` ASC);
-
-CREATE UNIQUE INDEX `user_id_UNIQUE` ON `profile` (`user_id` ASC);
 
 
 -- -----------------------------------------------------
@@ -64,16 +42,16 @@ DROP TABLE IF EXISTS `crew` ;
 
 CREATE TABLE IF NOT EXISTS `crew` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `profile_id` INT NOT NULL,
+  `user_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  CONSTRAINT `fk_profile_crew`
-    FOREIGN KEY (`profile_id`)
-    REFERENCES `profile` (`id`)
+  CONSTRAINT `fk_user_crew`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_profile_crew_idx` ON `crew` (`profile_id` ASC);
+CREATE INDEX `fk_user_crew_idx` ON `crew` (`user_id` ASC);
 
 
 -- -----------------------------------------------------
@@ -126,16 +104,16 @@ DROP TABLE IF EXISTS `cart` ;
 
 CREATE TABLE IF NOT EXISTS `cart` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `profile_id` INT NOT NULL,
+  `user_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  CONSTRAINT `fk_profile_cart`
-    FOREIGN KEY (`profile_id`)
-    REFERENCES `profile` (`id`)
+  CONSTRAINT `fk_user_cart`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_profile_cart_idx` ON `cart` (`profile_id` ASC);
+CREATE INDEX `fk_user_cart_idx` ON `cart` (`user_id` ASC);
 
 
 -- -----------------------------------------------------
@@ -162,6 +140,7 @@ CREATE TABLE IF NOT EXISTS `item` (
   `image_url` VARCHAR(10000) NOT NULL DEFAULT 'https://cdn.icon-icons.com/icons2/318/PNG/512/Death-Star-icon_34500.png',
   `price` INT UNSIGNED NOT NULL,
   `category_id` INT NOT NULL,
+  `itemcol` VARCHAR(45) NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_category_item`
     FOREIGN KEY (`category_id`)
@@ -207,24 +186,24 @@ DROP TABLE IF EXISTS `inventory` ;
 
 CREATE TABLE IF NOT EXISTS `inventory` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `profile_id` INT NOT NULL,
+  `user_id` INT NOT NULL,
   `item_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  CONSTRAINT `fk_profile_inventory`
-    FOREIGN KEY (`profile_id`)
-    REFERENCES `profile` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
   CONSTRAINT `fk_item_inventory`
     FOREIGN KEY (`item_id`)
     REFERENCES `item` (`id`)
     ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_user_inventory`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_profile_inventory_idx` ON `inventory` (`profile_id` ASC);
-
 CREATE INDEX `fk_item_inventory` ON `inventory` (`item_id` ASC);
+
+CREATE INDEX `fk_user_inventory_idx` ON `inventory` (`user_id` ASC);
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
@@ -236,23 +215,10 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `swdb`;
-INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`) VALUES (1, 'solo4ever', 'parsec', '0', 1);
-INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`) VALUES (2, 'alecGuiness', 'onlyhope', '1', 1);
-INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`) VALUES (3, 'slave_girl_leia', 'fisher', '0', 1);
-INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`) VALUES (4, 'alderaan', 'imdead', '0', 0);
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `profile`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `swdb`;
-INSERT INTO `profile` (`id`, `image_url`, `name`, `credits`, `species`, `user_id`) VALUES (1, DEFAULT, 'Han Solo', 25000, 'Human', 1);
-INSERT INTO `profile` (`id`, `image_url`, `name`, `credits`, `species`, `user_id`) VALUES (2, DEFAULT, 'Obi-Wan Kenobi', 100, 'Human', 2);
-INSERT INTO `profile` (`id`, `image_url`, `name`, `credits`, `species`, `user_id`) VALUES (3, DEFAULT, 'Princess Leia', 2500, 'Human', 3);
-INSERT INTO `profile` (`id`, `image_url`, `name`, `credits`, `species`, `user_id`) VALUES (4, DEFAULT, 'Leia\'s Dad', 0, 'Skeleton', 4);
+INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`, `image_url`, `credits`, `species`) VALUES (1, 'solo4ever', 'parsec', 'standard', 1, DEFAULT, 25000, 'Human');
+INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`, `image_url`, `credits`, `species`) VALUES (2, 'alecGuiness', 'onlyhope', 'admin', 1, DEFAULT, 100, 'Human');
+INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`, `image_url`, `credits`, `species`) VALUES (3, 'slave_girl_leia', 'goldsuit', 'standard', 1, DEFAULT, 2500, 'Human');
+INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`, `image_url`, `credits`, `species`) VALUES (4, 'alderaan', 'imdead', 'standard', 0, DEFAULT, 0, 'Skeleton');
 
 COMMIT;
 
@@ -262,10 +228,10 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `swdb`;
-INSERT INTO `crew` (`id`, `profile_id`) VALUES (1, 1);
-INSERT INTO `crew` (`id`, `profile_id`) VALUES (2, 2);
-INSERT INTO `crew` (`id`, `profile_id`) VALUES (3, 3);
-INSERT INTO `crew` (`id`, `profile_id`) VALUES (4, 4);
+INSERT INTO `crew` (`id`, `user_id`) VALUES (1, 1);
+INSERT INTO `crew` (`id`, `user_id`) VALUES (2, 2);
+INSERT INTO `crew` (`id`, `user_id`) VALUES (3, 3);
+INSERT INTO `crew` (`id`, `user_id`) VALUES (4, 4);
 
 COMMIT;
 
@@ -302,10 +268,10 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `swdb`;
-INSERT INTO `cart` (`id`, `profile_id`) VALUES (1, 1);
-INSERT INTO `cart` (`id`, `profile_id`) VALUES (2, 2);
-INSERT INTO `cart` (`id`, `profile_id`) VALUES (3, 3);
-INSERT INTO `cart` (`id`, `profile_id`) VALUES (4, 4);
+INSERT INTO `cart` (`id`, `user_id`) VALUES (1, 1);
+INSERT INTO `cart` (`id`, `user_id`) VALUES (2, 2);
+INSERT INTO `cart` (`id`, `user_id`) VALUES (3, 3);
+INSERT INTO `cart` (`id`, `user_id`) VALUES (4, 4);
 
 COMMIT;
 
@@ -330,15 +296,15 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `swdb`;
-INSERT INTO `item` (`id`, `name`, `description`, `image_url`, `price`, `category_id`) VALUES (1, 'Blue Lightsaber', 'This elegant weapon glows blue.', DEFAULT, 10000, 1);
-INSERT INTO `item` (`id`, `name`, `description`, `image_url`, `price`, `category_id`) VALUES (2, 'Death Sticks', 'Ya wanna buy some death sticks?', DEFAULT, 50, 6);
-INSERT INTO `item` (`id`, `name`, `description`, `image_url`, `price`, `category_id`) VALUES (3, 'Millenium Falcon', 'What a piece of junk!', DEFAULT, 7500, 5);
-INSERT INTO `item` (`id`, `name`, `description`, `image_url`, `price`, `category_id`) VALUES (4, 'Blue Milk', 'What is this stuff?', DEFAULT, 150, 4);
-INSERT INTO `item` (`id`, `name`, `description`, `image_url`, `price`, `category_id`) VALUES (5, 'SZ-07 Blaster', 'Nothing beats a good blaster, kid.', DEFAULT, 450, 1);
-INSERT INTO `item` (`id`, `name`, `description`, `image_url`, `price`, `category_id`) VALUES (6, 'Kashyyyk Bowcaster', 'The preferred weapon of the Wookies of Kashyyyk.', DEFAULT, 1500, 1);
-INSERT INTO `item` (`id`, `name`, `description`, `image_url`, `price`, `category_id`) VALUES (7, 'Alderaan Lampshade', 'This lampshade foreshadows many things.', DEFAULT, 1000, 2);
-INSERT INTO `item` (`id`, `name`, `description`, `image_url`, `price`, `category_id`) VALUES (8, 'Socket Wrench', 'Helpful in loosening ion engine hoods.', DEFAULT, 750, 3);
-INSERT INTO `item` (`id`, `name`, `description`, `image_url`, `price`, `category_id`) VALUES (9, 'Slave I', 'The legendary ship of bounty hunter Boba Fett.', DEFAULT, 15000, 5);
-INSERT INTO `item` (`id`, `name`, `description`, `image_url`, `price`, `category_id`) VALUES (10, 'Jedi Robe', 'Relic of the now lost and forgotten Jedi Order.', DEFAULT, 6000, 2);
+INSERT INTO `item` (`id`, `name`, `description`, `image_url`, `price`, `category_id`, `itemcol`) VALUES (1, 'Blue Lightsaber', 'This elegant weapon glows blue.', DEFAULT, 10000, 1, NULL);
+INSERT INTO `item` (`id`, `name`, `description`, `image_url`, `price`, `category_id`, `itemcol`) VALUES (2, 'Death Sticks', 'Ya wanna buy some death sticks?', DEFAULT, 50, 6, NULL);
+INSERT INTO `item` (`id`, `name`, `description`, `image_url`, `price`, `category_id`, `itemcol`) VALUES (3, 'Millenium Falcon', 'What a piece of junk!', DEFAULT, 7500, 5, NULL);
+INSERT INTO `item` (`id`, `name`, `description`, `image_url`, `price`, `category_id`, `itemcol`) VALUES (4, 'Blue Milk', 'What is this stuff?', DEFAULT, 150, 4, NULL);
+INSERT INTO `item` (`id`, `name`, `description`, `image_url`, `price`, `category_id`, `itemcol`) VALUES (5, 'SZ-07 Blaster', 'Nothing beats a good blaster, kid.', DEFAULT, 450, 1, NULL);
+INSERT INTO `item` (`id`, `name`, `description`, `image_url`, `price`, `category_id`, `itemcol`) VALUES (6, 'Kashyyyk Bowcaster', 'The preferred weapon of the Wookies of Kashyyyk.', DEFAULT, 1500, 1, NULL);
+INSERT INTO `item` (`id`, `name`, `description`, `image_url`, `price`, `category_id`, `itemcol`) VALUES (7, 'Alderaan Lampshade', 'This lampshade foreshadows many things.', DEFAULT, 1000, 2, NULL);
+INSERT INTO `item` (`id`, `name`, `description`, `image_url`, `price`, `category_id`, `itemcol`) VALUES (8, 'Socket Wrench', 'Helpful in loosening ion engine hoods.', DEFAULT, 750, 3, NULL);
+INSERT INTO `item` (`id`, `name`, `description`, `image_url`, `price`, `category_id`, `itemcol`) VALUES (9, 'Slave I', 'The legendary ship of bounty hunter Boba Fett.', DEFAULT, 15000, 5, NULL);
+INSERT INTO `item` (`id`, `name`, `description`, `image_url`, `price`, `category_id`, `itemcol`) VALUES (10, 'Jedi Robe', 'Relic of the now lost and forgotten Jedi Order.', DEFAULT, 6000, 2, NULL);
 
 COMMIT;

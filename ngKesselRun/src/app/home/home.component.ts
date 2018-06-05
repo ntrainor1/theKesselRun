@@ -24,6 +24,7 @@ export class HomeComponent implements OnInit {
       data => {
         console.log('Log in successful');
         console.log('Check tokens');
+        this.router.navigateByUrl('profile');
        },
       err => console.log(err)
     );
@@ -63,6 +64,9 @@ export class HomeComponent implements OnInit {
   }
   hideCreate() {
     this.showCreateForm = null;
+  }
+  goNotFound() {
+    this.router.navigateByUrl('not-found');
   }
 
   constructor(private userService: UserService, private router: Router, private authService: AuthService) { }

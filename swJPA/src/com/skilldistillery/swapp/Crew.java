@@ -21,8 +21,8 @@ public class Crew {
 	
 	@JsonIgnore
 	@OneToOne
-	@JoinColumn(name="profile_id")
-	private Profile profile;
+	@JoinColumn(name="user_id")
+	private User user;
 	
 	@OneToMany(mappedBy="crew")
 	private List<Crewmember> crewmembers;
@@ -45,21 +45,21 @@ public class Crew {
 		this.id = id;
 	}
 
-	public Profile getProfile() {
-		return profile;
+	public User getUser() {
+		return user;
 	}
 
-	public void setProfile(Profile profile) {
-		this.profile = profile;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	// CONSTRUCTORS
 	public Crew() {}
 
-	public Crew(int id, Profile profile, List<Crewmember> crewmembers) {
+	public Crew(int id, User user, List<Crewmember> crewmembers) {
 		super();
 		this.id = id;
-		this.profile = profile;
+		this.user = user;
 		this.crewmembers = crewmembers;
 	};
 	

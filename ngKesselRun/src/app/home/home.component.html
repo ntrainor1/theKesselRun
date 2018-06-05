@@ -6,18 +6,21 @@
 </div>
 <div class="banner-center">
 <h1>THE KESSEL RUN</h1>
+<form>
+    <button type="submit" class="btn btn-large btn-primary" (click)="goNotFound()">To Not Found</button>
+</form>
 </div>
 <app-scroll *ngIf="!showCreateForm && !showLoginForm"></app-scroll>
 <!-- Login Form -->
 <br>
 <div class="form-center">
   <form *ngIf="showLoginForm">
-      <div><input type="text" name="username" placeholder="Username"/></div>
-      <div><input type="password" name="password" placeholder="Password"/></div>
+      <div><input type="text" name="username" placeholder="Username" [(ngModel)]="username"/></div>
+      <div><input type="password" name="password" placeholder="Password" [(ngModel)]="password"/></div>
       <br>
       <button type="submit" class="btn btn-large btn-primary" (click)="login(username,password)">Login</button>
       <button type="submit" class="btn btn-large btn-danger" (click)="hideLogin()">Back</button>
-  </form>
+    </form>
 </div>
 <!-- julians comment -->
 <!-- Create Form -->
@@ -30,4 +33,6 @@
       <button type="submit" class="btn btn-large btn-primary" (click)="createUser(user)">Create</button>
       <button type="submit" class="btn btn-large btn-danger" (click)="hideCreate()">Back</button>
   </form>
+  <!-- Just testing the not found page -->
 </div>
+

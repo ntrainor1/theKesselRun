@@ -6,7 +6,7 @@ import com.skilldistillery.swapp.Crew;
 
 public interface CrewRepo extends JpaRepository<Crew, Integer> {
 
-	Crew findByProfileId(Integer profileId);
+	Crew findByUserId(Integer userId);
 
 
 }

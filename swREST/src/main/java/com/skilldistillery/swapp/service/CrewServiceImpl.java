@@ -20,15 +20,15 @@ public class CrewServiceImpl implements CrewService {
 	}
 
 	@Override
-	public Crew show(Integer profileId) {
-		return crewRepo.findByProfileId(profileId);
+	public Crew show(Integer userId) {
+		return crewRepo.findByUserId(userId);
 	}
 
 	@Override
 	public Crew update(int crewId, Crew crew) {
 		Crew managedCrew = crewRepo.findById(crewId).get();
 		managedCrew.setCrewmembers(crew.getCrewmembers());
-		managedCrew.setProfile(crew.getProfile());
+		managedCrew.setUser(crew.getUser());
 		managedCrew.setId(crew.getId());
 		return crewRepo.saveAndFlush(managedCrew);
 	}

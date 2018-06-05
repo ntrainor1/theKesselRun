@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.swapp.Crew;
-import com.skilldistillery.swapp.Profile;
 import com.skilldistillery.swapp.service.CrewService;
 //Configures the app to accept all traffic from 4200 because
 //Angular runs on a separate server (port 4200)
