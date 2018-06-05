@@ -12,6 +12,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AboutComponent } from './about/about.component';
 import { FormsModule } from '@angular/forms';
+import { ItemListComponent } from './item-list/item-list.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { FormsModule } from '@angular/forms';
     LogoutComponent,
     NotFoundComponent,
     NavbarComponent,
-    AboutComponent
+    AboutComponent,
+    ItemListComponent
   ],
   imports: [
     BrowserModule,
