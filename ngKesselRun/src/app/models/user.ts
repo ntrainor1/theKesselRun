@@ -4,11 +4,11 @@ export class User {
   password: string;
   role: string;
   enabled: boolean;
-  image_url: string;
+  imageUrl: string;
   credits: number;
   species: string;
 
-  constructor(id?: number, username?: string, password?: string, role?: string, enabled?: boolean, image_url?: string,
+  constructor(id?: number, username?: string, password?: string, role?: string, enabled?: boolean, imageUrl?: string,
     credits?: number, species?: string) {
 
     this.id = id;
@@ -16,7 +16,7 @@ export class User {
     this.password = password;
     this.role = role;
     this.enabled = enabled;
-    this.image_url = image_url;
+    this.imageUrl = imageUrl;
     this.credits = credits;
     this.species = species;
 

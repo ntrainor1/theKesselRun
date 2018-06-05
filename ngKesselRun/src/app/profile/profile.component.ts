@@ -12,8 +12,13 @@ import { Router } from '@angular/router';
 export class ProfileComponent implements OnInit {
 
   user = new User();
+  updatedUser = new User();
   showUpdateForm = null;
   showAllItems = null;
+  showProfile() {
+    this.hideUpdate();
+    this.hideAllItemsList();
+  }
   showUpdate() {
     this.hideAllItemsList();
     this.showUpdateForm = true;
@@ -28,10 +33,17 @@ export class ProfileComponent implements OnInit {
   hideUpdate() {
     this.showUpdateForm = null;
   }
-  updateUser(user) {
-    this.userService.update(user).subscribe(
+  updateUser() {
+    if (this.updatedUser.imageUrl) {
+      this.user.imageUrl = this.updatedUser.imageUrl;
+    }
+    this.user.species = this.updatedUser.species;
+    console.log(this.updatedUser);
+    this.userService.update(this.user).subscribe(
       data => {
-        console.log(user);
+        console.log(data);
+        this.hideAllItemsList();
+        this.hideUpdate();
         this.router.navigateByUrl('profile');
       },
       err => console.log(err)
@@ -40,6 +52,10 @@ export class ProfileComponent implements OnInit {
   constructor(private router: Router, private userService: UserService, private home: HomeComponent) { }
 
   ngOnInit() {
-    this.user = this.home.returnUser();
+    this.user.username = localStorage.getItem('username');
+    this.userService.show(this.user.username).subscribe(
+      data => this.user = data,
+      err => console.log('Could not load user')
+    );
   }
 }

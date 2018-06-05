@@ -1,8 +1,31 @@
+<<<<<<< HEAD
   <div (click)="show(item.id)" *ngFor='let item of items' class="add-to-cart snip1418"> <img class="itemImage" src="{{item.imageUrl}}"/> <i class="ion-android-add"></i><span>Add to Cart</span>
+=======
+  <!-- <div *ngFor='let item of items' class="add-to-cart snip1418">
+    <img class="itemImage" src="{{item.imageUrl}}"/>
+    <i class="ion-android-add"></i><span>Add to Cart</span>
+>>>>>>> dfd5b7c3b1c0d4b204d15891d5b3dd6b9c52a687
     <h3>{{item.name}}</h3>
     <p>{{item.description}}</p>
     <p class="price">
       {{item.price}}
       {{item.category.name}}
     </p>
+  </div> -->
+<h1 class="centered-title">Marketplace Items</h1>
+<div *ngFor='let item of items' class="snip1418">
+  <img class="itemImage" src="{{item.imageUrl}}"/>
+  <div class="add-to-cart">
+    <i class="ion-android-add"></i><span>Add to Cart</span>
   </div>
+  <div>
+    <h3>{{item.name}}</h3>
+    <p>{{item.description}}</p>
+    <div class="price">
+      <s>{{item.price * 2}}</s>
+      <p>{{item.price}}</p>
+      <p>{{item.category.name}}</p>
+    </div>
+  </div>
+</div>
+

@@ -46,6 +46,7 @@ public class UserServiceImpl implements UserService {
 		crew.setUser(user);
 		user.setCart(cart);
 		user.setCrew(crew);
+		user.setSpecies("human");
 		user.setRole("standard");
 		user.setEnabled(true);
 		userRepo.saveAndFlush(user);
@@ -59,6 +60,8 @@ public class UserServiceImpl implements UserService {
 		managedUser.setRole(user.getRole());
 		managedUser.setPassword(user.getPassword());
 		managedUser.setUsername(user.getUsername());
+		managedUser.setImageUrl(user.getImageUrl());
+		managedUser.setSpecies(user.getSpecies());
 		return userRepo.saveAndFlush(managedUser);
 	}
 
@@ -70,7 +73,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User showByUsername(String name, String username) {
+	public User showByUsername(String username) {
 		return userRepo.findByUsername(username).get();
 	}
 
@@ -81,6 +84,8 @@ public class UserServiceImpl implements UserService {
 		managedUser.setRole(user.getRole());
 		managedUser.setPassword(user.getPassword());
 		managedUser.setUsername(user.getUsername());
+		managedUser.setImageUrl(user.getImageUrl());
+		managedUser.setSpecies(user.getSpecies());
 		return userRepo.saveAndFlush(managedUser);	}
 
 }

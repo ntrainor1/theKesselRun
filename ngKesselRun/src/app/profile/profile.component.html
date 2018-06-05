@@ -1,42 +1,35 @@
 <div class="left-pane">
   <button type="submit" class="btn btn-large btn-primary" (click)="showUpdate()">Update User Profile</button><br>
+  <button type="submit" class="btn btn-large btn-primary" (click)="showProfile()">Go To Profile</button><br>
   <button type="submit" class="btn btn-large btn-primary" (click)="showAllItemsList()">View All Items in Marketplace</button>
   I am the menu side bar I will house all of the buttons
 </div>
 <div class="main-portion">
     <!-- Main Profile Display -->
-    <div class="center-pic">
-      <img src="{{user.image_url}}" alt="profile pic"/>
+    <div *ngIf="!showUpdateForm && !showAllItems">
+      <div class="center-pic">
+        <img class="itemImage" src="{{user.imageUrl}}" alt="profile pic"/>
+        <h3>Name: {{user.username}}</h3>
+        <h3>Species: {{user.species}}</h3>
+        <h3>Credits: {{user.credits}}</h3>
+      </div>
     </div>
-
-
     <!-- End of Main Profile Display -->
     <!-- Update Form -->
     <div *ngIf="showUpdateForm && !showAllItems">
       <form>
-        <div>Update Username: <input type="text" name="username" placeholder="Username" [(ngModel)]="user.username"/></div>
-        <div>Update Password: <input type="password" name="password" placeholder="Password" [(ngModel)]="user.password"/></div>
-        <div>Update Image URL: <input type="text" name="image_url" placeholder="User Picture Link" (ngModel)="user.image_url"/></div>
-        <div>Update Species: <input type="text" name="species" placeholder="User Species" [(ngModel)]="user.species"/></div>
+        <div>Update Image URL: <input type="text" name="imageUrl" placeholder="{{user.imageUrl}}" [(ngModel)]="updatedUser.imageUrl"/></div>
+        <div>Update Species: <input type="text" name="species" placeholder="{{user.species}}" [(ngModel)]="updatedUser.species"/></div>
         <br>
-        <button type="submit" class="btn btn-large btn-primary" (click)="updateUser(user)">Update</button>
+        <button type="submit" class="btn btn-large btn-primary" (click)="updateUser()">Update</button>
+        <button type="submit" class="btn btn-large btn-danger" (click)="hideUpdate()">Back</button>
       </form>
     </div>
     <!-- End of Update Form -->
 
     <!-- this portion can be put into a forEach and displayed as a list -->
     <div *ngIf="!showUpdateForm && showAllItems">
-        <div class="snip1418">
-          <img src="https://cdn.shopify.com/s/files/1/1440/9434/products/DSC_0042_e2e79b7e-c016-4741-815f-a696d8d41f79_grande.JPG?v=1518664734" alt="sample85"/>
-          <div class="add-to-cart"> <i class="ion-android-add"></i><span>Add to Cart</span></div>
-          <div>
-            <h3>Jedi LightSaber</h3>
-            <p>This elegant weapon glows blue.</p>
-            <div class="price">
-              <s>$25000.00</s>$10000.00
-            </div>
-          </div>
-        </div>
+        <app-item-list></app-item-list>
     </div>
     <!-- end of the sidplay of items -->
 </div>

@@ -39,16 +39,10 @@ public class UserController {
 		return userService.index();
 	}
 	// GET users/{id} WORKS
-	@RequestMapping(path = "users/{id}", method=RequestMethod.GET)
-	public User show(HttpServletRequest req, HttpServletResponse res, @PathVariable("id") int id, Principal principal) {
-		return userService.show(principal.getName(), id);
-	}
-	// GET users/{id} WORKS
 	@RequestMapping(path = "users/{username}", method=RequestMethod.GET)
-	public User show(HttpServletRequest req, HttpServletResponse res, @PathVariable("username") String username, Principal principal) {
-		return userService.showByUsername(principal.getName(), username);
-	}
-	
+	public User show(HttpServletRequest req, HttpServletResponse res, @PathVariable("username") String username) {
+		return userService.showByUsername(username);
+	}	
 	// POST users WORKS
 	@RequestMapping(path = "users", method=RequestMethod.POST)
 	public User create(HttpServletRequest req, HttpServletResponse res, @RequestBody User user, Principal principal) {
@@ -58,11 +52,6 @@ public class UserController {
 	@RequestMapping(path = "users/{id}", method=RequestMethod.PUT)
 	public User update(HttpServletRequest req, HttpServletResponse res, @PathVariable("id") int id, @RequestBody User user, Principal principal) {
 		return userService.update(principal.getName(), id, user);
-	}
-	// PUT users/{username} WORKS
-	@RequestMapping(path = "users/{username}", method=RequestMethod.PUT)
-	public User update(HttpServletRequest req, HttpServletResponse res, @PathVariable("username") String username, @RequestBody User user, Principal principal) {
-		return userService.updateByUsername(principal.getName(), username, user);
 	}
 	// DELETE users/{id}
 	@RequestMapping(path = "users/{id}", method=RequestMethod.DELETE)

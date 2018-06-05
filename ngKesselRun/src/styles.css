@@ -21,7 +21,7 @@ body, html
 	font-weight: 700;
 	color: rgb(212, 189, 54);
 	background-image: url("spacebackground.jpg");
-	overflow: hidden;
+  overflow: scroll;
 }
 
 .notFoundImage {
@@ -31,4 +31,7 @@ body, html
 .itemImage {
   z-index: 10;
   background-color: blanchedalmond;
+  width: 30%;
+  height: 30%;
 }
+
