@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.swapp.User;
+import com.skilldistillery.swapp.service.AuthService;
 import com.skilldistillery.swapp.service.UserService;
 //Configures the app to accept all traffic from 4200 because
 //Angular runs on a separate server (port 4200)
@@ -29,6 +30,9 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
+	@Autowired
+	private AuthService authService;
+	
 	// GET users WORKS
 	@RequestMapping(path = "users", method=RequestMethod.GET)
 	public List<User> index(HttpServletRequest req, HttpServletResponse res, Principal principal) {
