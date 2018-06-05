@@ -1,8 +1,7 @@
 import { User } from './user';
 import { Item } from './item';
-export class Cart {
-
+export class CartItem {
+  id: number;
   user: User;
-  items:  Item[];
-
+  item: Item;
 }
