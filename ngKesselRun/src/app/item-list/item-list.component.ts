@@ -2,6 +2,7 @@ import { ItemService } from './../item.service';
 import { Component, OnInit } from '@angular/core';
 import { Item } from '../models/item';
 import { Router } from '@angular/router';
+import { CategoryService } from '../category.service';
 
 @Component({
   selector: 'app-item-list',
@@ -15,8 +16,9 @@ export class ItemListComponent implements OnInit {
   editItem: Item;
   items: Item[] = [];
   selected: Item;
+  newItem: Item;
 
-  constructor(private itemService: ItemService, private router: Router) { }
+  constructor(private itemService: ItemService, private categoryService: CategoryService, private router: Router) { }
 
   ngOnInit() {
     this.reload();
@@ -34,6 +36,27 @@ export class ItemListComponent implements OnInit {
     );
 
 
+  }
+
+  addItem(item) {
+    this.newItem;
+    console.log(this.newItem);
+    this.itemService.create(this.newItem).subscribe(
+      data => {
+        this.reload();
+      },
+
+      err => {
+        console.log('Unable to create item');
+        this.router.navigateByUrl('notFound');
+      }
+    )
+    this.newItem = null;
+
+  }
+
+  setUpCreateDiv() {
+  this.newItem = new Item();
   }
 
   update (item) {
