@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../models/user';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -57,9 +58,11 @@ export class ProfileComponent implements OnInit {
     // console.log(this.user.id);
   }
   logout() {
-    console.log('in logout user');
+    this.authServ.logout();
+    this.router.navigateByUrl('home');
+    console.log('logged out');
   }
-  constructor(private router: Router, private userService: UserService, private home: HomeComponent) { }
+  constructor(private authServ: AuthService, private router: Router, private userService: UserService, private home: HomeComponent) { }
 
   ngOnInit() {
     this.user.username = localStorage.getItem('username');
