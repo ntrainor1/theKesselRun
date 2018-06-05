@@ -1,3 +1,5 @@
+import { CartService } from './../cart.service';
+import { CartItem } from './../models/cart-item';
 import { HomeComponent } from './../home/home.component';
 import { UserService } from './../user.service';
 import { Component, OnInit } from '@angular/core';
@@ -14,6 +16,7 @@ export class ProfileComponent implements OnInit {
 
   user = new User();
   updatedUser = new User();
+  cartItems: CartItem[] = [];
   showUpdateForm = null;
   showAllItems = null;
   showProfile() {
@@ -50,6 +53,16 @@ export class ProfileComponent implements OnInit {
       err => console.log(err)
     );
   }
+
+  getCart(userId) {
+    this.cartService.getCartItems(userId).subscribe(
+      cartItems => cartItems.forEach(cartItem => {
+          this.cartItems.push(cartItem);
+      }),
+      err => console.log('Error loading cart')
+    );
+  }
+
   deleteUser() {
     this.userService.destroy(this.user.id).subscribe(
       data => this.router.navigateByUrl('home'),
@@ -62,12 +75,18 @@ export class ProfileComponent implements OnInit {
     this.router.navigateByUrl('home');
     console.log('logged out');
   }
-  constructor(private authServ: AuthService, private router: Router, private userService: UserService, private home: HomeComponent) { }
+  constructor(private cartService: CartService, private authServ: AuthService,
+     private router: Router, private userService: UserService, private home: HomeComponent) { }
 
   ngOnInit() {
     this.user.username = localStorage.getItem('username');
     this.userService.show(this.user.username).subscribe(
-      data => this.user = data,
+      data => {
+        this.user = data;
+        this.getCart(this.user.id);
+        console.log(this.cartItems);
+
+      },
       err => console.log('Could not load user')
     );
   }
