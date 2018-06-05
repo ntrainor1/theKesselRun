@@ -31,4 +31,6 @@ body, html
 .itemImage {
   z-index: 10;
   background-color: blanchedalmond;
+  width: 30%;
+  height: 30%;
 }

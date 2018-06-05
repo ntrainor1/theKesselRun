@@ -41,6 +41,8 @@ export class UserService {
   }
   update(user) {
     // set the local auth header token
+    const localUn = localStorage.getItem('username');
+    user.username = localUn;
     const token = this.authServ.getToken();
     const headers = new HttpHeaders()
         .set('Authorization', `Basic ${token}`);
@@ -48,7 +50,7 @@ export class UserService {
       this.router.navigateByUrl('/login');
     }
     console.log('in update method in service');
-    return this.http.put<User>(this.url + '/' + user.username, user, {headers})
+    return this.http.put<User>(this.url + '/' + user.id, user, {headers})
         .pipe(
           catchError((err: any) => {
             console.log(err);
