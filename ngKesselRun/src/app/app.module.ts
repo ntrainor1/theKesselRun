@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { ScrollComponent } from './scroll/scroll.component';
 import { ProfileComponent } from './profile/profile.component';
-import { LogoutComponent } from './logout/logout.component';
+// import { LogoutComponent } from './logout/logout.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AboutComponent } from './about/about.component';
@@ -20,7 +20,7 @@ import { ItemListComponent } from './item-list/item-list.component';
     HomeComponent,
     ScrollComponent,
     ProfileComponent,
-    LogoutComponent,
+    // LogoutComponent,
     NotFoundComponent,
     NavbarComponent,
     AboutComponent,
