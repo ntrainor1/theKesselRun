@@ -106,3 +106,7 @@
 body {
   background-color: #212121;
 }
+.centered-title {
+  text-align: center;
+  text-decoration: underline;
+}

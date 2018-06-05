@@ -1,5 +1,6 @@
 <div class="left-pane">
   <button type="submit" class="btn btn-large btn-primary" (click)="showUpdate()">Update User Profile</button><br>
+  <button type="submit" class="btn btn-large btn-primary" (click)="showProfile()">Go To Profile</button><br>
   <button type="submit" class="btn btn-large btn-primary" (click)="showAllItemsList()">View All Items in Marketplace</button>
   I am the menu side bar I will house all of the buttons
 </div>
@@ -8,6 +9,9 @@
     <div *ngIf="!showUpdateForm && !showAllItems">
       <div class="center-pic">
         <img class="itemImage" src="{{user.imageUrl}}" alt="profile pic"/>
+        <h3>Name: {{user.username}}</h3>
+        <h3>Species: {{user.species}}</h3>
+        <h3>Credits: {{user.credits}}</h3>
       </div>
     </div>
     <!-- End of Main Profile Display -->
@@ -25,17 +29,6 @@
 
     <!-- this portion can be put into a forEach and displayed as a list -->
     <div *ngIf="!showUpdateForm && showAllItems">
-        <!-- <div class="snip1418">
-          <img src="https://cdn.shopify.com/s/files/1/1440/9434/products/DSC_0042_e2e79b7e-c016-4741-815f-a696d8d41f79_grande.JPG?v=1518664734" alt="sample85"/>
-          <div class="add-to-cart"> <i class="ion-android-add"></i><span>Add to Cart</span></div>
-          <div>
-            <h3>Jedi LightSaber</h3>
-            <p>This elegant weapon glows blue.</p>
-            <div class="price">
-              <s>$25000.00</s>$10000.00
-            </div>
-          </div>
-        </div> -->
         <app-item-list></app-item-list>
     </div>
     <!-- end of the sidplay of items -->

@@ -15,6 +15,10 @@ export class ProfileComponent implements OnInit {
   updatedUser = new User();
   showUpdateForm = null;
   showAllItems = null;
+  showProfile() {
+    this.hideUpdate();
+    this.hideAllItemsList();
+  }
   showUpdate() {
     this.hideAllItemsList();
     this.showUpdateForm = true;
@@ -38,6 +42,8 @@ export class ProfileComponent implements OnInit {
     this.userService.update(this.user).subscribe(
       data => {
         console.log(data);
+        this.hideAllItemsList();
+        this.hideUpdate();
         this.router.navigateByUrl('profile');
       },
       err => console.log(err)
