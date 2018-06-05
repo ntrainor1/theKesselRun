@@ -69,4 +69,18 @@ public class UserServiceImpl implements UserService {
 		userRepo.deleteByUsername(username);
 	}
 
+	@Override
+	public User showByUsername(String name, String username) {
+		return userRepo.findByUsername(username).get();
+	}
+
+	@Override
+	public User updateByUsername(String name, String username, User user) {
+		User managedUser = userRepo.findByUsername(username).get();
+		managedUser.setEnabled(user.isEnabled());
+		managedUser.setRole(user.getRole());
+		managedUser.setPassword(user.getPassword());
+		managedUser.setUsername(user.getUsername());
+		return userRepo.saveAndFlush(managedUser);	}
+
 }
