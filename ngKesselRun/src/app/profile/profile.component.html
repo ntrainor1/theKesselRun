@@ -5,13 +5,12 @@
     <form>
         <div>Update Username: <input type="text" name="username" placeholder="Username" [(ngModel)]="user.username"/></div>
         <div>Update Password: <input type="password" name="password" placeholder="Password" [(ngModel)]="user.password"/></div>
-        <div>Update Image URL: <input type="text" name="image_url" placeholder="user.image_url" [(ngModel)]="user.image_url"/></div>
-        <div>Update Species: <input type="text" name="species" placeholder="user.species" [(ngModel)]="user.species"/></div>
+        <div>Update Image URL: <input type="text" name="image_url" placeholder="User Picture Link" [(ngModel)]="user.image_url"/></div>
+        <div>Update Species: <input type="text" name="species" placeholder="User Species" [(ngModel)]="user.species"/></div>
         <br>
         <button type="submit" class="btn btn-large btn-primary" (click)="updateUser(user)">Update</button>
     </form>
-    <!-- this portion can be put into a forEach and displayed as a list -->
-
+<!-- this portion can be put into a forEach and displayed as a list -->
     <figure class="snip1418"><img src="https://cdn.shopify.com/s/files/1/1440/9434/products/DSC_0042_e2e79b7e-c016-4741-815f-a696d8d41f79_grande.JPG?v=1518664734" alt="sample85"/>
       <div class="add-to-cart"> <i class="ion-android-add"></i><span>Add to Cart</span></div>
       <figcaption>
@@ -42,5 +41,5 @@
         </div>
       </figcaption><a href="#"></a>
     </figure>
-    <!-- end of the sidplay of items -->
+<!-- end of the sidplay of items -->
 </div>

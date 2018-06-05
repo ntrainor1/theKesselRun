@@ -3,6 +3,7 @@
 package com.skilldistillery.swapp;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,14 +23,33 @@ public class User {
 	
 	private String password;
 	
-	private boolean admin;
+	private String role;
 	
-	private boolean active;
-	@JsonIgnore
-	@OneToOne(mappedBy="user", cascade=CascadeType.ALL)
-	private Profile profile;
+	private boolean enabled;
+	
+	@Column(name="image_url")
+	private String imageUrl;
+	
+	private int credits;
+	
+	@OneToOne(mappedBy="profile", cascade=CascadeType.ALL)
+	private Cart cart;
+	
+	@OneToOne(mappedBy="profile", cascade=CascadeType.ALL)
+	private Crew crew;
+	
+	private String species;
+	// END FIELDS
+	
 
-	// G & S
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public String getUsername() {
 		return username;
 	}
@@ -46,45 +66,87 @@ public class User {
 		this.password = password;
 	}
 
-	public boolean isAdmin() {
-		return admin;
+	public String getRole() {
+		return role;
 	}
 
-	public void setAdmin(boolean admin) {
-		this.admin = admin;
+	public void setRole(String role) {
+		this.role = role;
 	}
 
-	public boolean isActive() {
-		return active;
+	public boolean isEnabled() {
+		return enabled;
 	}
 
-	public void setActive(boolean active) {
-		this.active = active;
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	}
 
-	public Profile getProfile() {
-		return profile;
+	public String getImageUrl() {
+		return imageUrl;
 	}
 
-	public void setProfile(Profile profile) {
-		this.profile = profile;
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 
-	public int getId() {
-		return id;
+	public int getCredits() {
+		return credits;
 	}
-	// ACCESS MODIFIERS
-	// CONSTRUCTORS
-	public User() {};
-	public User(int id, String username, String password, boolean admin, boolean active, Profile profile) {
+
+	public void setCredits(int credits) {
+		this.credits = credits;
+	}
+
+	public Cart getCart() {
+		return cart;
+	}
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
+
+	public Crew getCrew() {
+		return crew;
+	}
+
+	public void setCrew(Crew crew) {
+		this.crew = crew;
+	}
+
+	public String getSpecies() {
+		return species;
+	}
+
+	public void setSpecies(String species) {
+		this.species = species;
+	}
+	// END GET SETs
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", role=" + role + ", enabled="
+				+ enabled + ", imageUrl=" + imageUrl + ", credits=" + credits + ", cart=" + cart + ", crew=" + crew
+				+ ", species=" + species + "]";
+	}
+	
+	private User() {}
+
+	public User(int id, String username, String password, String role, boolean enabled, String imageUrl, int credits,
+			Cart cart, Crew crew, String species) {
 		super();
 		this.id = id;
 		this.username = username;
 		this.password = password;
-		this.admin = admin;
-		this.active = active;
-		this.profile = profile;
+		this.role = role;
+		this.enabled = enabled;
+		this.imageUrl = imageUrl;
+		this.credits = credits;
+		this.cart = cart;
+		this.crew = crew;
+		this.species = species;
 	}
 	
-	// HASHCODE .EQUALS TOSTRING
+
+		// HASHCODE .EQUALS TOSTRING
 }

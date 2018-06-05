@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from './models/user';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
+import { AuthService } from './auth.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -39,7 +40,14 @@ export class UserService {
       );
   }
   update(user) {
-    return this.http.put<User>(this.url + '/' + user.id, user)
+    // set the local auth header token
+    const token = this.authServ.getToken();
+    const headers = new HttpHeaders()
+        .set('Authorization', `Basic ${token}`);
+    if (!this.authServ.checkLogin()) {
+      return this.router.navigateByUrl('/login');
+    }
+    return this.http.put<User>(this.url + '/' + user.id, user, {headers})
         .pipe(
           catchError((err: any) => {
             console.log(err);
@@ -56,5 +64,5 @@ export class UserService {
           })
         );
   }
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private authServ: AuthService, private http: HttpClient, private router: Router) { }
 }

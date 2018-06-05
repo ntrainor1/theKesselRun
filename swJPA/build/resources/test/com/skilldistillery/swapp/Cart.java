@@ -23,8 +23,8 @@ public class Cart {
 	
 	@JsonIgnore
 	@OneToOne
-	@JoinColumn(name = "profile_id")
-	private Profile profile;
+	@JoinColumn(name = "user_id")
+	private User user;
 	
 	@JsonIgnore
 	@ManyToMany
@@ -43,12 +43,12 @@ public class Cart {
 		this.id = id;
 	}
 
-	public Profile getProfile() {
-		return profile;
+	public User getUser() {
+		return user;
 	}
 
-	public void setProfile(Profile profile) {
-		this.profile = profile;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public List<Item> getItems() {
@@ -58,55 +58,16 @@ public class Cart {
 	public void setItems(List<Item> items) {
 		this.items = items;
 	}
-	public Cart() {};
-	public Cart(int id, Profile profile, List<Item> items) {
+	public Cart() {}
+
+	public Cart(int id, User user, List<Item> items) {
 		super();
 		this.id = id;
-		this.profile = profile;
+		this.user = user;
 		this.items = items;
-	}
-
-	// hashCode and .equals()
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + id;
-		result = prime * result + ((items == null) ? 0 : items.hashCode());
-		result = prime * result + ((profile == null) ? 0 : profile.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Cart other = (Cart) obj;
-		if (id != other.id)
-			return false;
-		if (items == null) {
-			if (other.items != null)
-				return false;
-		} else if (!items.equals(other.items))
-			return false;
-		if (profile == null) {
-			if (other.profile != null)
-				return false;
-		} else if (!profile.equals(other.profile))
-			return false;
-		return true;
-	}
-
+	};
 	
-	// toString
-	@Override
-	public String toString() {
-		return "Cart [id=" + id + ", profile=" + profile.getName() + ", items=" + items.size() + "]";
-	}
+	
 
 	
 	
