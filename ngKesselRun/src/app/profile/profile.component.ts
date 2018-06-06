@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { Item } from '../models/item';
 import { ItemService } from '../item.service';
+import { InventoryService } from '../inventory.service';
+import { Inventory } from '../models/inventory';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -18,6 +20,7 @@ import { ItemService } from '../item.service';
 })
 export class ProfileComponent implements OnInit {
   // FIELDS
+  inventory = new Inventory();
   user = new User();
   updatedUser = new User();
   cartItems: CartItem[] = [];
@@ -52,7 +55,8 @@ export class ProfileComponent implements OnInit {
   }
   showAllUserItems() {
     this.showUserItems = true;
-    console.log(this.user.inventory);
+    console.log(this.inventory);
+    this.inventoryService.index();
     this.hideUpdate();
     this.hideAllItemsList();
   }
@@ -81,19 +85,8 @@ export class ProfileComponent implements OnInit {
     );
   }
   addItem(item) {
-    // this.newItem;
-    let userId: number;
-    let itemId: number;
-    console.log(this.newItem);
     this.itemService.create(this.newItem).subscribe(
-      data => {
-        itemId = data.id;
-        this.userService.show(localStorage.getItem('username')).subscribe(
-          data2 => userId = data.id,
-          err => console.log('shit broke')
-        );
-        this.reload();
-      },
+      data => this.reload(),
       err => {
         console.log('Unable to create item');
         this.router.navigateByUrl('notFound');
@@ -161,7 +154,7 @@ export class ProfileComponent implements OnInit {
     console.log('logged out');
   }
 
-  constructor(private itemService: ItemService,
+  constructor(private itemService: ItemService, private inventoryService: InventoryService,
     private cartService: CartService, private authServ: AuthService, private catService: CategoryService,
      private router: Router, private userService: UserService, private home: HomeComponent) { }
 

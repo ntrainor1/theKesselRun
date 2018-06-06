@@ -1,5 +1,12 @@
 @import url(https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css);
 @import url(https://fonts.googleapis.com/css?family=Raleway:400,500,700);
+.bottom-left-pane {
+  width: 25%;
+  float: left;
+  padding: 15px;
+  border: 2px solid red;
+  background-color: black;
+}
 .left-pane {
   width: 25%;
   float: left;
@@ -9,7 +16,7 @@
 }
 .main-portion {
   width: 75%;
-  float: left;
+  float: right;
   padding: 15px;
   border: 1px solid red;
   background-color: black;
