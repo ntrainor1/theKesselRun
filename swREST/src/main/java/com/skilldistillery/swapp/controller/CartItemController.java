@@ -59,7 +59,7 @@ public class CartItemController {
 		return cartItemService.update(id, CartItem);
 	}
 	
-	@RequestMapping(path = "cartitems/checkout{userid}", method = RequestMethod.PUT)
+	@RequestMapping(path = "cartitems/checkout/{userid}", method = RequestMethod.PUT)
 	public CartItem checkout(HttpServletRequest req, HttpServletResponse res, @PathVariable("userid") int userid,
 			@RequestBody CartItem CartItem) {
 		return cartItemService.checkout(userid, CartItem);
