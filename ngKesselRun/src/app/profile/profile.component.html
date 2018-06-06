@@ -92,5 +92,8 @@
     <!-- End of Update Form -->
 </div>
 <div class="bottom-left-pane">
+    <div *ngFor="let cartItem of cartItems">
+      <h3>{{cartItem.item.name}}</h3>
+    </div>
     <h1>THE CART GOES HERE</h1>
 </div>

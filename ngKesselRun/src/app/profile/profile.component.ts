@@ -76,7 +76,8 @@ export class ProfileComponent implements OnInit {
     this.itemService.index().subscribe(
       data => {
         this.items = data;
-        console.log(this.items);
+        this.getCart(this.user.id);
+        console.log(this.cartItems);
       },
       err => {
         console.log('Unable to load items');
@@ -103,6 +104,7 @@ export class ProfileComponent implements OnInit {
         this.newItem.category = data;
         category = data;
         this.addItem(this.newItem);
+        this.reload();
       },
       err => console.log(err)
     );
@@ -128,6 +130,8 @@ export class ProfileComponent implements OnInit {
     );
   }
   getCart(userId) {
+    console.log('in getCart');
+    console.log(userId);
     this.cartService.getCartItems(userId).subscribe(
       cartItems => cartItems.forEach(cartItem => {
           this.cartItems.push(cartItem);

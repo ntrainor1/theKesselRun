@@ -1,3 +1,4 @@
+import { ProfileComponent } from './../profile/profile.component';
 import { CartService } from './../cart.service';
 import { Category } from './../models/category';
 import { ItemService } from './../item.service';
@@ -89,6 +90,7 @@ export class ItemListComponent implements OnInit {
     let cart: Cart;
     this.cartService.showByUsername(localStorage.getItem('username')).subscribe(
       data => {
+        this.profileComp.reload();
         console.log(data);
         cart = data;
         this.addItemToCart(item, cart);
@@ -136,9 +138,10 @@ export class ItemListComponent implements OnInit {
   }
 
   constructor(private itemService: ItemService,
-     private categoryService: CategoryService,
-     private router: Router,
-     private catService: CategoryService, private cartService: CartService,
+    private categoryService: CategoryService,
+    private router: Router,
+    private profileComp: ProfileComponent,
+    private catService: CategoryService, private cartService: CartService,
     private userService: UserService) { }
 
   ngOnInit() {
