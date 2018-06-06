@@ -1,3 +1,4 @@
+import { Item } from './models/item';
 import { User } from './models/user';
 import { Inventory } from './models/inventory';
 import { AuthService } from './auth.service';
@@ -24,8 +25,8 @@ export class InventoryService {
             })
         );
   }
-  show(id) {
-    return this.http.get<Inventory>(this.url + '/' + id, this.getHeaders())
+  show(username) {
+    return this.http.get<Item[]>(this.url + '/' + username, this.getHeaders())
         .pipe(
             catchError((err: any) => {
               console.log(err);
