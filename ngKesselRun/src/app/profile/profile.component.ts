@@ -37,6 +37,7 @@ export class ProfileComponent implements OnInit {
     this.newItem = null;
   }
   showProfile() {
+    this.reload();
     this.hideUpdate();
     this.hideAllItemsList();
     this.hideUserItems();
@@ -78,6 +79,16 @@ export class ProfileComponent implements OnInit {
 
   }
   reload() {
+    this.user.username = localStorage.getItem('username');
+    this.userService.show(this.user.username).subscribe(
+      data => {
+        this.user = data;
+        this.getCart(this.user.id);
+        console.log(this.cartItems);
+      },
+      err => console.log('Could not load user')
+    );
+
     this.itemService.index().subscribe(
       data => {
         this.items = data;
@@ -159,6 +170,7 @@ export class ProfileComponent implements OnInit {
         err => console.log(err)
       );
     });
+    this.reload();
   }
   getCategoryById(id: number) {
     let category: Category;
