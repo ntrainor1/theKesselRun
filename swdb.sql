@@ -296,16 +296,16 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `swdb`;
-INSERT INTO `item` (`id`, `name`, `description`, `image_url`, `price`, `category_id`, `itemcol`) VALUES (1, 'Blue Lightsaber', 'This elegant weapon glows blue.', DEFAULT, 10000, 1, NULL);
-INSERT INTO `item` (`id`, `name`, `description`, `image_url`, `price`, `category_id`, `itemcol`) VALUES (2, 'Death Sticks', 'Ya wanna buy some death sticks?', DEFAULT, 50, 6, NULL);
-INSERT INTO `item` (`id`, `name`, `description`, `image_url`, `price`, `category_id`, `itemcol`) VALUES (3, 'Millenium Falcon', 'What a piece of junk!', DEFAULT, 7500, 5, NULL);
-INSERT INTO `item` (`id`, `name`, `description`, `image_url`, `price`, `category_id`, `itemcol`) VALUES (4, 'Blue Milk', 'What is this stuff?', DEFAULT, 150, 4, NULL);
-INSERT INTO `item` (`id`, `name`, `description`, `image_url`, `price`, `category_id`, `itemcol`) VALUES (5, 'SZ-07 Blaster', 'Nothing beats a good blaster, kid.', DEFAULT, 450, 1, NULL);
-INSERT INTO `item` (`id`, `name`, `description`, `image_url`, `price`, `category_id`, `itemcol`) VALUES (6, 'Kashyyyk Bowcaster', 'The preferred weapon of the Wookies of Kashyyyk.', DEFAULT, 1500, 1, NULL);
-INSERT INTO `item` (`id`, `name`, `description`, `image_url`, `price`, `category_id`, `itemcol`) VALUES (7, 'Alderaan Lampshade', 'This lampshade foreshadows many things.', DEFAULT, 1000, 2, NULL);
-INSERT INTO `item` (`id`, `name`, `description`, `image_url`, `price`, `category_id`, `itemcol`) VALUES (8, 'Socket Wrench', 'Helpful in loosening ion engine hoods.', DEFAULT, 750, 3, NULL);
-INSERT INTO `item` (`id`, `name`, `description`, `image_url`, `price`, `category_id`, `itemcol`) VALUES (9, 'Slave I', 'The legendary ship of bounty hunter Boba Fett.', DEFAULT, 15000, 5, NULL);
-INSERT INTO `item` (`id`, `name`, `description`, `image_url`, `price`, `category_id`, `itemcol`) VALUES (10, 'Jedi Robe', 'Relic of the now lost and forgotten Jedi Order.', DEFAULT, 6000, 2, NULL);
+INSERT INTO `item` (`id`, `name`, `description`, `image_url`, `price`, `category_id`, `itemcol`) VALUES (1, 'Blue Lightsaber', 'This elegant weapon glows blue.', 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Lightsaber_blue.svg/2000px-Lightsaber_blue.svg.png', 10000, 1, NULL);
+INSERT INTO `item` (`id`, `name`, `description`, `image_url`, `price`, `category_id`, `itemcol`) VALUES (2, 'Death Sticks', 'Ya wanna buy some death sticks?', 'http://3.bp.blogspot.com/_cYhz4d7ECdI/TGlNGVGeUaI/AAAAAAAABhM/o3WH4de-uXQ/s1600/star+wars+birthday+010.JPG', 50, 6, NULL);
+INSERT INTO `item` (`id`, `name`, `description`, `image_url`, `price`, `category_id`, `itemcol`) VALUES (3, 'Millenium Falcon', 'What a piece of junk!', 'http://starwars.wikia.com/wiki/File:MillenniumFalconTFA-Fathead.png', 7500, 5, NULL);
+INSERT INTO `item` (`id`, `name`, `description`, `image_url`, `price`, `category_id`, `itemcol`) VALUES (4, 'Blue Milk', 'What is this stuff?', 'http://www.magicalrecipes.net/wp-content/uploads/2015/05/star-wars-blue-milk.jpg', 150, 4, NULL);
+INSERT INTO `item` (`id`, `name`, `description`, `image_url`, `price`, `category_id`, `itemcol`) VALUES (5, 'SZ-07 Blaster', 'Nothing beats a good blaster, kid.', 'https://vignette.wikia.nocookie.net/starwars/images/7/7b/Dl-44.jpg/revision/latest?cb=20080626152911', 450, 1, NULL);
+INSERT INTO `item` (`id`, `name`, `description`, `image_url`, `price`, `category_id`, `itemcol`) VALUES (6, 'Kashyyyk Bowcaster', 'The preferred weapon of the Wookies of Kashyyyk.', 'https://vignette.wikia.nocookie.net/starwars/images/0/01/Bowcaster_negwt.jpg/revision/latest?cb=20060725172520', 1500, 1, NULL);
+INSERT INTO `item` (`id`, `name`, `description`, `image_url`, `price`, `category_id`, `itemcol`) VALUES (7, 'Alderaan Lampshade', 'This lampshade foreshadows many things.', 'https://images-na.ssl-images-amazon.com/images/I/61RzCcxVBIL._AC_UL320_SR300,320_.jpg', 1000, 2, NULL);
+INSERT INTO `item` (`id`, `name`, `description`, `image_url`, `price`, `category_id`, `itemcol`) VALUES (8, 'Socket Wrench', 'Helpful in loosening ion engine hoods.', 'https://c.shld.net/rpx/i/s/i/spin/10000595/prod_16529905912?hei=333&wid=333&op_sharpen=1', 750, 3, NULL);
+INSERT INTO `item` (`id`, `name`, `description`, `image_url`, `price`, `category_id`, `itemcol`) VALUES (9, 'Slave I', 'The legendary ship of bounty hunter Boba Fett.', 'https://vignette.wikia.nocookie.net/starwars/images/a/a2/Ship-stub.png/revision/latest?cb=20151115024839', 15000, 5, NULL);
+INSERT INTO `item` (`id`, `name`, `description`, `image_url`, `price`, `category_id`, `itemcol`) VALUES (10, 'Jedi Robe', 'Relic of the now lost and forgotten Jedi Order.', 'https://www.thinkgeek.com/images/products/zoom/af1b_deluxe_jedi_robe.jpg', 6000, 2, NULL);
 
 COMMIT;
 
