@@ -308,3 +308,22 @@ INSERT INTO `item` (`id`, `name`, `description`, `image_url`, `price`, `category
 INSERT INTO `item` (`id`, `name`, `description`, `image_url`, `price`, `category_id`, `itemcol`) VALUES (10, 'Jedi Robe', 'Relic of the now lost and forgotten Jedi Order.', DEFAULT, 6000, 2, NULL);
 
 COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `inventory`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `swdb`;
+INSERT INTO `inventory` (`id`, `user_id`, `item_id`) VALUES (1, 1, 1);
+INSERT INTO `inventory` (`id`, `user_id`, `item_id`) VALUES (2, 2, 2);
+INSERT INTO `inventory` (`id`, `user_id`, `item_id`) VALUES (3, 2, 3);
+INSERT INTO `inventory` (`id`, `user_id`, `item_id`) VALUES (4, 2, 4);
+INSERT INTO `inventory` (`id`, `user_id`, `item_id`) VALUES (5, 3, 5);
+INSERT INTO `inventory` (`id`, `user_id`, `item_id`) VALUES (6, 3, 6);
+INSERT INTO `inventory` (`id`, `user_id`, `item_id`) VALUES (7, 3, 7);
+INSERT INTO `inventory` (`id`, `user_id`, `item_id`) VALUES (8, 1, 8);
+INSERT INTO `inventory` (`id`, `user_id`, `item_id`) VALUES (9, 2, 9);
+INSERT INTO `inventory` (`id`, `user_id`, `item_id`) VALUES (10, 3, 10);
+
+COMMIT;
