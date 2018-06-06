@@ -41,6 +41,7 @@ public class CartItemServiceImpl implements CartItemService {
 	
 	@Override
 	public CartItem addToCart(CartItem addingCartItem) {
+		System.out.println(addingCartItem);
 		return cartItemRepo.saveAndFlush(addingCartItem);
 	}
 	
