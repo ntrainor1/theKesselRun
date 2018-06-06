@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.swapp.Inventory;
+import com.skilldistillery.swapp.Item;
 import com.skilldistillery.swapp.repository.InventoryRepo;
 
 @Service
@@ -45,6 +46,11 @@ public class InventoryServiceImpl implements InventoryService {
 	@Override
 	public void destroy(int id) {
 		inventoryRepo.deleteById(id);
+	}
+
+	@Override
+	public Inventory getInventoryByItem(Item item) {
+		return inventoryRepo.findByItem(item);
 	}
 
 
