@@ -12,4 +12,5 @@ public interface InventoryService {
 	Inventory create(Inventory inventory);
 	Inventory update(int id, Inventory inventory);
 	void destroy(int id);
+	Inventory getInventoryByItem(Item item);
 }
