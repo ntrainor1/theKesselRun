@@ -151,7 +151,14 @@ export class ProfileComponent implements OnInit {
   }
 
   checkoutCart() {
-    this.cartService.checkoutCart(this.user.id, this.cartItems);
+    console.log('in Checkout Cart');
+    console.log(this.cartItems);
+    this.cartItems.forEach(cartItem => {
+      this.cartService.checkoutCart(this.user.id, cartItem).subscribe(
+        data => console.log('checked out item ' + cartItem),
+        err => console.log(err)
+      );
+    });
   }
   getCategoryById(id: number) {
     let category: Category;

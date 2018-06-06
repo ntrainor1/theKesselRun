@@ -64,16 +64,17 @@ export class CartService {
     );
   }
 
-  checkoutCart(userid: number, cartItems: CartItem[]) {
-    cartItems.forEach(cartItem => {
-      this.http.put<CartItem>('http://localhost:8080/api/cartitems/checkout/' + userid, cartItem)
+  checkoutCart(userId: number, cartItem: CartItem) {
+    console.log('in cart service checkout cart');
+
+      return this.http.put<CartItem>('http://localhost:8080/api/cartitems/checkout/' + userId, cartItem)
       .pipe(
           catchError((err: any) => {
             console.log(err);
             return throwError('KABOOM');
           })
       );
-    });
+
 
   }
 
