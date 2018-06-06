@@ -52,6 +52,7 @@ export class ProfileComponent implements OnInit {
   }
   showAllUserItems() {
     this.showUserItems = true;
+    console.log(this.user.inventory);
     this.hideUpdate();
     this.hideAllItemsList();
   }
@@ -81,12 +82,18 @@ export class ProfileComponent implements OnInit {
   }
   addItem(item) {
     // this.newItem;
+    let userId: number;
+    let itemId: number;
     console.log(this.newItem);
     this.itemService.create(this.newItem).subscribe(
       data => {
+        itemId = data.id;
+        this.userService.show(localStorage.getItem('username')).subscribe(
+          data2 => userId = data.id,
+          err => console.log('shit broke')
+        );
         this.reload();
       },
-
       err => {
         console.log('Unable to create item');
         this.router.navigateByUrl('notFound');
