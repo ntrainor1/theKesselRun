@@ -33,6 +33,8 @@ export class HomeComponent implements OnInit {
     this.authService.register(user).subscribe(
         data => {
           console.log(user);
+          localStorage.setItem('username', user.username);
+
           this.router.navigateByUrl('profile');
         },
         err => console.log(err)

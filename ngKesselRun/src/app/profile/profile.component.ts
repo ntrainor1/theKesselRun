@@ -162,7 +162,13 @@ export class ProfileComponent implements OnInit {
       err => console.log('Error loading cart')
     );
   }
-
+  checkForSufficientCredits() {
+    if (this.user.credits < this.cartTotal) {
+      return false;
+    } else {
+      return true;
+    }
+  }
   checkoutCart() {
     console.log('in Checkout Cart');
     console.log(this.cartItems);
@@ -208,6 +214,8 @@ export class ProfileComponent implements OnInit {
     this.authServ.logout();
     this.router.navigateByUrl('home');
     console.log('logged out');
+    this.user = null;
+    localStorage.removeItem('username');
   }
   removeItemFromCart(cartItem) {
     this.cartService.removeCartItem(cartItem).subscribe(

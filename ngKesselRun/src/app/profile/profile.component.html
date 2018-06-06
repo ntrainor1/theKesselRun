@@ -108,6 +108,7 @@
     </tr>
   </tfoot>
   </table>
-  <button type="submit" class="btn btn-large btn-primary" (click)="checkoutCart()">Checkout</button>
+  <button *ngIf="checkForSufficientCredits()" type="submit" class="btn btn-large btn-primary" (click)="checkoutCart()">Checkout</button>
+  <button *ngIf="!checkForSufficientCredits()" type="submit" class="btn btn-large btn-danger">Not Enough Credits</button>
 
 </div>
