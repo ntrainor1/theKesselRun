@@ -21,7 +21,7 @@ import { Inventory } from '../models/inventory';
 export class ProfileComponent implements OnInit {
   // FIELDS
   cartTotal: number;
-  inventory = new Inventory();
+  inventoryItems: Item[];
   user = new User();
   updatedUser = new User();
   cartItems: CartItem[] = [];
@@ -32,6 +32,8 @@ export class ProfileComponent implements OnInit {
   showAllItems = null;
   showUserItems = null;
   newItem = null;
+
+
   // DISPLAY METHODS
   hideAdd() {
     this.newItem = null;
@@ -61,7 +63,7 @@ export class ProfileComponent implements OnInit {
   }
   showAllUserItems() {
     this.showUserItems = true;
-    console.log(this.inventory);
+    this.getInventoryItems();
     this.inventoryService.index();
     this.hideUpdate();
     this.hideAllItemsList();
@@ -166,12 +168,29 @@ export class ProfileComponent implements OnInit {
     console.log(this.cartItems);
     this.cartItems.forEach(cartItem => {
       this.cartService.checkoutCart(this.user.id, cartItem).subscribe(
-        data => console.log('checked out item ' + cartItem),
+        data => {
+          console.log('checked out item ' + cartItem);
+          this.getCart(this.user.id);
+          this.showUserItems = true;
+          this.showAllItems = false;
+          this.getInventoryItems();
+        },
         err => console.log(err)
       );
     });
     this.reload();
   }
+
+  getInventoryItems() {
+    this.inventoryService.show(this.user.username).subscribe(
+      data => {
+        this.inventoryItems = data;
+        console.log(data);
+      },
+      err => console.log(err)
+    );
+  }
+
   getCategoryById(id: number) {
     let category: Category;
     this.catService.show(id).subscribe(

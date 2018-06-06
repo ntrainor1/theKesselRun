@@ -24,12 +24,9 @@
     <h1 class="centered-title">Inventory Items</h1>
 
     <!-- added ng if -->
-    <div  *ngIf='user.inventory'>
-      <div *ngFor='let item of items' class="snip1418">
+    <div>
+      <div *ngFor='let item of inventoryItems' class="snip1418">
         <img class="itemImage" src="{{item.imageUrl}}"/>
-        <div class="add-to-cart">
-          <i class="ion-android-add"></i><span>Add to Cart</span>
-        </div>
         <div>
           <h3>{{item.name}}</h3>
           <p>{{item.description}}</p>
