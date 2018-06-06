@@ -9,18 +9,29 @@ import { User } from '../models/user';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { Item } from '../models/item';
+import { ItemService } from '../item.service';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-
+  // FIELDS
   user = new User();
   updatedUser = new User();
   cartItems: CartItem[] = [];
   showUpdateForm = null;
   showAllItems = null;
+  showUserItems = null;
+  editItem: Item = null;
+  items: Item[] = [];
+  selected: Item = null;
+  newItem = null;
+  // DISPLAY METHODS
+  hideAdd() {
+    this.newItem = null;
+  }
   showProfile() {
     this.hideUpdate();
     this.hideAllItemsList();
@@ -39,6 +50,67 @@ export class ProfileComponent implements OnInit {
   hideUpdate() {
     this.showUpdateForm = null;
   }
+  showAllUserItems() {
+    this.showUserItems = true;
+    this.hideUpdate();
+    this.hideAllItemsList();
+  }
+  // CRUDS
+  show(id) {
+    this.itemService.show(id).subscribe(
+      data => this.selected = data,
+      err => {
+        console.log('Unable to load item');
+        this.router.navigateByUrl('notFound');
+      }
+    );
+
+
+  }
+  reload() {
+    this.itemService.index().subscribe(
+      data => {
+        this.items = data;
+        console.log(this.items);
+      },
+      err => {
+        console.log('Unable to load items');
+        this.router.navigateByUrl('notFound');
+      }
+    );
+  }
+  addItem(item) {
+    // this.newItem;
+    console.log(this.newItem);
+    this.itemService.create(this.newItem).subscribe(
+      data => {
+        this.reload();
+      },
+
+      err => {
+        console.log('Unable to create item');
+        this.router.navigateByUrl('notFound');
+      }
+    );
+    this.newItem = null;
+  }
+  getCategoryThenAdd(id: number) {
+    console.log('in getCategoryById');
+    let category: Category;
+    this.catService.show(id).subscribe(
+      data => {
+        console.log(data);
+        this.newItem.category = data;
+        category = data;
+        this.addItem(this.newItem);
+      },
+      err => console.log(err)
+    );
+  }
+
+  setUpCreateDiv() {
+    this.newItem = new Item();
+  }
   updateUser() {
     if (this.updatedUser.imageUrl) {
       this.user.imageUrl = this.updatedUser.imageUrl;
@@ -55,7 +127,6 @@ export class ProfileComponent implements OnInit {
       err => console.log(err)
     );
   }
-
   getCart(userId) {
     this.cartService.getCartItems(userId).subscribe(
       cartItems => cartItems.forEach(cartItem => {
@@ -64,7 +135,6 @@ export class ProfileComponent implements OnInit {
       err => console.log('Error loading cart')
     );
   }
-
   getCategoryById(id: number) {
     let category: Category;
     this.catService.show(id).subscribe(
@@ -72,20 +142,20 @@ export class ProfileComponent implements OnInit {
       err => console.log(err)
     );
   }
-
   deleteUser() {
     this.userService.destroy(this.user.id).subscribe(
       data => this.router.navigateByUrl('home'),
       err => console.log(err)
     );
-    // console.log(this.user.id);
   }
   logout() {
     this.authServ.logout();
     this.router.navigateByUrl('home');
     console.log('logged out');
   }
-  constructor(private cartService: CartService, private authServ: AuthService, private catService: CategoryService,
+
+  constructor(private itemService: ItemService,
+    private cartService: CartService, private authServ: AuthService, private catService: CategoryService,
      private router: Router, private userService: UserService, private home: HomeComponent) { }
 
   ngOnInit() {

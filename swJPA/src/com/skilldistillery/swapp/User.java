@@ -2,12 +2,15 @@
 
 package com.skilldistillery.swapp;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -30,6 +33,10 @@ public class User {
 	@Column(name="image_url")
 	private String imageUrl;
 	
+	@JsonIgnore
+	@OneToMany(mappedBy="user")
+	private List<Inventory> inventory;
+	
 	private int credits;
 	
 	@OneToOne(mappedBy="user", cascade=CascadeType.ALL)
@@ -44,6 +51,14 @@ public class User {
 
 	public int getId() {
 		return id;
+	}
+
+	public List<Inventory> getInventory() {
+		return inventory;
+	}
+
+	public void setInventory(List<Inventory> inventory) {
+		this.inventory = inventory;
 	}
 
 	public void setId(int id) {
@@ -122,18 +137,12 @@ public class User {
 		this.species = species;
 	}
 	// END GET SETs
-
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + ", role=" + role + ", enabled="
-				+ enabled + ", imageUrl=" + imageUrl + ", credits=" + credits + ", cart=" + cart + ", crew=" + crew
-				+ ", species=" + species + "]";
-	}
+	
 	
 	private User() {}
 
-	public User(int id, String username, String password, String role, boolean enabled, String imageUrl, int credits,
-			Cart cart, Crew crew, String species) {
+	public User(int id, String username, String password, String role, boolean enabled, String imageUrl,
+			List<Inventory> inventory, int credits, Cart cart, Crew crew, String species) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -141,11 +150,14 @@ public class User {
 		this.role = role;
 		this.enabled = enabled;
 		this.imageUrl = imageUrl;
+		this.inventory = inventory;
 		this.credits = credits;
 		this.cart = cart;
 		this.crew = crew;
 		this.species = species;
 	}
+
+	
 	
 
 		// HASHCODE .EQUALS TOSTRING

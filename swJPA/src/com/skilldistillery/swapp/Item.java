@@ -20,6 +20,9 @@ public class Item {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	@OneToOne
+	private Inventory inventory;
+	
 	private String name;
 	
 	private String description;
