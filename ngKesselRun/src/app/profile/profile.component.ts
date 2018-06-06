@@ -25,12 +25,12 @@ export class ProfileComponent implements OnInit {
   user = new User();
   updatedUser = new User();
   cartItems: CartItem[] = [];
-  showUpdateForm = null;
-  showAllItems = null;
-  showUserItems = null;
   editItem: Item = null;
   items: Item[] = [];
   selected: Item = null;
+  showUpdateForm = null;
+  showAllItems = null;
+  showUserItems = null;
   newItem = null;
   // DISPLAY METHODS
   hideAdd() {
@@ -39,6 +39,7 @@ export class ProfileComponent implements OnInit {
   showProfile() {
     this.hideUpdate();
     this.hideAllItemsList();
+    this.hideUserItems();
   }
   showUpdate() {
     this.hideAllItemsList();
@@ -53,6 +54,9 @@ export class ProfileComponent implements OnInit {
   }
   hideUpdate() {
     this.showUpdateForm = null;
+  }
+  hideUserItems() {
+    this.showUserItems = null;
   }
   showAllUserItems() {
     this.showUserItems = true;
