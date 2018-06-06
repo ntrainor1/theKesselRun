@@ -58,10 +58,15 @@ public class CartItemController {
 			@RequestBody CartItem CartItem) {
 		return cartItemService.update(id, CartItem);
 	}
+	
+	@RequestMapping(path = "cartitems/checkout{userid}", method = RequestMethod.PUT)
+	public CartItem checkout(HttpServletRequest req, HttpServletResponse res, @PathVariable("userid") int userid,
+			@RequestBody CartItem CartItem) {
+		return cartItemService.checkout(userid, CartItem);
+	}
 
 	@RequestMapping(path = "cartitems/{id}", method = RequestMethod.DELETE)
-	public void delete(HttpServletRequest req, HttpServletResponse res, @PathVariable("id") int id,
-			@RequestBody CartItem CartItem) {
+	public void delete(HttpServletRequest req, HttpServletResponse res, @PathVariable("id") int id) {
 		cartItemService.destroy(id);
 	}
 }

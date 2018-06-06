@@ -11,4 +11,5 @@ public interface CartItemService {
 	public CartItem update(int id, CartItem cart);
 	public void destroy(int id);
 	public CartItem addToCart(CartItem addingCartItem);
+	public void checkout(int userid, CartItem cartItem);
 }

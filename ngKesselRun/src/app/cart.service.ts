@@ -54,6 +54,28 @@ export class CartService {
             })
         );
   }
+  removeCartItem(cartItem) {
+    return this.http.delete<void>('http://localhost:8080/api/cartitems/' + cartItem.id)
+    .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError('KABOOM');
+        })
+    );
+  }
+
+  checkoutCart(userid: number, cartItems: CartItem[]) {
+    cartItems.forEach(cartItem => {
+      this.http.put<void>('http://localhost:8080/api/cartitems/checkout/' + userid, cartItem)
+      .pipe(
+          catchError((err: any) => {
+            console.log(err);
+            return throwError('KABOOM');
+          })
+      );
+    });
+
+  }
 
   update(cart) {
     // set the local auth header token

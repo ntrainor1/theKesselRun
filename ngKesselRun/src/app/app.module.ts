@@ -24,7 +24,7 @@ import { ItemListComponent } from './item-list/item-list.component';
     NotFoundComponent,
     NavbarComponent,
     AboutComponent,
-    ItemListComponent,
+    ItemListComponent
   ],
   imports: [
     BrowserModule,
