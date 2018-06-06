@@ -92,8 +92,30 @@
     <!-- End of Update Form -->
 </div>
 <div class="bottom-left-pane">
-    <div *ngFor="let cartItem of cartItems">
-      <h3>{{cartItem.item.name}}</h3>
-    </div>
-    <h1>THE CART GOES HERE</h1>
+    <h1>Cart</h1>
+
+  <table>
+    <thead>
+      <tr>
+      <th>Item</th>
+      <th>Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let cartItem of cartItems">
+      <td>{{cartItem.item.name}}</td>
+      <td>{{cartItem.item.price}}</td>
+      <td>      <button type="submit" class="btn btn-large btn-danger" (click)="removeItemFromCart(cartItem)">Remove</button>
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>Total</td>
+      <td>{{cartTotal}}</td>
+    </tr>
+  </tfoot>
+  </table>
+  <button type="submit" class="btn btn-large btn-primary" (click)="checkoutCart()">Checkout</button>
+
 </div>

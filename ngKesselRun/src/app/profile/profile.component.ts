@@ -20,6 +20,7 @@ import { Inventory } from '../models/inventory';
 })
 export class ProfileComponent implements OnInit {
   // FIELDS
+  cartTotal: number;
   inventory = new Inventory();
   user = new User();
   updatedUser = new User();
@@ -132,11 +133,22 @@ export class ProfileComponent implements OnInit {
   getCart(userId) {
     console.log('in getCart');
     console.log(userId);
+    this.cartItems = [];
+    this.cartTotal = 0;
     this.cartService.getCartItems(userId).subscribe(
       cartItems => cartItems.forEach(cartItem => {
           this.cartItems.push(cartItem);
+          this.cartTotal = this.cartTotal + cartItem.item.price;
+          console.log(this.cartTotal);
+
       }),
       err => console.log('Error loading cart')
+    );
+  }
+
+  checkoutCart() {
+    this.cartService.checkoutCart(this.user.id, this.cartItems).subscribe(
+
     );
   }
   getCategoryById(id: number) {
@@ -157,7 +169,12 @@ export class ProfileComponent implements OnInit {
     this.router.navigateByUrl('home');
     console.log('logged out');
   }
-
+  removeItemFromCart(cartItem) {
+    this.cartService.removeCartItem(cartItem).subscribe(
+      data => this.reload(),
+      err => console.log(err)
+    );
+  }
   constructor(private itemService: ItemService, private inventoryService: InventoryService,
     private cartService: CartService, private authServ: AuthService, private catService: CategoryService,
      private router: Router, private userService: UserService, private home: HomeComponent) { }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.swapp.CartItem;
+import com.skilldistillery.swapp.User;
 import com.skilldistillery.swapp.repository.CartItemRepo;
 import com.skilldistillery.swapp.repository.UserRepo;
 
@@ -43,6 +44,13 @@ public class CartItemServiceImpl implements CartItemService {
 	public CartItem addToCart(CartItem addingCartItem) {
 		System.out.println(addingCartItem);
 		return cartItemRepo.saveAndFlush(addingCartItem);
+	}
+	@Override
+	public void checkout(int userid, CartItem cartItem) {
+		User owner = userRepo.findById(cartItem.getItem().getUser().getId()).get();
+		User purchaser = userRepo.findById(userid).get();
+		purchaser.setCredits(purchaser.getCredits()-cartItem.getItem().getPrice());
+		
 	}
 	
 }
