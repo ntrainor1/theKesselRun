@@ -9,23 +9,18 @@
 
 <div class="main-portion">
   <!-- Main Profile Display -->
-  <div *ngIf="!showUpdateForm && !showAllItems && !newItem">
+  <div *ngIf="!showUpdateForm && !showAllItems && !showUserItems">
     <div class="center-pic">
       <img class="itemImage" src="{{user.imageUrl}}" alt="profile pic"/>
       <h3>Name: {{user.username}}</h3>
       <h3>Species: {{user.species}}</h3>
       <h3>Credits: {{user.credits}}</h3>
-      <!-- added form for create div -->
-      <form>
-          <input type="submit" class="btn btn-large btn-primary" value="Add Item" (click)="setUpCreateDiv()" >
-      </form>
-      <!-- end create div -->
     </div>
   </div>
   <!-- End of Main Profile Display -->
 
   <!-- DISPLAYS ALL ITEMS IN THE USERS INVENTORY -->
-  <div *ngIf="showUserItems && !showAllItems">
+  <div *ngIf="showUserItems && !showAllItems && !newItem">
     <h1 class="centered-title">Inventory Items</h1>
 
     <!-- added ng if -->
@@ -47,7 +42,7 @@
       </div>
     </div>
     <!-- create new item div -->
-    <div *ngIf= 'newItem'>
+    <div *ngIf= 'newItem && !showUpdateForm'>
       <form>
         <div><input type="text" name="name" placeholder="Item Name" [(ngModel)]="newItem.name"></div>
         <div><input type="text" name="description" placeholder="Item Description" [(ngModel)]="newItem.description"></div>
