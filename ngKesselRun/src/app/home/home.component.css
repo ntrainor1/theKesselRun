@@ -1,11 +1,8 @@
 .banner-center {
-  border-left: 9px double darkgrey;
-  border-right: 9px double darkgrey;
-  border-top: 18px double darkgrey;
-  border-bottom: 18px double darkgrey;
   margin-left: 25%;
   margin-right: 25%;
-  padding-top: 3%;
+  font-size: 69px;
+  padding-top: 5%;
   padding-bottom: 3%;
   text-align: center;
 }
@@ -21,4 +18,48 @@
 }
 .form-center {
   text-align: center;
+}
+.button {
+  background-color: Transparent; /* Blue */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.button2 {
+  background-color: Transparent;
+  color: #00b1ff;
+  border: 2px solid #00b1ff;
+  border-radius: 8px;
+}
+.button2:hover {
+  background-color: #0f6083;
+  color: rgb(165, 177, 189);
+}
+.button-red {
+  background-color: Transparent; /* Red */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.button-red2 {
+  background-color: Transparent;
+  color: #ff0000;
+  border: 2px solid #ff0000;
+  border-radius: 8px;
+}
+.button-red2:hover {
+  background-color: #ff0000;
+  color: white;
 }

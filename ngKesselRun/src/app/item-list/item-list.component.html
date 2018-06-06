@@ -1,12 +1,34 @@
 <h1 class="centered-title">Marketplace Items</h1>
 <!-- added form for create div -->
 <form *ngIf="!newItem">
-  <input type="submit" class="btn btn-large btn-primary" value="Add Item" (click)="setUpCreateDiv()" >
+  <input type="submit" class="button button2" value="Add Item" (click)="setUpCreateDiv()" >
 </form>
 <!-- end create div -->
+<!-- create new item div -->
+<div *ngIf= 'newItem'>
+  <form>
+    <div><input type="text" name="name" placeholder="Item Name" [(ngModel)]="newItem.name"></div>
+    <div><input type="text" name="description" placeholder="Item Description" [(ngModel)]="newItem.description"></div>
+    <div><input type="text" name="imageUrl" placeholder="Item Image URL" [(ngModel)]="newItem.imageUrl"></div>
+    <div><input type="number" name="price" placeholder="Item Price" [(ngModel)]="newItem.price"></div>
+    <div>
+      <select  name="category" [(ngModel)]="newItem.category">
+        <option value="{{1}}">Weapon</option>
+        <option value="{{2}}">Decoration</option>
+        <option value="{{3}}">Tool</option>
+        <option value="{{4}}">Food</option>
+        <option value="{{5}}">Ship</option>
+        <option value="{{6}}">Miscellaneous</option>
+      </select>
+    </div>
+    <input type="submit"  class="button button2" value="Submit" (click)="getCategoryThenAdd(newItem.category)" >
+    <button type="submit" class="button-red button-red2" (click)="hideAdd()">Back</button>
+  </form>
+</div>
+<!-- end new item div -->
 
 <!-- added ng if -->
-<div  *ngIf='!newItem'>
+<div>
 <div *ngFor='let item of items' class="snip1418">
   <img class="itemImage" src="{{item.imageUrl}}"/>
   <div class="add-to-cart">
@@ -25,25 +47,3 @@
   </div>
 </div>
 </div>
-<!-- create new item div -->
-<div *ngIf= 'newItem'>
-  <form>
-    <div><input type="text" name="name" placeholder="Item Name" [(ngModel)]="newItem.name"></div>
-    <div><input type="text" name="description" placeholder="Item Description" [(ngModel)]="newItem.description"></div>
-    <div><input type="text" name="imageUrl" placeholder="Item Image URL" [(ngModel)]="newItem.imageUrl"></div>
-    <div><input type="number" name="price" placeholder="Item Price" [(ngModel)]="newItem.price"></div>
-    <div>
-      <select  name="category" [(ngModel)]="newItem.category">
-        <option value="{{1}}">Weapon</option>
-        <option value="{{2}}">Decoration</option>
-        <option value="{{3}}">Tool</option>
-        <option value="{{4}}">Food</option>
-        <option value="{{5}}">Ship</option>
-        <option value="{{6}}">Miscellaneous</option>
-      </select>
-    </div>
-    <input type="submit"  class="btn btn-large btn-primary" value="Submit" (click)="getCategoryThenAdd(newItem.category)" >
-    <button type="submit" class="btn btn-large btn-danger" (click)="hideAdd()">Back</button>
-  </form>
-</div>
-<!-- end new item div -->

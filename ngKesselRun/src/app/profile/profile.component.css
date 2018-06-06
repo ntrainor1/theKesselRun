@@ -4,22 +4,22 @@
   width: 25%;
   float: left;
   padding: 15px;
-  border: 2px solid red;
-  background-color: black;
+  border: 2px solid rgb(158, 122, 75);
+
 }
 .left-pane {
   width: 25%;
   float: left;
   padding: 15px;
-  border: 2px solid red;
-  background-color: black;
+  border: 2px solid rgb(158, 122, 75);
+
 }
 .main-portion {
   width: 75%;
   float: right;
   padding: 15px;
-  border: 1px solid red;
-  background-color: black;
+  border: 1px solid rgb(158, 122, 75);
+
 }
 .center-pic {
   float: center;
@@ -35,9 +35,9 @@
   max-width: 315px; */
   width: 300px;
   height: 300px;
-  background: #ffffff;
+  background: transparent;
   text-align: center;
-  color: #000000;
+  color: white;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
   font-size: 16px;
   -webkit-transform: translateZ(0);
@@ -136,4 +136,44 @@ body {
 .centered-title {
   text-align: center;
   text-decoration: underline;
+}
+.button {
+  background-color: Transparent; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.button2 {
+  background-color: Transparent;
+  color: #00b1ff;
+  border: 2px solid #00b1ff;
+  border-radius: 8px;
+}
+.button-red {
+  background-color: Transparent; /* Red */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.button-red2 {
+  background-color: Transparent;
+  color: #ff0000;
+  border: 2px solid #ff0000;
+  border-radius: 8px;
+}
+.button-red2:hover {
+  background-color: #ff0000;
+  color: white;
 }

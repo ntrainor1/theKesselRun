@@ -46,6 +46,7 @@ export class ProfileComponent implements OnInit {
   }
   showUpdate() {
     this.hideAllItemsList();
+    this.showUserItems = null;
     this.showUpdateForm = true;
   }
   showAllItemsList() {

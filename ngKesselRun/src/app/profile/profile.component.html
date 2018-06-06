@@ -1,10 +1,10 @@
 <div class="left-pane">
-  <button type="submit" class="btn btn-large btn-primary" (click)="showUpdate()">Update User Profile</button><br>
-  <button type="submit" class="btn btn-large btn-primary" (click)="showProfile()">Go To Profile</button><br>
-  <button type="submit" class="btn btn-large btn-primary" (click)="showAllItemsList()">View All Items in Marketplace</button><br>
-  <button type="submit" class="btn btn-large btn-primary" (click)="showAllUserItems()">View All Items in Inventory</button><br>
+  <button type="submit" class="button button2" (click)="showUpdate()">Update User Profile</button><br>
+  <button type="submit" class="button button2" (click)="showProfile()">Go To Profile</button><br>
+  <button type="submit" class="button button2" (click)="showAllItemsList()">View All Items in Marketplace</button><br>
+  <button type="submit" class="button button2" (click)="showAllUserItems()">View All Items in Inventory</button><br>
   I am the menu side bar I will house all of the buttons
-  <button type="submit" class="btn btn-large btn-danger" (click)="logout()">Logout</button>
+  <button type="submit" class="button-red button-red2" (click)="logout()">Logout</button>
 </div>
 
 <div class="main-portion">
@@ -55,8 +55,8 @@
             <option value="{{6}}">Miscellaneous</option>
           </select>
         </div>
-        <input type="submit"  class="btn btn-large btn-primary" value="Submit" (click)="getCategoryThenAdd(newItem.category)" >
-        <button type="submit" class="btn btn-large btn-danger" (click)="hideAdd()">Back</button>
+        <input type="submit"  class="button button2" value="Submit" (click)="getCategoryThenAdd(newItem.category)" >
+        <button type="submit" class="button-red button-red2" (click)="hideAdd()">Back</button>
       </form>
     </div>
     <!-- end new item div -->
@@ -75,13 +75,13 @@
       <div>Update Image URL: <input type="text" name="imageUrl" placeholder="{{user.imageUrl}}" [(ngModel)]="updatedUser.imageUrl"/></div>
       <div>Update Species: <input type="text" name="species" placeholder="{{user.species}}" [(ngModel)]="updatedUser.species"/></div>
       <br>
-      <button type="submit" class="btn btn-large btn-primary" (click)="updateUser()">Update</button>
-      <button type="submit" class="btn btn-large btn-danger" (click)="hideUpdate()">Back</button>
+      <button type="submit" class="button button2" (click)="updateUser()">Update</button>
+      <button type="submit" class="button-red button-red2" (click)="hideUpdate()">Back</button>
       <br><br>
-      <button type="submit" class="btn btn-large btn-danger" (click)="deleteUser()">Delete User</button>
-      </form>
-    </div>
-    <!-- End of Update Form -->
+      <button type="submit" class="button-red button-red2" (click)="deleteUser()">Delete User</button>
+    </form>
+  </div>
+  <!-- End of Update Form -->
 </div>
 <div class="bottom-left-pane">
     <h1>Cart</h1>
@@ -97,7 +97,7 @@
     <tr *ngFor="let cartItem of cartItems">
       <td>{{cartItem.item.name}}</td>
       <td>{{cartItem.item.price}}</td>
-      <td>      <button type="submit" class="btn btn-large btn-danger" (click)="removeItemFromCart(cartItem)">Remove</button>
+      <td>      <button type="submit" class="button-red button-red2" (click)="removeItemFromCart(cartItem)">Remove</button>
       </td>
     </tr>
   </tbody>
@@ -108,7 +108,7 @@
     </tr>
   </tfoot>
   </table>
-  <button *ngIf="checkForSufficientCredits()" type="submit" class="btn btn-large btn-primary" (click)="checkoutCart()">Checkout</button>
-  <button *ngIf="!checkForSufficientCredits()" type="submit" class="btn btn-large btn-danger">Not Enough Credits</button>
+  <button *ngIf="checkForSufficientCredits()" type="submit" class="button button2" (click)="checkoutCart()">Checkout</button>
+  <button *ngIf="!checkForSufficientCredits()" type="submit" class="button-red button-red2">Not Enough Credits</button>
 
 </div>
