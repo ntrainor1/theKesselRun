@@ -53,7 +53,7 @@ public class CartItemServiceImpl implements CartItemService {
 		User owner = userRepo.findById(cartItem.getItem().getUser().getId()).get();
 		User purchaser = userRepo.findById(userid).get();
 		Inventory inventory = inventoryRepo.findByItem(cartItem.getItem());
-		inventory.setUser(owner);
+		inventory.setUser(purchaser);
 		purchaser.setCredits(purchaser.getCredits()-cartItem.getItem().getPrice());
 		owner.setCredits(owner.getCredits()+cartItem.getItem().getPrice());
 		userRepo.saveAndFlush(owner);
