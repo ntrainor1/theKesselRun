@@ -49,7 +49,7 @@ public class CartItemServiceImpl implements CartItemService {
 		return cartItemRepo.saveAndFlush(addingCartItem);
 	}
 	@Override
-	public void checkout(int userid, CartItem cartItem) {
+	public CartItem checkout(int userid, CartItem cartItem) {
 		User owner = userRepo.findById(cartItem.getItem().getUser().getId()).get();
 		User purchaser = userRepo.findById(userid).get();
 		Inventory inventory = inventoryRepo.findByItem(cartItem.getItem());
@@ -59,7 +59,8 @@ public class CartItemServiceImpl implements CartItemService {
 		userRepo.saveAndFlush(owner);
 		userRepo.saveAndFlush(purchaser);
 		inventoryRepo.saveAndFlush(inventory);
-
+		cartItemRepo.delete(cartItem);
+		return cartItem;
 		
 	}
 	

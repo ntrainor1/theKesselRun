@@ -66,7 +66,7 @@ export class CartService {
 
   checkoutCart(userid: number, cartItems: CartItem[]) {
     cartItems.forEach(cartItem => {
-      this.http.put<void>('http://localhost:8080/api/cartitems/checkout/' + userid, cartItem)
+      this.http.put<CartItem>('http://localhost:8080/api/cartitems/checkout/' + userid, cartItem)
       .pipe(
           catchError((err: any) => {
             console.log(err);
