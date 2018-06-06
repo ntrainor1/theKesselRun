@@ -42,7 +42,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	        .antMatchers("/api/cartitems").permitAll()
 	        .antMatchers("/api/cartitems/**").permitAll()
 	        .antMatchers("/api/categories/**").permitAll()
-	        .antMatchers("/api/categories").permitAll()
+	        .antMatchers("/api/categories").permitAll()	        
+	        .antMatchers("/api/inventories").permitAll()	        
+	        .antMatchers("/api/inventories/**").permitAll()	        
 	        .anyRequest().authenticated()
 	        .and()
 	        .httpBasic();

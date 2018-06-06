@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
@@ -18,12 +19,12 @@ public class Inventory {
 	private int id;
 	
 	@ManyToOne
-	@Column(name="user_id")
+	@JoinColumn(name="user_id")
 	private User user;
 	
 	@JsonIgnore
 	@OneToOne
-	@Column(name="item_id")
+	@JoinColumn(name="item_id")
 	private Item item;
 
 	public User getUser() {

@@ -19,30 +19,27 @@ public class Item {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
-	@OneToOne
+
+	@OneToOne(mappedBy = "item")
 	private Inventory inventory;
-	
+
 	private String name;
-	
+
 	private String description;
-	
-	@Column(name="image_url")
+
+	@Column(name = "image_url")
 	private String imageUrl;
-	
+
 	private int price;
-	
+
 	@ManyToOne
-	@JoinColumn(name="category_id")
+	@JoinColumn(name = "category_id")
 	private Category category;
-	
+
 	@OneToOne
-	@JoinTable(name="inventory",
-		    joinColumns=@JoinColumn(name="item_id"),
-		    inverseJoinColumns=@JoinColumn(name="user_id")
-		  )	
+	@JoinTable(name = "inventory", joinColumns = @JoinColumn(name = "item_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
 	private User user;
-	
+
 	@ManyToMany(mappedBy = "items")
 	private List<Cart> carts;
 	// G & S
@@ -110,8 +107,9 @@ public class Item {
 	public void setCarts(List<Cart> carts) {
 		this.carts = carts;
 	}
-	
-	public Item() {}
+
+	public Item() {
+	}
 
 	public Item(int id, String name, String description, String imageUrl, int price, Category category, User user,
 			List<Cart> carts) {
@@ -126,7 +124,4 @@ public class Item {
 		this.carts = carts;
 	}
 
-	
-	
-	
 }
