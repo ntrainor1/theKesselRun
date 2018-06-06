@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skilldistillery.swapp.Cart;
+import com.skilldistillery.swapp.CartItem;
 import com.skilldistillery.swapp.Item;
 import com.skilldistillery.swapp.service.AuthService;
 import com.skilldistillery.swapp.service.ItemService;
@@ -42,11 +44,10 @@ public class ItemController {
 	public Item show(HttpServletRequest req, HttpServletResponse res, @PathVariable("id") int id, Principal principal) {
 		return itemService.show(id);
 	}
-//	// POST items WORKS
-//	@RequestMapping(path = "items", method=RequestMethod.POST)
-//	public Item create(HttpServletRequest req, HttpServletResponse res, @RequestBody Item item, Principal principal) {
-//		return itemService.create(item);
-//	}
+	@RequestMapping(path = "items/{id}", method=RequestMethod.POST)
+	public CartItem addingItemToCart(HttpServletRequest req, HttpServletResponse res, @PathVariable("id") int itemId, @RequestBody Cart cart, Principal principal) {
+		return itemService.addToCart(itemId, cart);
+	}
 	// POST items WORKS
 	@RequestMapping(path = "items", method=RequestMethod.POST)
 	public Item create(HttpServletRequest req, HttpServletResponse res, @RequestBody Item item) {

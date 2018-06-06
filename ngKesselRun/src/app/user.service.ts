@@ -20,8 +20,8 @@ export class UserService {
             })
         );
   }
-  show(id) {
-    return this.http.get<User>(this.url + '/' + id)
+  show(username) {
+    return this.http.get<User>(this.url + '/' + username)
         .pipe(
             catchError((err: any) => {
               console.log(err);

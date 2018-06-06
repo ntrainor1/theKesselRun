@@ -34,5 +34,9 @@ public class CartServiceImpl implements CartService {
 		return cartRepo.saveAndFlush(managedCart);
 	}
 
+	@Override
+	public Cart showByUsername(String username) {
+		return cartRepo.findByUserUsername(username).get();
+	}
 
 }

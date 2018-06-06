@@ -1,3 +1,5 @@
+import { User } from './models/user';
+import { CartItem } from './models/cart-item';
 import { Item } from './models/item';
 import { AuthService } from './auth.service';
 import { Injectable } from '@angular/core';
@@ -5,6 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
+import { Cart } from './models/cart';
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +37,21 @@ export class ItemService {
   create(item: Item) {
     console.log('in item service');
     return this.http.post<Item>(this.url, item)
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError('KABOOM');
+        })
+      );
+  }
+  addingToCart(item: Item, user: User) {
+    console.log('in item service');
+    const cartItem = new CartItem();
+    cartItem.item = item;
+    cartItem.user = user;
+    console.log(cartItem);
+
+    return this.http.post<Item>('http://localhost:8080/api/cartitems/' + item.id, cartItem)
       .pipe(
         catchError((err: any) => {
           console.log(err);

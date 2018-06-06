@@ -33,6 +33,11 @@ public class CartItemController {
 	public List<CartItem> index(HttpServletRequest req, HttpServletResponse res) {
 		return cartItemService.index();
 	}
+	
+	@RequestMapping(path = "cartitems/{itemid}", method = RequestMethod.POST)
+	public CartItem addingToCart(HttpServletRequest req, HttpServletResponse res, @PathVariable("itemid") int itemId, @RequestBody CartItem addingCartItem) {
+		return cartItemService.addToCart(addingCartItem);
+	}
 
 	@RequestMapping(path = "cartitems/{userid}", method = RequestMethod.GET)
 	public List<CartItem> show(HttpServletRequest req, HttpServletResponse res, @PathVariable("userid") int userId) {

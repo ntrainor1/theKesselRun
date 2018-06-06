@@ -10,4 +10,5 @@ public interface CartItemService {
 	public List<CartItem> show(Integer id);
 	public CartItem update(int id, CartItem cart);
 	public void destroy(int id);
+	public CartItem addToCart(CartItem addingCartItem);
 }

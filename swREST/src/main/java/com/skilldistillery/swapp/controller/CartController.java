@@ -34,9 +34,15 @@ public class CartController {
 		return cartService.index();
 	}
 
-	@RequestMapping(path = "carts/{id}", method = RequestMethod.GET)
-	public Cart show(HttpServletRequest req, HttpServletResponse res, @PathVariable("id") int id) {
-		return cartService.show(id);
+//	@RequestMapping(path = "carts/{id}", method = RequestMethod.GET)
+//	public Cart show(HttpServletRequest req, HttpServletResponse res, @PathVariable("id") int id) {
+//		return cartService.show(id);
+//	}
+	
+	@RequestMapping(path = "carts/{username}", method = RequestMethod.GET)
+	public Cart showByUsername(HttpServletRequest req, HttpServletResponse res, @PathVariable("username") String username) {
+		System.out.println(username);
+		return cartService.showByUsername(username);
 	}
 
 	@RequestMapping(path = "carts/{id}", method = RequestMethod.PUT)

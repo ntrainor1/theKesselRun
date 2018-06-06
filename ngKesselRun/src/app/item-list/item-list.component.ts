@@ -1,9 +1,13 @@
+import { CartService } from './../cart.service';
 import { Category } from './../models/category';
 import { ItemService } from './../item.service';
 import { Component, OnInit } from '@angular/core';
 import { Item } from '../models/item';
 import { Router } from '@angular/router';
 import { CategoryService } from '../category.service';
+import { Cart } from '../models/cart';
+import { User } from '../models/user';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-item-list',
@@ -19,16 +23,14 @@ export class ItemListComponent implements OnInit {
   selected: Item = null;
   newItem = null;
 
-
   show(id) {
     this.itemService.show(id).subscribe(
       data => this.selected = data,
       err => {
         console.log('Unable to load item');
-        this.router.navigateByUrl('notFound');
+        this.router.navigateByUrl('not-found');
       }
     );
-
 
   }
 
@@ -42,11 +44,12 @@ export class ItemListComponent implements OnInit {
 
       err => {
         console.log('Unable to create item');
-        this.router.navigateByUrl('notFound');
+        this.router.navigateByUrl('not-found');
       }
     );
     this.newItem = null;
   }
+
   getCategoryThenAdd(id: number) {
     console.log('in getCategoryById');
     let category: Category;
@@ -65,6 +68,35 @@ export class ItemListComponent implements OnInit {
     this.newItem = new Item();
   }
 
+  addItemToCart(item, user) {
+    console.log('In addItemToCart');
+    this.itemService.addingToCart(item, user).subscribe(
+      data => {
+        this.reload();
+      },
+
+      err => {
+        console.log('Unable to add item to cart');
+        this.router.navigateByUrl('not-found');
+      }
+    );
+  }
+
+  getUserThenAdd(item: Item) {
+    console.log(item);
+    console.log('in getCartThenAdd');
+    console.log(localStorage.getItem('username'));
+    let user: User;
+    this.userService.show(localStorage.getItem('username')).subscribe(
+      data => {
+        console.log(data);
+        user = data;
+        this.addItemToCart(item, user);
+      },
+      err => console.log(err)
+    );
+  }
+
   update (item) {
     this.itemService.update(item).subscribe(
       data => {
@@ -74,7 +106,7 @@ export class ItemListComponent implements OnInit {
       },
       err => {
         console.log('Unable to edit item');
-        this.router.navigateByUrl('notFound');
+        this.router.navigateByUrl('not-found');
       }
     );
   }
@@ -85,6 +117,7 @@ export class ItemListComponent implements OnInit {
       err => console.log('Unable to delete item')
     );
   }
+
   reload() {
     this.itemService.index().subscribe(
       data => {
@@ -93,15 +126,20 @@ export class ItemListComponent implements OnInit {
       },
       err => {
         console.log('Unable to load items');
-        this.router.navigateByUrl('notFound');
+        this.router.navigateByUrl('not-found');
       }
     );
   }
+
   hideAdd() {
     this.newItem = null;
   }
+
   constructor(private itemService: ItemService,
-     private categoryService: CategoryService, private router: Router, private catService: CategoryService) { }
+     private categoryService: CategoryService,
+     private router: Router,
+     private catService: CategoryService, private cartService: CartService,
+    private userService: UserService) { }
 
   ngOnInit() {
     this.reload();

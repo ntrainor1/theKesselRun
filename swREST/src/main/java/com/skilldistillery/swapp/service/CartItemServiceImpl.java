@@ -39,4 +39,9 @@ public class CartItemServiceImpl implements CartItemService {
 		cartItemRepo.delete(cartItemRepo.findById(id).get());
 	}
 	
+	@Override
+	public CartItem addToCart(CartItem addingCartItem) {
+		return cartItemRepo.saveAndFlush(addingCartItem);
+	}
+	
 }

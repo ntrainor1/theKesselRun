@@ -8,4 +8,5 @@ public interface CartService {
 	public List<Cart> index();
 	public Cart show(Integer id);
 	public Cart update(int id, Cart cart);
+	public Cart showByUsername(String username);
 }

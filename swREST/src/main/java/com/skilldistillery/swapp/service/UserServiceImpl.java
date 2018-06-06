@@ -72,6 +72,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User showByUsername(String username) {
+		System.out.println(username);
 		return userRepo.findByUsername(username).get();
 	}
 

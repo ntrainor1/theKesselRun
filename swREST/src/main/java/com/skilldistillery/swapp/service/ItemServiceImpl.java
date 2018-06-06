@@ -5,8 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.swapp.Cart;
+import com.skilldistillery.swapp.CartItem;
 import com.skilldistillery.swapp.Category;
 import com.skilldistillery.swapp.Item;
+import com.skilldistillery.swapp.repository.CartItemRepo;
 import com.skilldistillery.swapp.repository.CategoryRepo;
 import com.skilldistillery.swapp.repository.ItemRepo;
 
@@ -18,6 +21,9 @@ public class ItemServiceImpl implements ItemService {
 	
 	@Autowired 
 	private CategoryRepo catRepo;
+	
+	@Autowired 
+	private CartItemRepo cartItemRepo;
 	
 	@Override
 	public List<Item> index() {
@@ -54,6 +60,14 @@ public class ItemServiceImpl implements ItemService {
 	@Override
 	public void destroy(int id) {
 		itemRepo.delete(itemRepo.findById(id).get());
+	}
+
+	@Override
+	public CartItem addToCart(int itemId, Cart cart) {
+		CartItem cartItem = new CartItem();
+		cartItem.setItem(itemRepo.findById(itemId).get());
+		cartItem.setCart(cart);
+		return cartItemRepo.saveAndFlush(cartItem);
 	}
 
 }

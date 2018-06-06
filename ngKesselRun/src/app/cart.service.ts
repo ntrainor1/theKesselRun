@@ -35,6 +35,16 @@ export class CartService {
         );
   }
 
+  showByUsername(username) {
+    return this.http.get<Cart>(this.url + '/' + username)
+        .pipe(
+            catchError((err: any) => {
+              console.log(err);
+              return throwError('KABOOM');
+            })
+        );
+  }
+
   getCartItems(userId) {
     return this.http.get<CartItem[]>('http://localhost:8080/api/cartitems/' + userId)
         .pipe(
