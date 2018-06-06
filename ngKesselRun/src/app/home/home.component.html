@@ -1,14 +1,11 @@
 <div class="login-left">
-  <button class="btn btn-large" (click)="showLogin()">LOGIN</button>
+  <button class="button button2" (click)="showLogin()">LOGIN</button>
 </div>
 <div class="create-right">
-  <button class="btn btn-large" (click)="showCreate()">CREATE ACCOUNT</button>
+  <button class="button button2" (click)="showCreate()">CREATE ACCOUNT</button>
 </div>
 <div class="banner-center">
-  <h1>THE KESSEL RUN</h1>
-  <form>
-      <button type="submit" class="btn btn-large btn-primary" (click)="goNotFound()">To Not Found</button>
-  </form>
+  SW~ETSY
 </div>
 <app-scroll *ngIf="!showCreateForm && !showLoginForm"></app-scroll>
 <!-- Login Form -->
@@ -18,8 +15,8 @@
       <div><input type="text" name="username" placeholder="Username" [(ngModel)]="username"/></div>
       <div><input type="password" name="password" placeholder="Password" [(ngModel)]="password"/></div>
       <br>
-      <button type="submit" class="btn btn-large btn-primary" (click)="login(username,password)">Login</button>
-      <button type="submit" class="btn btn-large btn-danger" (click)="hideLogin()">Back</button>
+      <button type="submit" class="button button2" (click)="login(username,password)">Login</button>
+      <button type="submit" class="button-red button-red2" (click)="hideLogin()">Back</button>
     </form>
 </div>
 <!-- Create Form -->
@@ -29,8 +26,8 @@
       <div>Create Username: <input type="text" name="username" placeholder="Username" [(ngModel)]="user.username"/></div>
       <div>Create Password: <input type="password" name="password" placeholder="Password" [(ngModel)]="user.password"/></div>
       <br>
-      <button type="submit" class="btn btn-large btn-primary" (click)="createUser(user)">Create</button>
-      <button type="submit" class="btn btn-large btn-danger" (click)="hideCreate()">Back</button>
+      <button type="submit" class="button button2" (click)="createUser(user)">Create</button>
+      <button type="submit" class="button-red button-red2" (click)="hideCreate()">Back</button>
   </form>
   <!-- Just testing the not found page -->
 </div>

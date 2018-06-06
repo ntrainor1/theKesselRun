@@ -19,7 +19,7 @@ body, html
   height: 100%;
   font-family: "Droid Sans", arial, verdana, sans-serif;
 	font-weight: 700;
-	color: rgb(212, 189, 54);
+	color: rgb(194, 157, 109);
 	background-image: url("spacebackground.jpg");
   overflow: scroll;
 }
