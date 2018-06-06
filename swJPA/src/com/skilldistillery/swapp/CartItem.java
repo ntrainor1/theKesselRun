@@ -63,6 +63,13 @@ public class CartItem {
 		this.item = item;
 	}
 
+	@Override
+	public String toString() {
+		return "CartItem [id=" + id + ", cart=" + cart.getId() + ", item=" + item.getId() + "]";
+	}
+	
+	
+
 	
 }
 	

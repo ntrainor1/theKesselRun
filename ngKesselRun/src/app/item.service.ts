@@ -44,14 +44,14 @@ export class ItemService {
         })
       );
   }
-  addingToCart(item: Item, user: User) {
+  addingToCart(item: Item, cart: Cart) {
     console.log('in item service');
     const cartItem = new CartItem();
     cartItem.item = item;
-    cartItem.user = user;
+    cartItem.cart = cart;
     console.log(cartItem);
 
-    return this.http.post<Item>('http://localhost:8080/api/cartitems/' + item.id, cartItem)
+    return this.http.post<Item>('http://localhost:8080/api/cartitems/' + item.id + '/' + cart.id, cartItem)
       .pipe(
         catchError((err: any) => {
           console.log(err);

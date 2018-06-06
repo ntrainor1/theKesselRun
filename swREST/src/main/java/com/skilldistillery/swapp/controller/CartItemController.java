@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.swapp.CartItem;
 import com.skilldistillery.swapp.service.CartItemService;
+import com.skilldistillery.swapp.service.CartService;
+import com.skilldistillery.swapp.service.ItemService;
 
 @CrossOrigin({ "*", "http://localhost:4200" })
 @RestController
@@ -23,6 +25,10 @@ import com.skilldistillery.swapp.service.CartItemService;
 public class CartItemController {
 	@Autowired
 	private CartItemService cartItemService;
+	@Autowired
+	private CartService cartService;
+	@Autowired
+	private ItemService itemService;
 
 	@RequestMapping(path = "CartItem/ping", method = RequestMethod.GET)
 	public String ping() {
@@ -34,8 +40,11 @@ public class CartItemController {
 		return cartItemService.index();
 	}
 	
-	@RequestMapping(path = "cartitems/{itemid}", method = RequestMethod.POST)
-	public CartItem addingToCart(HttpServletRequest req, HttpServletResponse res, @PathVariable("itemid") int itemId, @RequestBody CartItem addingCartItem) {
+	@RequestMapping(path = "cartitems/{itemid}/{cartid}", method = RequestMethod.POST)
+	public CartItem addingToCart(HttpServletRequest req, HttpServletResponse res, @PathVariable("itemid") int itemId, @PathVariable("cartid") int cartId) {
+		CartItem addingCartItem = new CartItem();
+		addingCartItem.setCart(cartService.show(cartId));
+		addingCartItem.setItem(itemService.show(itemId));
 		return cartItemService.addToCart(addingCartItem);
 	}
 

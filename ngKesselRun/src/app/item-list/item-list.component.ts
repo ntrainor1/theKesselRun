@@ -68,9 +68,9 @@ export class ItemListComponent implements OnInit {
     this.newItem = new Item();
   }
 
-  addItemToCart(item, user) {
+  addItemToCart(item, cart) {
     console.log('In addItemToCart');
-    this.itemService.addingToCart(item, user).subscribe(
+    this.itemService.addingToCart(item, cart).subscribe(
       data => {
         this.reload();
       },
@@ -82,16 +82,16 @@ export class ItemListComponent implements OnInit {
     );
   }
 
-  getUserThenAdd(item: Item) {
+  getCartThenAdd(item: Item) {
     console.log(item);
     console.log('in getCartThenAdd');
     console.log(localStorage.getItem('username'));
-    let user: User;
-    this.userService.show(localStorage.getItem('username')).subscribe(
+    let cart: Cart;
+    this.cartService.showByUsername(localStorage.getItem('username')).subscribe(
       data => {
         console.log(data);
-        user = data;
-        this.addItemToCart(item, user);
+        cart = data;
+        this.addItemToCart(item, cart);
       },
       err => console.log(err)
     );
