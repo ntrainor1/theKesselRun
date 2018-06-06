@@ -13,6 +13,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { AboutComponent } from './about/about.component';
 import { FormsModule } from '@angular/forms';
 import { ItemListComponent } from './item-list/item-list.component';
+import { MusicComponent } from './music/music.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ItemListComponent } from './item-list/item-list.component';
     NotFoundComponent,
     NavbarComponent,
     AboutComponent,
-    ItemListComponent
+    ItemListComponent,
+    MusicComponent
   ],
   imports: [
     BrowserModule,
