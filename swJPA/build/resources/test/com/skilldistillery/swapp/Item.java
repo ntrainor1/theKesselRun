@@ -2,6 +2,7 @@ package com.skilldistillery.swapp;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,7 +21,7 @@ public class Item {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@OneToOne(mappedBy = "item")
+	@OneToOne(mappedBy = "item", cascade=CascadeType.ALL)
 	private Inventory inventory;
 
 	private String name;
@@ -106,6 +107,16 @@ public class Item {
 
 	public void setCarts(List<Cart> carts) {
 		this.carts = carts;
+	}
+
+	
+	
+	public Inventory getInventory() {
+		return inventory;
+	}
+
+	public void setInventory(Inventory inventory) {
+		this.inventory = inventory;
 	}
 
 	public Item() {

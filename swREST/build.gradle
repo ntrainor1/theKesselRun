@@ -57,7 +57,7 @@ dependencies {
 	   runtime group: 'org.hidetake', name: 'groovy-ssh', version: '2.9.0'
 	   compile('org.springframework.boot:spring-boot-starter-security')
 }
-/*
+
 	remotes {
 	  ec2host {
 	    host = '18.221.108.122' // Change this to you EC2 host's public IP
@@ -65,8 +65,7 @@ dependencies {
 	    identity = file("${System.properties['user.home']}/.ssh/aws.pem")
 	  }
 	}
-*/
-/*
+
 	task deploy(dependsOn: war, group: 'build') {
 	  description = 'Deploy WAR file to remote server'
 	  ssh.settings {
@@ -82,4 +81,3 @@ dependencies {
 	    }
 	  }
 	}
-*/

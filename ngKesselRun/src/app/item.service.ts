@@ -13,7 +13,10 @@ import { Cart } from './models/cart';
   providedIn: 'root'
 })
 export class ItemService {
-  private url = 'http://localhost:8080/api/items';
+  // private url = 'http://localhost:8080/api/items';
+  private baseUrl = '/swREST/';
+  private url = this.baseUrl + 'api/items';
+  private cartItemsUrl = this.baseUrl + 'api/cartitems/';
   private items = [];
 
   index() {
@@ -51,7 +54,7 @@ export class ItemService {
     cartItem.cart = cart;
     console.log(cartItem);
 
-    return this.http.post<Item>('http://localhost:8080/api/cartitems/' + item.id + '/' + cart.id, cartItem)
+    return this.http.post<Item>(this.cartItemsUrl + item.id + '/' + cart.id, cartItem)
       .pipe(
         catchError((err: any) => {
           console.log(err);

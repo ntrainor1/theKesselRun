@@ -1,7 +1,5 @@
 package com.skilldistillery.swapp.security;
 
-
-
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +12,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
 
 	@Autowired
 	private PasswordEncoder encoder;
@@ -33,6 +29,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	        .authorizeRequests()
 	        .antMatchers(HttpMethod.OPTIONS, "/api/**").permitAll()  // For CORS, the preflight request will hit the OPTIONS on the route
 	        .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+	        .antMatchers(HttpMethod.GET, "/").permitAll()
+	        .antMatchers(HttpMethod.GET, "/**").permitAll()
+	        .antMatchers(HttpMethod.GET, "/home").permitAll()
+	        .antMatchers(HttpMethod.GET, "/index.html").permitAll()
+	        .antMatchers("/home").permitAll()
+	        .antMatchers("/index.html").permitAll()
 	        .antMatchers("/login").permitAll()
 	        .antMatchers("/register").permitAll()
 	        .antMatchers("/api/items").permitAll()

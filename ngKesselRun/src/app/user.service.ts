@@ -9,7 +9,9 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class UserService {
-  private url = 'http://localhost:8080/api/users';
+  // private url = 'http://localhost:8080/api/users';
+  private baseUrl = '/swREST/';
+  private url = this.baseUrl + 'api/users';
   private user = new User();
   index() {
     return this.http.get<User[]>(this.url)

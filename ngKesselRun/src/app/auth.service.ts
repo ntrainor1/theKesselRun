@@ -8,7 +8,10 @@ import { catchError, tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
-
+  // private baseUrl = 'http://localhost:8080/'
+  private baseUrl = '/swREST/';
+  private authUrl = this.baseUrl + 'authenticate';
+  private regUrl = this.baseUrl + 'register';
   constructor(private http: HttpClient) { }
 
   login(username, password) {
@@ -20,7 +23,7 @@ export class AuthService {
 
     // create request to authenticate credentials
     return this.http
-      .get('http://localhost:8080/authenticate', {headers})
+      .get(this.authUrl, {headers})
       .pipe(
         tap((res) => {
           localStorage.setItem('token' , token);
@@ -38,7 +41,7 @@ export class AuthService {
   register(user) {
 
     // create request to register a new account
-    return this.http.post('http://localhost:8080/register', user)
+    return this.http.post(this.regUrl, user)
     .pipe(
       tap((res) => {  // create a user and then upon success, log them in
           console.log(user);

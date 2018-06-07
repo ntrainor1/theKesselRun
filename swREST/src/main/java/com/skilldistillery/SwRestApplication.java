@@ -23,5 +23,5 @@ public class SwRestApplication extends SpringBootServletInitializer {
 	@Bean
 	public PasswordEncoder configurePasswordEncoder() {
 		return new BCryptPasswordEncoder();
-		}
+	}
 }

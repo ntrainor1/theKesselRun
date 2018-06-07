@@ -12,7 +12,10 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class CartService {
-  private url = 'http://localhost:8080/api/carts';
+  // private url = 'http://localhost:8080/api/carts';
+  private baseUrl = '/swREST/';
+  private url = this.baseUrl + 'api/carts';
+  private cartItemsUrl = this.baseUrl + 'api/cartitems';
   private cart = new Cart();
 
   index() {
@@ -46,7 +49,7 @@ export class CartService {
   }
 
   getCartItems(userId) {
-    return this.http.get<CartItem[]>('http://localhost:8080/api/cartitems/' + userId)
+    return this.http.get<CartItem[]>(this.cartItemsUrl + '/' + userId)
         .pipe(
             catchError((err: any) => {
               console.log(err);
@@ -55,7 +58,7 @@ export class CartService {
         );
   }
   removeCartItem(cartItem) {
-    return this.http.delete<void>('http://localhost:8080/api/cartitems/' + cartItem.id)
+    return this.http.delete<void>(this.cartItemsUrl + '/' + cartItem.id)
     .pipe(
         catchError((err: any) => {
           console.log(err);
@@ -67,7 +70,7 @@ export class CartService {
   checkoutCart(userId: number, cartItem: CartItem) {
     console.log('in cart service checkout cart');
 
-      return this.http.put<CartItem>('http://localhost:8080/api/cartitems/checkout/' + userId, cartItem)
+      return this.http.put<CartItem>( this.cartItemsUrl + '/checkout/' + userId, cartItem)
       .pipe(
           catchError((err: any) => {
             console.log(err);

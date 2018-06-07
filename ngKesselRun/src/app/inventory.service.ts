@@ -13,7 +13,9 @@ import { Cart } from './models/cart';
   providedIn: 'root'
 })
 export class InventoryService {
-  private url = 'http://localhost:8080/api/inventories';
+  // private url = 'http://localhost:8080/api/inventories';
+  private baseUrl = '/swREST/';
+  private url = this.baseUrl + 'api/inventories';
   private items = [];
 
   index() {
