@@ -4,21 +4,23 @@
   width: 25%;
   float: left;
   padding: 15px;
-  border: 1px solid #00b1ff;
-
+  padding-top: 30%;
 }
 .left-pane {
   width: 25%;
+  height: 50%;
   float: left;
   padding: 15px;
   border: 1px solid #00b1ff;
-
+  text-align: center;
+  position: fixed;
+  z-index: 10;
+  background-color: #000000;
 }
 .main-portion {
   width: 75%;
   float: right;
   padding: 15px;
-  border: 1px solid #00b1ff;
 }
 .center-pic {
   float: center;
@@ -160,11 +162,13 @@ body {
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
+  display: flex;
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
-  width: 80%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
 }
 .button2 {
   align-items: center;
@@ -172,7 +176,7 @@ body {
   color: #00b1ff;
   border: 2px solid #00b1ff;
   border-radius: 8px;
-  width: 80%;
+  width: 100%;
 }
 .button-red {
   background-color: Transparent; /* Red */
@@ -184,13 +188,17 @@ body {
   display: inline-block;
   font-size: 16px;
   margin: 4px 2px;
+  width: 100%;
   cursor: pointer;
+  align-items: center;
+  justify-content: center;
 }
 .button-red2 {
   background-color: Transparent;
   color: #ff0000;
   border: 2px solid #ff0000;
   border-radius: 8px;
+  width: 100%;
 }
 .removeButton {
 
@@ -199,9 +207,16 @@ body {
   background-color: #ff0000;
   color: white;
 }
-
+.button2:hover {
+  background-color: #00b1ff;
+  color: white;
+}
 .cartTitle {
   align-content: center;
   align-items: center;
   align-self: center;
+}
+.profile-centered {
+  text-align: center;
+  height: 800px;
 }

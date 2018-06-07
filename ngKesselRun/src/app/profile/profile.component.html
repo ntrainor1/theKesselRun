@@ -1,4 +1,5 @@
 <div class="left-pane">
+  <h1>MAIN MENU</h1>
   <button type="submit" class="button button2" (click)="showUpdate()">Update User Profile</button><br>
   <button type="submit" class="button button2" (click)="showProfile()">Go To Profile</button><br>
   <button type="submit" class="button button2" (click)="showAllItemsList()">View All Items in Marketplace</button><br>
@@ -8,7 +9,7 @@
 
 <div class="main-portion">
   <!-- Main Profile Display -->
-  <div *ngIf="!showUpdateForm && !showAllItems && !showUserItems">
+  <div class="container profile-centered" *ngIf="!showUpdateForm && !showAllItems && !showUserItems">
     <div class="center-pic">
       <img class="itemImage" src="{{user.imageUrl}}" alt="profile pic"/>
       <h3>Name: {{user.username}}</h3>
