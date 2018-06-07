@@ -8,12 +8,15 @@ import org.springframework.stereotype.Service;
 import com.skilldistillery.swapp.Inventory;
 import com.skilldistillery.swapp.Item;
 import com.skilldistillery.swapp.repository.InventoryRepo;
+import com.skilldistillery.swapp.repository.ItemRepo;
 
 @Service
 public class InventoryServiceImpl implements InventoryService {
 	
 	@Autowired
 	private InventoryRepo inventoryRepo;
+	@Autowired
+	private ItemRepo itemRepo;
 
 	@Override
 	public List<Inventory> index() {

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.skilldistillery.swapp.Cart;
 import com.skilldistillery.swapp.CartItem;
 import com.skilldistillery.swapp.Category;
+import com.skilldistillery.swapp.Inventory;
 import com.skilldistillery.swapp.Item;
 import com.skilldistillery.swapp.repository.CartItemRepo;
 import com.skilldistillery.swapp.repository.CategoryRepo;

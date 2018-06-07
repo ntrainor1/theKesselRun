@@ -1,3 +1,4 @@
+import { Inventory } from './../models/inventory';
 import { ProfileComponent } from './../profile/profile.component';
 import { CartService } from './../cart.service';
 import { Category } from './../models/category';
@@ -9,6 +10,7 @@ import { CategoryService } from '../category.service';
 import { Cart } from '../models/cart';
 import { User } from '../models/user';
 import { UserService } from '../user.service';
+import { InventoryService } from '../inventory.service';
 
 @Component({
   selector: 'app-item-list',
@@ -23,6 +25,7 @@ export class ItemListComponent implements OnInit {
   items: Item[] = [];
   selected: Item = null;
   newItem = null;
+  user = new User();
 
   show(id) {
     this.itemService.show(id).subscribe(
@@ -36,10 +39,12 @@ export class ItemListComponent implements OnInit {
   }
 
   addItem(item) {
-    // this.newItem;
+    this.user.username = localStorage.getItem('username');
     console.log(this.newItem);
+    item.user = this.user;
     this.itemService.create(this.newItem).subscribe(
       data => {
+        // this.addNewItemToInventory(data, this.user);
         this.reload();
       },
 
@@ -112,6 +117,17 @@ export class ItemListComponent implements OnInit {
       }
     );
   }
+  addNewItemToInventory(item: Item, user: User) {
+    const inventory = new Inventory;
+    inventory.item = item;
+    inventory.user = user;
+    console.log(inventory);
+
+    this.inventoryService.create(inventory).subscribe(
+      data => console.log('Added item to inventory'),
+      err => console.log('error creating inventory')
+    );
+  }
 
   delete(id) {
     this.itemService.destroy(id).subscribe(
@@ -121,6 +137,12 @@ export class ItemListComponent implements OnInit {
   }
 
   reload() {
+    this.userService.show(localStorage.getItem('username')).subscribe(
+      data => {this.user = data;
+              console.log(data);
+      },
+      err => console.log(err)
+   );
     this.itemService.index().subscribe(
       data => {
         this.items = data;
@@ -142,7 +164,7 @@ export class ItemListComponent implements OnInit {
     private router: Router,
     private profileComp: ProfileComponent,
     private catService: CategoryService, private cartService: CartService,
-    private userService: UserService) { }
+    private userService: UserService, private inventoryService: InventoryService) { }
 
   ngOnInit() {
     this.reload();

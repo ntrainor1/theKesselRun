@@ -106,8 +106,12 @@ export class ProfileComponent implements OnInit {
     );
   }
   addItem(item) {
+    this.addNewItemToInventory(item, this.user);
     this.itemService.create(this.newItem).subscribe(
-      data => this.reload(),
+      data => {
+        // this.addNewItemToInventory(item, this.user);
+        this.reload();
+      },
       err => {
         console.log('Unable to create item');
         this.router.navigateByUrl('notFound');
@@ -226,6 +230,20 @@ export class ProfileComponent implements OnInit {
       err => console.log(err)
     );
   }
+  playMusic() {
+    this.audio.src = 'https://archive.org/download/StarWarsCantinaBand12/Star%20Wars%20Cantina%20Band%201%202.mp3';
+    this.audio.load();
+    this.audio.play();
+  }
+  addNewItemToInventory(item: Item, user: User) {
+    const inventory = new Inventory();
+    inventory.item = item;
+    inventory.user = user;
+    this.inventoryService.create(inventory).subscribe(
+      data => console.log('Added item to inventory'),
+      err => console.log(err)
+    );
+  }
   constructor(private itemService: ItemService, private inventoryService: InventoryService,
     private cartService: CartService, private authServ: AuthService, private catService: CategoryService,
      private router: Router, private userService: UserService, private home: HomeComponent) { }
@@ -242,9 +260,5 @@ export class ProfileComponent implements OnInit {
       err => console.log('Could not load user')
     );
   }
-  playMusic() {
-    this.audio.src = 'https://archive.org/download/StarWarsCantinaBand12/Star%20Wars%20Cantina%20Band%201%202.mp3';
-    this.audio.load();
-    this.audio.play();
-  }
+
 }
