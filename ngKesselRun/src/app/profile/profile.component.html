@@ -3,7 +3,6 @@
   <button type="submit" class="button button2" (click)="showProfile()">Go To Profile</button><br>
   <button type="submit" class="button button2" (click)="showAllItemsList()">View All Items in Marketplace</button><br>
   <button type="submit" class="button button2" (click)="showAllUserItems()">View All Items in Inventory</button><br>
-  I am the menu side bar I will house all of the buttons
   <button type="submit" class="button-red button-red2" (click)="logout()">Logout</button>
 </div>
 
@@ -84,27 +83,27 @@
   <!-- End of Update Form -->
 </div>
 <div class="bottom-left-pane">
-    <h1>Cart</h1>
+    <h1 class="cartTitle">Cart</h1>
 
-  <table>
+  <table class="cartTable">
     <thead>
       <tr>
-      <th>Item</th>
-      <th>Price</th>
+      <th class="cartHeader">Item</th>
+      <th class="cartHeader">Price</th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let cartItem of cartItems">
-      <td>{{cartItem.item.name}}</td>
-      <td>{{cartItem.item.price}}</td>
-      <td>      <button type="submit" class="button-red button-red2" (click)="removeItemFromCart(cartItem)">Remove</button>
+      <td class="cartTD">{{cartItem.item.name}}</td>
+      <td class="cartTD">{{cartItem.item.price}}</td>
+      <td class="cartTD">      <button type="submit" class="button-red button-red2 removeButton" (click)="removeItemFromCart(cartItem)">Remove</button>
       </td>
     </tr>
   </tbody>
   <tfoot>
     <tr>
-      <td>Total</td>
-      <td>{{cartTotal}}</td>
+      <td class="cartTD">Total</td>
+      <td class="cartTD">{{cartTotal}}</td>
     </tr>
   </tfoot>
   </table>

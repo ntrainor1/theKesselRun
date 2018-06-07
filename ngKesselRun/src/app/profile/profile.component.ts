@@ -20,6 +20,7 @@ import { Inventory } from '../models/inventory';
 })
 export class ProfileComponent implements OnInit {
   // FIELDS
+  audio = new Audio();
   cartTotal: number;
   inventoryItems: Item[];
   user = new User();
@@ -212,6 +213,7 @@ export class ProfileComponent implements OnInit {
     );
   }
   logout() {
+    this.audio.pause();
     this.authServ.logout();
     this.router.navigateByUrl('home');
     console.log('logged out');
@@ -235,9 +237,14 @@ export class ProfileComponent implements OnInit {
         this.user = data;
           this.getCart(this.user.id);
           console.log(this.cartItems);
-
+          this.playMusic();
       },
       err => console.log('Could not load user')
     );
+  }
+  playMusic() {
+    this.audio.src = 'https://archive.org/download/StarWarsCantinaBand12/Star%20Wars%20Cantina%20Band%201%202.mp3';
+    this.audio.load();
+    this.audio.play();
   }
 }
