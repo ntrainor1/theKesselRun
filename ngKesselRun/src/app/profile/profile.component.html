@@ -45,7 +45,7 @@
     <h1 class="centered-title">Inventory Items</h1>
 
     <!-- added ng if -->
-    <div>
+    <div  class="inventory">
       <div *ngFor='let item of inventoryItems' class="snip1418">
         <img class="itemImage" src="{{item.imageUrl}}"/>
         <div>
@@ -60,9 +60,9 @@
       </div>
     </div>
     <!-- create new item div -->
-    <div *ngIf= 'newItem && !showUpdateForm'>
+    <div *ngIf= 'newItem && !showUpdateForm' class="f-wide">
       <form>
-        <div><input type="text" name="name" placeholder="Item Name" [(ngModel)]="newItem.name"></div>
+          <div><input type="text" name="name" placeholder="Item Name" [(ngModel)]="newItem.name"></div>
         <div><input type="text" name="description" placeholder="Item Description" [(ngModel)]="newItem.description"></div>
         <div><input type="text" name="imageUrl" placeholder="Item Image URL" [(ngModel)]="newItem.imageUrl"></div>
         <div><input type="number" name="price" placeholder="Item Price" [(ngModel)]="newItem.price"></div>

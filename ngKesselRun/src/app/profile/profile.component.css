@@ -42,7 +42,9 @@
   width: 100%;
 }
 
-
+.inventory {
+  padding-top: 5%;
+}
 .cartTD {
   padding: 15px;
 }
@@ -231,6 +233,11 @@ body {
 
 }
 .profile-centered {
+  padding-top: 5%;
   text-align: center;
   height: 800px;
+}
+.f-wide {
+  width: auto;
+  color: white;
 }

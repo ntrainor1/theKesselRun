@@ -5,14 +5,13 @@
   <input type="submit" class="button button2" value="Add Item" (click)="setUpCreateDiv()" >
 </form>
 <!-- end create div -->
-<!-- create new item div -->
-<div *ngIf= 'newItem'>
+<!-- create new item div --> <br>
+<div *ngIf= 'newItem' class="f-wide">
   <form>
-    <div><input type="text" name="name" placeholder="Item Name" [(ngModel)]="newItem.name"></div>
-    <div><input type="text" name="description" placeholder="Item Description" [(ngModel)]="newItem.description"></div>
-    <div><input type="text" name="imageUrl" placeholder="Item Image URL" [(ngModel)]="newItem.imageUrl"></div>
-    <div><input type="number" name="price" placeholder="Item Price" [(ngModel)]="newItem.price"></div>
-    <div>
+    <div>Item Name <br> <input type="text" name="name" placeholder="Item Name" [(ngModel)]="newItem.name"></div><br>
+    <div>Image URL <br> <input type="text" name="imageUrl" placeholder="Item Image URL" [(ngModel)]="newItem.imageUrl"></div><br>
+    <div>Price <br> <input type="number" name="price" placeholder="Item Price" [(ngModel)]="newItem.price"></div><br>
+    <div>Category <br>
       <select  name="category" [(ngModel)]="newItem.category">
         <option value="{{1}}">Weapon</option>
         <option value="{{2}}">Decoration</option>
@@ -21,9 +20,10 @@
         <option value="{{5}}">Ship</option>
         <option value="{{6}}">Miscellaneous</option>
       </select>
-    </div>
+    </div><br>
+    <div>Description <br> <textarea cols="30" rows="10" name="description" placeholder="Item Description" [(ngModel)]="newItem.description"></textarea></div><br>
     <input type="submit"  class="button button2" value="Submit" (click)="getCategoryThenAdd(newItem.category)" >
-    <button type="submit" class="button-red button-red2" (click)="hideAdd()">Back</button>
+    <button type="submit" class="button-red button-red2" (click)="hideAdd()">Back</button><br>
   </form>
 </div>
 <!-- end new item div -->

@@ -156,3 +156,8 @@ body {
   background-color: #ff0000;
   color: white;
 }
+.f-wide {
+  width: auto;
+  color: white;
+  text-align: center;
+}
