@@ -40,9 +40,10 @@
     <h3>{{item.name}}</h3>
     <p>{{item.description}}</p>
     <div class="price">
-      <s>{{item.price * 2}}</s>
-      <p>{{item.price}}</p>
-      <p>{{item.category.name}}</p>
+      <s>Price: {{item.price * 2}}</s>
+      <p>Sale: {{item.price}}</p>
+      <p>Category: {{item.category.name}}</p>
+      <p>User: {{item.user.username}}</p>
     </div>
   </div>
 </div>
