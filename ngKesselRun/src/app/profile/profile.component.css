@@ -5,6 +5,12 @@
   float: left;
   padding: 15px;
   padding-top: 30%;
+  text-align: center;
+  align-content: center;
+  align-items: center;
+  align-self: center;
+  position: fixed;
+
 }
 .left-pane {
   width: 25%;
@@ -29,8 +35,13 @@
 .cartTable {
   color: #00b1ff;
   padding: 15px;
-
+  align-content: center;
+  align-items: center;
+  align-self: center;
+  text-align: center;
+  width: 100%;
 }
+
 
 .cartTD {
   padding: 15px;
@@ -153,7 +164,6 @@ body {
 }
 .centered-title {
   text-align: center;
-  text-decoration: underline;
 }
 .button {
   background-color: Transparent; /* Green */
@@ -215,6 +225,10 @@ body {
   align-content: center;
   align-items: center;
   align-self: center;
+  text-align: center;
+  margin-left: 9%;
+  background-color: #000000;
+
 }
 .profile-centered {
   text-align: center;

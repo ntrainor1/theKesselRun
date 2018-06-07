@@ -19,6 +19,27 @@
   </div>
   <!-- End of Main Profile Display -->
 
+      <!-- Main Update Display -->
+      <div class="container profile-centered" *ngIf="showUpdateForm && !showAllItems">
+        <div class="center-pic">
+          <img class="itemImage" src="{{user.imageUrl}}" alt="profile pic"/>
+          <h3>Name: {{user.username}}</h3>
+          <form>
+          <h3><input type="text" name="species" placeholder="Species" [(ngModel)]="updatedUser.species"/></h3>
+          <h3><input type="text" name="imageUrl" placeholder="Image URL" [(ngModel)]="updatedUser.imageUrl"/></h3>
+          <br>
+          <button type="submit" class="button button2" (click)="updateUser()">Update</button>
+          <button type="submit" class="button-red button-red2" (click)="hideUpdate()">Back</button>
+          <br><br>
+          <button type="submit" class="button-red button-red2" (click)="deleteUser()">Delete User</button>
+
+              </form>
+
+        </div>
+      </div>
+  <!-- End of Update Form -->
+
+
   <!-- DISPLAYS ALL ITEMS IN THE USERS INVENTORY -->
   <div *ngIf="showUserItems && !showAllItems && !newItem">
     <h1 class="centered-title">Inventory Items</h1>
@@ -67,24 +88,12 @@
   <div *ngIf="!showUpdateForm && showAllItems">
     <app-item-list></app-item-list>
   </div>
-  <!-- end of the display of items -->
 
-  <!-- Update Form -->
-  <div *ngIf="showUpdateForm && !showAllItems">
-    <form>
-      <div>Update Image URL: <input type="text" name="imageUrl" placeholder="{{user.imageUrl}}" [(ngModel)]="updatedUser.imageUrl"/></div>
-      <div>Update Species: <input type="text" name="species" placeholder="{{user.species}}" [(ngModel)]="updatedUser.species"/></div>
-      <br>
-      <button type="submit" class="button button2" (click)="updateUser()">Update</button>
-      <button type="submit" class="button-red button-red2" (click)="hideUpdate()">Back</button>
-      <br><br>
-      <button type="submit" class="button-red button-red2" (click)="deleteUser()">Delete User</button>
-    </form>
-  </div>
-  <!-- End of Update Form -->
+
+
 </div>
 <div class="bottom-left-pane">
-    <h1 class="cartTitle">Cart</h1>
+    <h1 class="cartTitle">CART</h1>
 
   <table class="cartTable">
     <thead>

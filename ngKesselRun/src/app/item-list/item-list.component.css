@@ -110,7 +110,6 @@ body {
 }
 .centered-title {
   text-align: center;
-  text-decoration: underline;
 }
 .button {
   background-color: Transparent; /* Green */
@@ -123,12 +122,17 @@ body {
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
+  margin-bottom: 5%;
+  margin-top: 5%;
+
 }
 .button2 {
   background-color: Transparent;
   color: #00b1ff;
   border: 2px solid #00b1ff;
   border-radius: 8px;
+
+
 }
 .button-red {
   background-color: Transparent; /* Red */
